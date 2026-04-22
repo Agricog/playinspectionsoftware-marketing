@@ -1,0 +1,31 @@
+---
+/**
+ * BaseLayout — site-wide page shell.
+ *
+ * Every page uses this (directly, or wrapped by a more specific layout later).
+ * Handles: <html>, <head>, <body> structure, global CSS import,
+ * language + direction attributes, and SEO component injection.
+ *
+ * Props are forwarded directly to the SEO component, so any page can set
+ * title / description / canonical / noindex / ogType without BaseLayout
+ * needing to know about them individually.
+ */
+import SEO from "../components/SEO.astro";
+import type { Props as SEOProps } from "../components/SEO.astro";
+import { SITE } from "../consts";
+import "../styles/global.css";
+
+export type Props = SEOProps;
+
+const seoProps = Astro.props;
+---
+
+<!doctype html>
+<html lang={SITE.language} dir="ltr">
+  <head>
+    <SEO {...seoProps} />
+  </head>
+  <body class="min-h-screen bg-brand-50 text-brand-900 antialiased">
+    <slot />
+  </body>
+</html>

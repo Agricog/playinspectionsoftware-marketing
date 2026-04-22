@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
+import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
@@ -9,6 +10,15 @@ export default defineConfig({
   build: {
     format: 'directory',
   },
+  integrations: [
+    sitemap({
+      // Hook point for future exclusions (draft pages, thank-you pages, etc.)
+      filter: (_page) => true,
+      // Hints to Google — ignored for priority but changefreq can help discover updates
+      changefreq: 'weekly',
+      priority: 0.7,
+    }),
+  ],
   vite: {
     plugins: [tailwindcss()],
   },

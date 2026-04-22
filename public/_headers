@@ -1,0 +1,50 @@
+# Cloudflare Pages _headers file
+# https://developers.cloudflare.com/pages/configuration/headers/
+#
+# Applies security and caching headers to every response.
+# Target: A+ rating on securityheaders.com.
+# Content-Security-Policy is deliberately NOT in this step — added separately
+# in Step 4b after verifying nothing else breaks.
+
+/*
+  # HSTS — force HTTPS for 2 years, include all subdomains, eligible for preload list
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+
+  # Block MIME sniffing — prevents browsers from guessing content types
+  X-Content-Type-Options: nosniff
+
+  # Prevent the site being framed (clickjacking protection)
+  X-Frame-Options: DENY
+
+  # Send origin on cross-origin navigation; full URL on same-origin (privacy-friendly default)
+  Referrer-Policy: strict-origin-when-cross-origin
+
+  # Disable browser features we don't need; also opts out of Google FLoC / Topics tracking
+  Permissions-Policy: accelerometer=(), ambient-light-sensor=(), autoplay=(), battery=(), camera=(), cross-origin-isolated=(), display-capture=(), encrypted-media=(), fullscreen=(self), geolocation=(), gyroscope=(), keyboard-map=(), magnetometer=(), microphone=(), midi=(), navigation-override=(), payment=(), picture-in-picture=(), publickey-credentials-get=(), screen-wake-lock=(), sync-xhr=(), usb=(), web-share=(), xr-spatial-tracking=(), clipboard-read=(), clipboard-write=(), gamepad=(), hid=(), idle-detection=(), interest-cohort=(), serial=(), unload=()
+
+  # Process isolation — hardens against side-channel attacks
+  Cross-Origin-Opener-Policy: same-origin
+
+  # Only same-origin resources can embed our content
+  Cross-Origin-Resource-Policy: same-origin
+
+  # Explicitly disable legacy XSS auditor (modern browsers rely on CSP instead)
+  X-XSS-Protection: 0
+
+# Long-cache static assets (Astro hashes filenames, safe to cache forever)
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Images, fonts, etc. from /public (if hashed by Astro). Adjust as needed later.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Sitemap & robots — short cache so updates propagate quickly
+/sitemap-index.xml
+  Cache-Control: public, max-age=3600
+
+/sitemap-0.xml
+  Cache-Control: public, max-age=3600
+
+/robots.txt
+  Cache-Control: public, max-age=3600

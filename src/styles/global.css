@@ -1,3 +1,11 @@
+/* Self-hosted Inter Variable via Fontsource.
+ * Variable font: one file, all weights 100–900 via axis.
+ * Vite bundles the woff2 files into /_astro/ as hashed assets,
+ * so they ship from our own origin — no third-party requests,
+ * CSP-compatible with font-src 'self'.
+ */
+@import "@fontsource-variable/inter/wght.css";
+
 @import "tailwindcss";
 
 /* Design tokens — adjust these once the brand direction firms up */
@@ -9,7 +17,9 @@
   --color-brand-700: #075985;
   --color-brand-900: #0c4a6e;
 
-  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  /* "Inter Variable" is the font-family emitted by @fontsource-variable/inter.
+     Fallback chain covers older browsers and the brief pre-font-load window. */
+  --font-sans: "Inter Variable", "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
 /* Sensible base defaults */

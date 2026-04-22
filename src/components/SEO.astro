@@ -7,7 +7,7 @@
  *
  * Handles: title composition, description, canonical URL, robots,
  * Open Graph, Twitter cards, JSON-LD (Organization + WebSite),
- * viewport, charset, theme-color.
+ * viewport, charset, theme-color, favicons.
  */
 import { SITE, ORGANISATION, DEFAULT_OG_IMAGE } from "../consts";
 
@@ -92,6 +92,11 @@ const websiteSchema = {
 
 {/* Theme colour — sets the browser chrome colour on mobile */}
 <meta name="theme-color" content="#0369a1" />
+
+{/* Favicons */}
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" type="image/x-icon" sizes="32x32" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
 {/* Open Graph */}
 <meta property="og:type" content={ogType} />

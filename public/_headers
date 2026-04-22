@@ -1,10 +1,7 @@
 # Cloudflare Pages _headers file
 # https://developers.cloudflare.com/pages/configuration/headers/
 #
-# Applies security and caching headers to every response.
 # Target: A+ rating on securityheaders.com.
-# Content-Security-Policy is deliberately NOT in this step — added separately
-# in Step 4b after verifying nothing else breaks.
 
 /*
   # HSTS — force HTTPS for 2 years, include all subdomains, eligible for preload list
@@ -13,7 +10,7 @@
   # Block MIME sniffing — prevents browsers from guessing content types
   X-Content-Type-Options: nosniff
 
-  # Prevent the site being framed (clickjacking protection)
+  # Prevent the site being framed (clickjacking protection; superseded by CSP frame-ancestors but kept for legacy UA coverage)
   X-Frame-Options: DENY
 
   # Send origin on cross-origin navigation; full URL on same-origin (privacy-friendly default)
@@ -31,11 +28,16 @@
   # Explicitly disable legacy XSS auditor (modern browsers rely on CSP instead)
   X-XSS-Protection: 0
 
+  # Content Security Policy.
+  # 'unsafe-inline' on script-src is required by inline JSON-LD data blocks in the SEO component.
+  # 'unsafe-inline' on style-src permits Astro's scoped style handling and future inline styles.
+  # These will be replaced with per-resource hashes when we upgrade to Astro 6 (native CSP).
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; manifest-src 'self'; upgrade-insecure-requests
+
 # Long-cache static assets (Astro hashes filenames, safe to cache forever)
 /_astro/*
   Cache-Control: public, max-age=31536000, immutable
 
-# Images, fonts, etc. from /public (if hashed by Astro). Adjust as needed later.
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
 

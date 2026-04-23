@@ -1,0 +1,72 @@
+---
+/**
+ * ContentBreadcrumbs — accessible breadcrumb navigation for content pages.
+ *
+ * Renders:
+ *   1. Visible breadcrumb trail (Home / BS EN 1176 / Routine Inspections)
+ *   2. JSON-LD BreadcrumbList schema for Google (shows as the URL trail
+ *      in search results instead of the raw URL)
+ *
+ * Props:
+ *   - crumbs: array of { label, href? } in order. The last crumb should
+ *     omit href — it's the current page.
+ *
+ * Example:
+ *   <ContentBreadcrumbs crumbs={[
+ *     { label: 'Home', href: '/' },
+ *     { label: 'BS EN 1176' }
+ *   ]} />
+ */
+
+import { SITE } from "../consts";
+
+interface Crumb {
+  label: string;
+  href?: string;
+}
+
+interface Props {
+  crumbs: Crumb[];
+}
+
+const { crumbs } = Astro.props;
+
+const baseUrl = SITE.url.replace(/\/$/, "");
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: crumbs.map((crumb, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: crumb.label,
+    ...(crumb.href ? { item: `${baseUrl}${crumb.href}` } : {}),
+  })),
+};
+---
+<nav aria-label="Breadcrumb" class="mx-auto max-w-4xl px-6 pt-8">
+  <ol class="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm">
+    {crumbs.map((crumb, i) => (
+      <li class="flex items-center gap-2">
+        {i > 0 && (
+          <svg class="h-3.5 w-3.5 text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
+        )}
+        {crumb.href ? (
+          <a
+            href={crumb.href}
+            class="text-slate-600 transition hover:text-brand-700 hover:underline"
+          >
+            {crumb.label}
+          </a>
+        ) : (
+          <span class="font-medium text-slate-900" aria-current="page">
+            {crumb.label}
+          </span>
+        )}
+      </li>
+    ))}
+  </ol>
+</nav>
+<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />

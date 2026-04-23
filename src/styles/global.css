@@ -5,8 +5,8 @@
  * CSP-compatible with font-src 'self'.
  */
 @import "@fontsource-variable/inter/wght.css";
-
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 /* Design tokens — adjust these once the brand direction firms up */
 @theme {

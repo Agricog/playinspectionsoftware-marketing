@@ -1,31 +1,63 @@
 ---
 /**
- * BaseLayout — site-wide page shell.
+ * Base layout — page shell.
  *
- * Every page uses this (directly, or wrapped by a more specific layout later).
- * Handles: <html>, <head>, <body> structure, global CSS import,
- * language + direction attributes, and SEO component injection.
+ * Wraps every page in:
+ *  - <html>/<head>/<body> with SEO meta via <SEO />
+ *  - Global stylesheet
+ *  - Site Header (top nav)
+ *  - Page content (slot)
+ *  - Site Footer
  *
- * Props are forwarded directly to the SEO component, so any page can set
- * title / description / canonical / noindex / ogType without BaseLayout
- * needing to know about them individually.
+ * Pages pass through the SEO props they need; everything else is consistent.
+ *
+ * The "skip to main content" link is for keyboard / screen-reader users to
+ * bypass the nav and jump to <main>. Standard accessibility practice.
  */
-import SEO from "../components/SEO.astro";
-import type { Props as SEOProps } from "../components/SEO.astro";
-import { SITE } from "../consts";
 import "../styles/global.css";
+import SEO from "../components/SEO.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { SITE } from "../consts";
 
-export type Props = SEOProps;
+export interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  image?: string;
+  noindex?: boolean;
+  ogType?: "website" | "article";
+}
 
-const seoProps = Astro.props;
+const { title, description, canonical, image, noindex, ogType } = Astro.props;
 ---
 
 <!doctype html>
-<html lang={SITE.language} dir="ltr">
+<html lang={SITE.language}>
   <head>
-    <SEO {...seoProps} />
+    <SEO
+      title={title}
+      description={description}
+      canonical={canonical}
+      image={image}
+      noindex={noindex}
+      ogType={ogType}
+    />
   </head>
-  <body class="min-h-screen bg-brand-50 text-brand-900 antialiased">
-    <slot />
+  <body class="min-h-screen bg-white text-slate-900 antialiased">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-brand-900 focus:px-4 focus:py-2 focus:text-white"
+    >
+      Skip to main content
+    </a>
+
+    <Header />
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <Footer />
   </body>
 </html>

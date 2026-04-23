@@ -1,0 +1,133 @@
+---
+/**
+ * Features grid — six features that matter to UK playground inspectors.
+ *
+ * Selected for relevance over comprehensiveness. Each one targets a real
+ * concern raised by the audience:
+ *  - Voice dictation: the headline differentiator
+ *  - Offline-first: real field credibility
+ *  - BS EN 1176 alignment: the regulatory anchor
+ *  - AI defect extraction: speed + structure
+ *  - On-device PDF: independence from connectivity
+ *  - Multi-tenant: lets inspection companies onboard their team
+ *
+ * Plain icons (inline SVG, no icon library) keeps the bundle lean and the
+ * CSP clean — no font-based icons that need an external connect-src.
+ */
+---
+
+<section class="border-b border-brand-100 bg-white">
+  <div class="mx-auto max-w-6xl px-6 py-20 sm:py-24">
+    <div class="mx-auto max-w-2xl text-center">
+      <p class="mb-3 text-sm font-semibold uppercase tracking-wider text-brand-700">
+        Built for the work
+      </p>
+      <h2 class="text-3xl font-bold tracking-tight text-brand-900 sm:text-4xl">
+        Everything an RPII inspector actually needs.
+      </h2>
+      <p class="mt-4 text-lg text-slate-700">
+        Designed around the real shape of an inspection day — not a generic
+        forms tool repurposed for playgrounds.
+      </p>
+    </div>
+
+    <div class="mx-auto mt-16 grid max-w-6xl gap-8 sm:grid-cols-2 lg:grid-cols-3">
+
+      <article class="rounded-lg border border-brand-100 p-6">
+        <div class="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-md bg-brand-100 text-brand-700">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5" aria-hidden="true">
+            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+            <line x1="12" y1="19" x2="12" y2="23"></line>
+            <line x1="8" y1="23" x2="16" y2="23"></line>
+          </svg>
+        </div>
+        <h3 class="text-lg font-semibold text-brand-900">Voice dictation</h3>
+        <p class="mt-2 text-sm text-slate-700">
+          Speak findings naturally. Hands stay free for the inspection itself.
+          Works with gloves on, in the rain, in the cold.
+        </p>
+      </article>
+
+      <article class="rounded-lg border border-brand-100 p-6">
+        <div class="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-md bg-brand-100 text-brand-700">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5" aria-hidden="true">
+            <line x1="1" y1="1" x2="23" y2="23"></line>
+            <path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"></path>
+            <path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39"></path>
+            <path d="M10.71 5.05A16 16 0 0 1 22.58 9"></path>
+            <path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88"></path>
+            <path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path>
+            <line x1="12" y1="20" x2="12.01" y2="20"></line>
+          </svg>
+        </div>
+        <h3 class="text-lg font-semibold text-brand-900">Offline-first</h3>
+        <p class="mt-2 text-sm text-slate-700">
+          Full inspection capture without signal. Voice, photos, defects all
+          recorded locally and synced when you're back in coverage.
+        </p>
+      </article>
+
+      <article class="rounded-lg border border-brand-100 p-6">
+        <div class="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-md bg-brand-100 text-brand-700">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5" aria-hidden="true">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            <polyline points="9 12 11 14 15 10"></polyline>
+          </svg>
+        </div>
+        <h3 class="text-lg font-semibold text-brand-900">BS EN 1176 aligned</h3>
+        <p class="mt-2 text-sm text-slate-700">
+          Routine, operational, and annual inspection types built in. Report
+          structure follows the standard. Defensible by design.
+        </p>
+      </article>
+
+      <article class="rounded-lg border border-brand-100 p-6">
+        <div class="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-md bg-brand-100 text-brand-700">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5" aria-hidden="true">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+          </svg>
+        </div>
+        <h3 class="text-lg font-semibold text-brand-900">AI defect extraction</h3>
+        <p class="mt-2 text-sm text-slate-700">
+          Dictation is parsed into discrete defects with risk ratings and
+          recommended actions. Edit before signing — never re-typed from scratch.
+        </p>
+      </article>
+
+      <article class="rounded-lg border border-brand-100 p-6">
+        <div class="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-md bg-brand-100 text-brand-700">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5" aria-hidden="true">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="16" y1="13" x2="8" y2="13"></line>
+            <line x1="16" y1="17" x2="8" y2="17"></line>
+            <polyline points="10 9 9 9 8 9"></polyline>
+          </svg>
+        </div>
+        <h3 class="text-lg font-semibold text-brand-900">PDF on the device</h3>
+        <p class="mt-2 text-sm text-slate-700">
+          Reports are generated locally on your phone or tablet. Branded with
+          your logo. Signed and sent before you leave the site.
+        </p>
+      </article>
+
+      <article class="rounded-lg border border-brand-100 p-6">
+        <div class="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-md bg-brand-100 text-brand-700">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5" aria-hidden="true">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          </svg>
+        </div>
+        <h3 class="text-lg font-semibold text-brand-900">Built for teams</h3>
+        <p class="mt-2 text-sm text-slate-700">
+          Multi-inspector accounts with central asset registers, defect libraries,
+          and shared photo evidence. Each inspection tied to its inspector.
+        </p>
+      </article>
+
+    </div>
+  </div>
+</section>

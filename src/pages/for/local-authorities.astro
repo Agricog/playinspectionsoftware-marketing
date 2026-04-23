@@ -1,0 +1,302 @@
+---
+/**
+ * /for/local-authorities — persona pillar.
+ *
+ * Targets UK local authority parks teams, councils managing playground
+ * portfolios. Keywords: "local authority playground inspection software",
+ * "council playground management software", "parks inspection software",
+ * "public sector playground compliance".
+ *
+ * Different pain profile again: procurement scrutiny, portfolio-level
+ * oversight across dozens-to-hundreds of sites, in-house-plus-contracted
+ * inspection model, audit and FOI demands. More formal tone than the
+ * other two persona pages.
+ */
+
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ContentHero from "../../components/ContentHero.astro";
+import ContentBreadcrumbs from "../../components/ContentBreadcrumbs.astro";
+import ContentCTA from "../../components/ContentCTA.astro";
+import RelatedPages from "../../components/RelatedPages.astro";
+import { SITE, ORGANISATION } from "../../consts";
+
+const title =
+  "Playground Inspection Software for UK Local Authorities";
+const description =
+  "Portfolio-scale playground inspection software for UK councils. Multi-site oversight, defect tracking across inspection cycles, supports both in-house teams and contracted inspectors, with UK data residency and audit-ready evidence chain.";
+const lastUpdatedDisplay = "23 April 2026";
+const lastUpdatedISO = "2026-04-23";
+const datePublishedISO = "2026-04-23";
+const canonical = `${SITE.url.replace(/\/$/, "")}/for/local-authorities`;
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: title,
+  description,
+  datePublished: datePublishedISO,
+  dateModified: lastUpdatedISO,
+  author: { "@type": "Organization", name: ORGANISATION.legalName, url: SITE.url },
+  publisher: { "@type": "Organization", name: SITE.name, url: SITE.url },
+  mainEntityOfPage: { "@type": "WebPage", "@id": canonical },
+};
+
+const faqs = [
+  {
+    q: "Is InspectVoice available through public procurement frameworks?",
+    a: "InspectVoice is positioned for direct purchase at the authority level and does not currently appear on G-Cloud or similar national frameworks. For most council procurement thresholds, subscription values fall within direct award limits. Procurement teams should approach engagement as a standard software subscription rather than a framework-mediated purchase. Contract terms, security questionnaires, and data processing agreements are all available on request.",
+  },
+  {
+    q: "Where is data stored, and is the service UK GDPR compliant?",
+    a: "All data is stored on infrastructure located in the United Kingdom. The service is operated by Autaimate (the trading name of Michael Stevenson) from Cornwall, with all production infrastructure held by UK-present providers. UK GDPR is fully supported: data controller and processor roles are clearly defined, subject access requests are handled within statutory timescales, and data processing agreements are provided as standard with any authority engagement. No data leaves the UK.",
+  },
+  {
+    q: "Can we use both in-house inspectors and external contracted inspectors with one account?",
+    a: "Yes. The account model supports both at once: in-house grounds teams and school caretakers carrying out routine and operational inspections, plus external RPII Annual Inspectors carrying out the annual main inspection. Each inspector has their own login and assigned sites. All findings roll up to a single authority-wide view, giving the council a complete portfolio picture regardless of who carried out which inspection.",
+  },
+  {
+    q: "Does it work for authorities with hundreds of sites?",
+    a: "Yes. The data model is built for portfolio scale. Authorities with several hundred playgrounds across multiple districts operate on the platform without performance degradation — site filtering, defect aggregation, and report generation all remain responsive at that scale. For authorities with site counts into the thousands, an Enterprise tier provides additional capacity and dedicated onboarding support.",
+  },
+  {
+    q: "How does this support our Freedom of Information obligations?",
+    a: "Every inspection, defect, photograph, and report is timestamped, attributed to an inspector, and retained in the system for the full retention period required by authority policy. Reports are exportable as PDFs; underlying data is exportable as structured files. When a Freedom of Information request arrives asking for historical inspection records on a specific site or a specific period, the data is retrievable in minutes rather than days — and produced in a format that reflects well on the authority.",
+  },
+  {
+    q: "What happens if we need to leave the service?",
+    a: "All data is exportable at any time. There is no lock-in clause in the subscription agreement. On termination, the authority can export a full archive of all site registers, inspections, reports, photographs, and defect logs. The authority retains ownership of its data throughout; Autaimate is a processor, not an owner.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: { "@type": "Answer", text: item.a },
+  })),
+};
+---
+<BaseLayout title={title} description={description}>
+  <ContentBreadcrumbs
+    crumbs={[
+      { label: "Home", href: "/" },
+      { label: "For Local Authorities" },
+    ]}
+  />
+
+  <ContentHero
+    eyebrow="For local authorities"
+    title="Portfolio-scale playground inspection, defensible at every level."
+    description="For UK councils managing dozens to hundreds of public playgrounds. Unified multi-site oversight, defect tracking across inspection cycles, support for both in-house and contracted inspection workflows, UK data residency."
+    lastUpdated={lastUpdatedDisplay}
+  />
+
+  <article class="mx-auto max-w-3xl px-6 py-12 sm:py-16">
+    <div class="prose prose-slate max-w-none prose-headings:scroll-mt-24 prose-headings:font-semibold prose-headings:text-slate-900 prose-a:text-brand-700 prose-a:no-underline hover:prose-a:underline prose-strong:text-slate-900">
+      <h2>The council parks problem</h2>
+      <p>
+        A UK local authority typically operates play equipment across
+        anything from a dozen to several hundred sites, split across
+        parks, housing estates, and school grounds under the council&rsquo;s
+        responsibility. Compliance with <a href="/bs-en-1176">BS EN 1176</a>
+        is a portfolio problem, not a site problem — every site needs
+        its routine, operational, and annual inspections on time, every
+        time, with defects tracked and actioned.
+      </p>
+      <p>
+        The traditional model combines in-house teams (doing routine
+        and operational inspections) with contracted RPII-certified
+        Annual Inspectors (doing the 12-monthly main inspections). The
+        outputs arrive in different formats, held in different systems
+        — paper books for routine checks, spreadsheets for operational
+        records, PDFs from the annual inspector. Bringing those
+        together into a coherent portfolio view is a substantial
+        ongoing job, usually done manually by a parks officer with
+        competing demands.
+      </p>
+      <p>
+        When something goes wrong — a Freedom of Information request,
+        an incident investigation, an insurance claim, a scrutiny
+        committee — the absence of a single coherent record of
+        inspection activity becomes a significant problem.
+      </p>
+
+      <h2>What a unified platform changes</h2>
+      <ul>
+        <li>
+          <strong>Portfolio visibility</strong> — every site, every
+          item of equipment, every inspection, every outstanding defect
+          visible on one dashboard. Filter by district, by ward, by
+          inspector, by defect severity, by outstanding age.
+        </li>
+        <li>
+          <strong>Mixed in-house and contracted workflow</strong> —
+          grounds staff doing routine checks, specialist in-house
+          operational inspections, and external RPII Annual Inspectors
+          all work on the same site records. Findings accumulate into
+          a single continuous history per site rather than living in
+          separate systems.
+        </li>
+        <li>
+          <strong>Defect tracking across inspection cycles</strong> —
+          a defect identified at an annual inspection that is scheduled
+          for repair shows up automatically on the next operational
+          inspection as a specific item to reassess. The continuous
+          record across the three tiers, built in rather than
+          maintained by hand.
+        </li>
+        <li>
+          <strong>Audit-ready evidence chain</strong> — every
+          inspection, photograph, defect, and report timestamped and
+          attributed. FOI requests, incident investigations, and
+          insurance claims retrieve the relevant record in minutes.
+        </li>
+        <li>
+          <strong>Budget justification</strong> — defect counts, risk
+          distribution, and remedial-work costs across the portfolio
+          become straightforward to summarise for committee reports,
+          budget setting, and capital investment cases.
+        </li>
+      </ul>
+
+      <h2>Independence preserved</h2>
+      <p>
+        BS EN 1176 requires annual main inspections to be carried out
+        by a competent independent inspector — someone with no
+        commercial interest in the remedial work their report
+        recommends. InspectVoice supports this independence requirement
+        by design: an external RPII inspector engaged by the authority
+        uses their own login, produces their own independent report,
+        and their findings flow into the authority&rsquo;s central
+        record without any editorial intervention from authority staff.
+        The audit trail shows clearly who identified what, when, and in
+        what role.
+      </p>
+      <p>
+        Authorities with framework contracts for inspection services
+        can keep those contracts intact. InspectVoice does not require
+        the authority to use any particular inspector or inspection
+        company — it sits alongside existing contractual arrangements,
+        providing the data platform rather than the inspection service.
+      </p>
+
+      <ContentCTA
+        headline="A pilot on one district, then portfolio rollout."
+        body="Authorities typically engage with InspectVoice through a focused pilot on a single district or a specific site type, then roll out across the portfolio once the workflow is validated. The pilot phase includes data migration, inspector onboarding, and integration with existing contracted-inspector arrangements."
+      />
+
+      <h2>Security and compliance essentials</h2>
+      <ul>
+        <li>
+          <strong>UK data residency</strong> — all production data held on
+          UK infrastructure. No international data transfer.
+        </li>
+        <li>
+          <strong>UK GDPR compliant</strong> — data processing agreements
+          provided as standard; controller and processor roles clearly
+          defined; subject access requests handled within statutory
+          timescales.
+        </li>
+        <li>
+          <strong>Encryption in transit and at rest</strong> — HTTPS
+          enforced via HSTS, database and object storage encrypted by
+          the underlying cloud providers.
+        </li>
+        <li>
+          <strong>Multi-tenant isolation</strong> — authority data
+          isolated at the database layer via row-level security. One
+          authority&rsquo;s data is not accessible to another under any
+          circumstance.
+        </li>
+        <li>
+          <strong>Authentication and access control</strong> — per-user
+          accounts with role-based permissions; administrators can
+          revoke access instantly for staff changes.
+        </li>
+        <li>
+          <strong>Security questionnaires</strong> — standard security,
+          data protection, and procurement questionnaires can be
+          provided on request at no cost.
+        </li>
+      </ul>
+
+      <h2>Engagement and pricing</h2>
+      <p>
+        Authority engagements typically follow a structured pattern:
+      </p>
+      <ol>
+        <li>
+          <strong>Initial scoping</strong> — site count, inspector
+          model (in-house, contracted, hybrid), existing tooling,
+          integration requirements.
+        </li>
+        <li>
+          <strong>Security and procurement review</strong> —
+          Autaimate provides the standard security questionnaire
+          response, data processing agreement, and contract terms.
+        </li>
+        <li>
+          <strong>Pilot</strong> — one district or site type, typical
+          duration 60 to 90 days. Data migration, inspector
+          onboarding, live inspections on real sites.
+        </li>
+        <li>
+          <strong>Portfolio rollout</strong> — extension to the
+          authority&rsquo;s full site portfolio once the pilot is
+          validated.
+        </li>
+      </ol>
+      <p>
+        Pricing is subscription-based at the authority tier. Exact
+        pricing reflects site count, user count, and required
+        additional controls. Contact Autaimate directly for an
+        authority-specific proposal.
+      </p>
+
+      <h2>Frequently asked questions</h2>
+      <div class="not-prose mt-6 space-y-4">
+        {faqs.map((item) => (
+          <details class="group rounded-lg border border-slate-200 bg-white p-5 transition hover:border-slate-300">
+            <summary class="flex cursor-pointer items-start justify-between gap-4 text-base font-semibold text-slate-900 [&::-webkit-details-marker]:hidden">
+              <span>{item.q}</span>
+              <svg class="mt-1 h-5 w-5 flex-shrink-0 text-slate-400 transition group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <p class="mt-3 text-base leading-relaxed text-slate-600">{item.a}</p>
+          </details>
+        ))}
+      </div>
+
+      <ContentCTA
+        headline="Discuss a pilot in your authority."
+        body="Authority engagements are scoped through a direct conversation rather than self-serve sign-up. Contact Autaimate to arrange an initial scoping call covering site count, inspector model, and integration with your existing contracted-inspector arrangements."
+      />
+
+      <RelatedPages
+        pages={[
+          {
+            title: "For Independent Inspectors",
+            description: "InspectVoice positioned for the external RPII-certified Annual Inspectors you contract for annual main inspections.",
+            href: "/for/independent-inspectors",
+          },
+          {
+            title: "For Inspection Companies",
+            description: "InspectVoice positioned for the multi-inspector firms that deliver inspection services to authorities.",
+            href: "/for/inspection-companies",
+          },
+          {
+            title: "BS EN 1176 Explained",
+            description: "The standard your inspection regime is held to. Full reference on the three inspection tiers and the hazard categories.",
+            href: "/bs-en-1176",
+          },
+        ]}
+      />
+    </div>
+  </article>
+
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+</BaseLayout>

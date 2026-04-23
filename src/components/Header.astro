@@ -1,20 +1,23 @@
 ---
 /**
- * Site header — minimal top nav with Resources dropdown.
+ * Site header — top nav with Resources dropdown (desktop) and hamburger menu (mobile).
  *
- * Logo (left) + Resources dropdown + primary CTA (right). Sticky on scroll.
- * Deliberately uncluttered — this is a marketing site, not an app shell.
+ * Desktop (>= sm):
+ *   Logo + full site name | Resources dropdown | Start free trial
+ *   Resources dropdown uses click-to-open + click-outside-to-close.
  *
- * The Resources dropdown hides on mobile (discovery through the footer on
- * phones); the CTA is always visible.
+ * Mobile (< sm):
+ *   Logo icon | Start free trial | Hamburger
+ *   Hamburger tap opens a full-width panel below the header with three
+ *   sections — Who we help / Resources / Company — mirroring the footer.
+ *   Tap a link, tap outside the header, or press Escape to close.
+ *   Hamburger icon swaps to an X while the menu is open.
  *
- * Dropdown behaviour is click-to-open via a small inline script:
- *  - Click the trigger to open; click elsewhere or press Escape to close
- *  - ARIA attributes (aria-haspopup, aria-expanded) kept in sync
- *  - Chevron icon rotates 180° when open
- *  - Multi-dropdown-safe: opening one closes any other open dropdown
+ * Both dropdowns are driven by the same inline script using data-* hooks.
+ * The script is written in vanilla ES5-compatible syntax and runs
+ * synchronously at page load (is:inline). No framework dependencies.
  */
-import { SITE, CTA } from "../consts";
+import { SITE, ORGANISATION, CTA } from "../consts";
 ---
 <header class="sticky top-0 z-40 border-b border-brand-100 bg-white/90 backdrop-blur-sm">
   <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
@@ -32,7 +35,8 @@ import { SITE, CTA } from "../consts";
       />
       <span class="hidden sm:inline">{SITE.name}</span>
     </a>
-    <nav class="flex items-center gap-3 sm:gap-5" aria-label="Primary">
+    <nav class="flex items-center gap-2 sm:gap-5" aria-label="Primary">
+      <!-- Desktop: Resources dropdown -->
       <div class="relative hidden sm:block" data-dropdown>
         <button
           type="button"
@@ -59,46 +63,147 @@ import { SITE, CTA } from "../consts";
           role="menu"
           data-dropdown-menu
         >
-          <a
-            href="/bs-en-1176"
-            role="menuitem"
-            class="block px-4 py-3 transition hover:bg-slate-50"
-          >
+          <a href="/bs-en-1176" role="menuitem" class="block px-4 py-3 transition hover:bg-slate-50">
             <span class="block text-sm font-semibold text-slate-900">BS EN 1176</span>
             <span class="mt-0.5 block text-xs text-slate-500">The UK playground inspection standard</span>
           </a>
-          <a
-            href="/rpii"
-            role="menuitem"
-            class="block px-4 py-3 transition hover:bg-slate-50"
-          >
+          <a href="/rpii" role="menuitem" class="block px-4 py-3 transition hover:bg-slate-50">
             <span class="block text-sm font-semibold text-slate-900">RPII</span>
             <span class="mt-0.5 block text-xs text-slate-500">UK inspector certification</span>
           </a>
-          <a
-            href="/playground-inspection-software"
-            role="menuitem"
-            class="block px-4 py-3 transition hover:bg-slate-50"
-          >
+          <a href="/playground-inspection-software" role="menuitem" class="block px-4 py-3 transition hover:bg-slate-50">
             <span class="block text-sm font-semibold text-slate-900">Playground Inspection Software</span>
             <span class="mt-0.5 block text-xs text-slate-500">A buyer&rsquo;s guide</span>
           </a>
         </div>
       </div>
+
+      <!-- Start free trial CTA (always visible) -->
       <a
         href={CTA.signUp}
         class="inline-flex items-center justify-center rounded-md bg-brand-700 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-700"
       >
         Start free trial
       </a>
+
+      <!-- Mobile: hamburger menu trigger -->
+      <button
+        type="button"
+        class="inline-flex items-center justify-center rounded-md p-2 text-slate-700 transition hover:bg-slate-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600 sm:hidden"
+        aria-controls="mobile-menu"
+        aria-expanded="false"
+        aria-label="Open menu"
+        data-mobile-trigger
+      >
+        <svg
+          class="h-6 w-6"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+          data-icon-hamburger
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <svg
+          class="hidden h-6 w-6"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+          data-icon-close
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </nav>
+  </div>
+
+  <!-- Mobile nav panel -->
+  <div
+    id="mobile-menu"
+    class="hidden border-t border-slate-200 bg-white shadow-lg sm:hidden"
+    data-mobile-menu
+  >
+    <nav class="mx-auto max-w-6xl space-y-8 px-6 py-8" aria-label="Mobile">
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">
+          Who we help
+        </p>
+        <ul class="mt-4 space-y-1">
+          <li>
+            <a href="/for/independent-inspectors" class="block rounded-md py-2 text-base font-medium text-slate-800 transition hover:bg-slate-50 hover:text-brand-700">
+              Independent inspectors
+            </a>
+          </li>
+          <li>
+            <a href="/for/inspection-companies" class="block rounded-md py-2 text-base font-medium text-slate-800 transition hover:bg-slate-50 hover:text-brand-700">
+              Inspection companies
+            </a>
+          </li>
+          <li>
+            <a href="/for/local-authorities" class="block rounded-md py-2 text-base font-medium text-slate-800 transition hover:bg-slate-50 hover:text-brand-700">
+              Local authorities
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">
+          Resources
+        </p>
+        <ul class="mt-4 space-y-1">
+          <li>
+            <a href="/bs-en-1176" class="block rounded-md py-2 text-base font-medium text-slate-800 transition hover:bg-slate-50 hover:text-brand-700">
+              BS EN 1176
+            </a>
+          </li>
+          <li>
+            <a href="/rpii" class="block rounded-md py-2 text-base font-medium text-slate-800 transition hover:bg-slate-50 hover:text-brand-700">
+              RPII
+            </a>
+          </li>
+          <li>
+            <a href="/playground-inspection-software" class="block rounded-md py-2 text-base font-medium text-slate-800 transition hover:bg-slate-50 hover:text-brand-700">
+              Playground Inspection Software
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">
+          Company
+        </p>
+        <ul class="mt-4 space-y-1">
+          <li>
+            <a href={`mailto:${ORGANISATION.email}`} class="block rounded-md py-2 text-base font-medium text-slate-800 transition hover:bg-slate-50 hover:text-brand-700">
+              Contact
+            </a>
+          </li>
+          <li>
+            <a href="/privacy" class="block rounded-md py-2 text-base font-medium text-slate-800 transition hover:bg-slate-50 hover:text-brand-700">
+              Privacy
+            </a>
+          </li>
+          <li>
+            <a href="/terms" class="block rounded-md py-2 text-base font-medium text-slate-800 transition hover:bg-slate-50 hover:text-brand-700">
+              Terms
+            </a>
+          </li>
+        </ul>
+      </div>
     </nav>
   </div>
 </header>
 
 <script is:inline>
   (function () {
+    // ---- Resources dropdown (desktop) ----
     var dropdowns = document.querySelectorAll("[data-dropdown]");
-    if (!dropdowns.length) return;
 
     function closeDropdown(dropdown) {
       var menu = dropdown.querySelector("[data-dropdown-menu]");
@@ -138,17 +243,65 @@ import { SITE, CTA } from "../consts";
       });
     });
 
-    document.addEventListener("click", function (event) {
-      dropdowns.forEach(function (dropdown) {
-        if (!dropdown.contains(event.target)) {
-          closeDropdown(dropdown);
+    // ---- Mobile menu (hamburger) ----
+    var mobileTrigger = document.querySelector("[data-mobile-trigger]");
+    var mobileMenu = document.querySelector("[data-mobile-menu]");
+
+    function closeMobileMenu() {
+      if (!mobileTrigger || !mobileMenu) return;
+      mobileMenu.classList.add("hidden");
+      mobileTrigger.setAttribute("aria-expanded", "false");
+      mobileTrigger.setAttribute("aria-label", "Open menu");
+      var hamburger = mobileTrigger.querySelector("[data-icon-hamburger]");
+      var close = mobileTrigger.querySelector("[data-icon-close]");
+      if (hamburger) hamburger.classList.remove("hidden");
+      if (close) close.classList.add("hidden");
+    }
+
+    function openMobileMenu() {
+      if (!mobileTrigger || !mobileMenu) return;
+      mobileMenu.classList.remove("hidden");
+      mobileTrigger.setAttribute("aria-expanded", "true");
+      mobileTrigger.setAttribute("aria-label", "Close menu");
+      var hamburger = mobileTrigger.querySelector("[data-icon-hamburger]");
+      var close = mobileTrigger.querySelector("[data-icon-close]");
+      if (hamburger) hamburger.classList.add("hidden");
+      if (close) close.classList.remove("hidden");
+    }
+
+    if (mobileTrigger && mobileMenu) {
+      mobileTrigger.addEventListener("click", function (event) {
+        event.stopPropagation();
+        if (mobileMenu.classList.contains("hidden")) {
+          openMobileMenu();
+        } else {
+          closeMobileMenu();
         }
       });
+
+      // Close mobile menu when any link inside it is tapped
+      mobileMenu.querySelectorAll("a").forEach(function (link) {
+        link.addEventListener("click", function () {
+          closeMobileMenu();
+        });
+      });
+    }
+
+    // ---- Shared: close on outside click and on Escape ----
+    document.addEventListener("click", function (event) {
+      dropdowns.forEach(function (dropdown) {
+        if (!dropdown.contains(event.target)) closeDropdown(dropdown);
+      });
+      var header = document.querySelector("header");
+      if (header && !header.contains(event.target)) {
+        closeMobileMenu();
+      }
     });
 
     document.addEventListener("keydown", function (event) {
       if (event.key === "Escape") {
         dropdowns.forEach(closeDropdown);
+        closeMobileMenu();
       }
     });
   })();

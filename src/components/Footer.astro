@@ -2,19 +2,19 @@
 /**
  * Footer — professional, structured.
  *
- * Evolved from the original compact footer to a three-area layout as the
- * site has gained persona pages and topical pillars that deserve
- * navigation surface:
- *
+ * Four-area layout:
  *   Top    — final CTA section
  *   Middle — brand block + three link columns (Who we help / Resources / Company)
  *   Bottom — copyright line
  *
  * On mobile the link columns stack under the brand block.
  *
- * The Resources column mirrors the header dropdown: all three topical
- * pillars (BS EN 1176, RPII, Playground Inspection Software) plus the
- * external product and in-page pricing link.
+ * The Resources column mirrors the header dropdown: all four topical
+ * pillars (BS EN 1176, RPII, Playground Inspection Software, Asset Types)
+ * plus the external product and in-page pricing link.
+ *
+ * The Company column covers the commercial and legal pages (Pricing,
+ * About, Contact, Privacy, Terms).
  */
 import { SITE, ORGANISATION, CTA, TRIAL } from "../consts";
 const year = new Date().getFullYear();
@@ -105,13 +105,13 @@ const year = new Date().getFullYear();
               </a>
             </li>
             <li>
-              <a href={CTA.product} class="transition hover:text-white">
-                Product
+              <a href="/asset-types" class="transition hover:text-white">
+                Asset Types
               </a>
             </li>
             <li>
-              <a href="#pricing" class="transition hover:text-white">
-                Pricing
+              <a href={CTA.product} class="transition hover:text-white">
+                Product
               </a>
             </li>
           </ul>
@@ -122,6 +122,16 @@ const year = new Date().getFullYear();
             Company
           </p>
           <ul class="mt-4 space-y-3 text-sm">
+            <li>
+              <a href="/pricing" class="transition hover:text-white">
+                Pricing
+              </a>
+            </li>
+            <li>
+              <a href="/about" class="transition hover:text-white">
+                About
+              </a>
+            </li>
             <li>
               <a href={`mailto:${ORGANISATION.email}`} class="transition hover:text-white">
                 Contact

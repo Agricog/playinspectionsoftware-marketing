@@ -1,0 +1,358 @@
+---
+/**
+ * /rpii/finding-an-inspector — cluster page.
+ *
+ * Operator-facing. Targets high-commercial-intent queries from the buyer
+ * side: "find RPII inspector", "hire playground inspector", "playground
+ * inspector near me", "RPII inspection cost UK", "choosing a playground
+ * inspection company".
+ *
+ * Audience is entirely operator-side: parks officers, school business
+ * managers, housing officers, hospitality site operators. Content is
+ * practical procurement guidance — what to ask, what to verify, what to
+ * pay, what to avoid.
+ */
+
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ContentHero from "../../components/ContentHero.astro";
+import ContentBreadcrumbs from "../../components/ContentBreadcrumbs.astro";
+import ContentCTA from "../../components/ContentCTA.astro";
+import RelatedPages from "../../components/RelatedPages.astro";
+import { SITE, ORGANISATION } from "../../consts";
+
+const title = "Finding an RPII Inspector: A Practical Guide for Operators";
+const description =
+  "How to find, verify and commission an RPII-certified playground inspector in the UK. What to check, what to specify, what to pay, and what to avoid — from parks teams and school business managers to housing and hospitality operators.";
+const lastUpdatedDisplay = "23 April 2026";
+const lastUpdatedISO = "2026-04-23";
+const datePublishedISO = "2026-04-23";
+const canonical = `${SITE.url.replace(/\/$/, "")}/rpii/finding-an-inspector`;
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: title,
+  description,
+  datePublished: datePublishedISO,
+  dateModified: lastUpdatedISO,
+  author: { "@type": "Organization", name: ORGANISATION.legalName, url: SITE.url },
+  publisher: { "@type": "Organization", name: SITE.name, url: SITE.url },
+  mainEntityOfPage: { "@type": "WebPage", "@id": canonical },
+  isPartOf: { "@type": "WebPage", "@id": `${SITE.url.replace(/\/$/, "")}/rpii` },
+};
+
+const faqs = [
+  {
+    q: "How do I verify an inspector&rsquo;s RPII certification is genuine?",
+    a: "Ask for their RPII registration number and check it against the public register maintained by RPII at playinspectors.com. The register lists every currently registered inspector, the grades they hold, and their registration status. An inspector unable to provide a registration number, or whose number does not appear on the register at the grade they claim, is not a safe appointment.",
+  },
+  {
+    q: "How much does a BS EN 1176 annual inspection cost?",
+    a: "Fees vary by site size, complexity, and geography. For a typical small local-authority playground with four to eight items of equipment, fees usually fall in the low-to-mid hundreds of pounds. Larger sites, multi-zone adventure playgrounds, and sites in remote locations carry higher fees. Framework contracts for multi-site operators (councils with many sites, multi-academy trusts, housing associations) typically negotiate lower per-site rates. Operators should compare at least two quotes for any significant inspection commitment.",
+  },
+  {
+    q: "Is it acceptable to use the same inspector every year?",
+    a: "Yes. Continuity of inspector is often an advantage — a returning inspector can track site evolution year over year, compare current defects against their own previous findings, and build site-specific familiarity that improves inspection quality. The independence requirement is about the inspector having no commercial interest in selling remedial work, not about rotating inspectors for its own sake. Some procurement frameworks require periodic rotation, but this is a procurement decision rather than a BS EN 1176 or RPII requirement.",
+  },
+  {
+    q: "Should I use a local independent inspector or a national inspection company?",
+    a: "Both can deliver high-quality work. Local independents often provide more attentive service, greater continuity, and lower fees. National companies offer multi-site consistency, resource depth for peak periods, and frameworks that simplify procurement for multi-site operators. The right choice depends on the operator&rsquo;s scale: single-site operators usually get better value from an independent; nationwide operators usually need the framework capacity of a larger provider.",
+  },
+  {
+    q: "What should I do if I disagree with an inspection finding?",
+    a: "Raise it with the inspector first. A professional inspector will explain their reasoning and, if they have overlooked information, may revise the finding. If the disagreement remains after that conversation, options include: commissioning a second inspection from a different RPII-certified inspector; formally documenting the operator&rsquo;s position against the finding with mitigating actions; or, as a last resort, referring the matter to RPII via their complaints process. Ignoring a finding is not a valid option.",
+  },
+  {
+    q: "Can I hire an inspector to both inspect and repair my playground?",
+    a: "It is strongly inadvisable. An inspector with a commercial interest in selling remedial work has a structural conflict of interest — they are financially rewarded for finding problems. RPII&rsquo;s code of conduct explicitly addresses this, and most UK procurement frameworks require separation between inspection and repair contractors. The right arrangement is one supplier for inspection, a different supplier for repair and maintenance. The marginal cost of that separation is far less than the loss of defensibility if they are combined.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: { "@type": "Answer", text: item.a },
+  })),
+};
+---
+<BaseLayout title={title} description={description}>
+  <ContentBreadcrumbs
+    crumbs={[
+      { label: "Home", href: "/" },
+      { label: "RPII", href: "/rpii" },
+      { label: "Finding an Inspector" },
+    ]}
+  />
+
+  <ContentHero
+    eyebrow="For operators"
+    title="Finding an RPII Inspector"
+    description="A practical guide for UK operators commissioning playground inspection work. How to verify credentials, choose the right inspector, specify the work, and avoid the common pitfalls."
+    lastUpdated={lastUpdatedDisplay}
+    readingTime="7 min read"
+  />
+
+  <article class="mx-auto max-w-3xl px-6 py-12 sm:py-16">
+    <nav aria-label="On this page" class="not-prose mb-12 rounded-lg border border-slate-200 bg-slate-50 p-6">
+      <p class="text-sm font-semibold uppercase tracking-wide text-slate-500">On this page</p>
+      <ol class="mt-3 space-y-2 text-sm text-slate-700">
+        <li><a href="#when-you-need-one" class="hover:text-brand-700 hover:underline">1. When you need an RPII inspector</a></li>
+        <li><a href="#what-grade" class="hover:text-brand-700 hover:underline">2. Which grade you need</a></li>
+        <li><a href="#where-to-find" class="hover:text-brand-700 hover:underline">3. Where to find certified inspectors</a></li>
+        <li><a href="#verifying" class="hover:text-brand-700 hover:underline">4. Verifying credentials</a></li>
+        <li><a href="#what-to-specify" class="hover:text-brand-700 hover:underline">5. What to specify in your engagement</a></li>
+        <li><a href="#cost" class="hover:text-brand-700 hover:underline">6. Cost guidance</a></li>
+        <li><a href="#red-flags" class="hover:text-brand-700 hover:underline">7. Red flags to watch for</a></li>
+        <li><a href="#after-the-inspection" class="hover:text-brand-700 hover:underline">8. After the inspection</a></li>
+        <li><a href="#faq" class="hover:text-brand-700 hover:underline">Frequently asked questions</a></li>
+      </ol>
+    </nav>
+
+    <div class="prose prose-slate max-w-none prose-headings:scroll-mt-24 prose-headings:font-semibold prose-headings:text-slate-900 prose-a:text-brand-700 prose-a:no-underline hover:prose-a:underline prose-strong:text-slate-900">
+      <p class="lead">
+        If you operate fixed play equipment for children in the UK — in a
+        park, a school, a hotel, a housing estate, anywhere — you need an
+        RPII-certified inspector at least once a year. This page is a
+        practical guide to finding one, confirming they are who they say
+        they are, and getting useful work out of them. Part of our wider
+        <a href="/rpii">RPII explainer</a>.
+      </p>
+
+      <h2 id="when-you-need-one">1. When you need an RPII inspector</h2>
+      <p>
+        Three inspection scenarios require an RPII-certified inspector in
+        UK practice:
+      </p>
+      <ul>
+        <li>
+          <strong>Annual main inspection</strong> — required every 12
+          months for every site with fixed play equipment under
+          BS EN 1176. The inspector must hold the RPII Annual Inspector
+          grade.
+        </li>
+        <li>
+          <strong>Post-installation inspection</strong> — required before
+          opening newly installed or substantially refurbished equipment.
+          The inspector must hold the RPII Post-Installation Inspector
+          grade.
+        </li>
+        <li>
+          <strong>Independent incident investigation</strong> — following
+          any significant incident, commissioning an independent
+          inspection from an RPII-certified Annual Inspector is the
+          standard defensible response.
+        </li>
+      </ul>
+      <p>
+        Routine and operational inspections do not strictly require
+        commissioned RPII inspectors — these can be carried out by
+        RPII-certified operator staff — but the annual and
+        post-installation inspections are where independent RPII
+        engagement is near-universal in UK procurement.
+      </p>
+
+      <h2 id="what-grade" class="scroll-mt-24">2. Which grade you need</h2>
+      <p>
+        Match the grade to the work:
+      </p>
+      <ul>
+        <li><strong>Annual main inspection of existing site</strong> → RPII Annual Inspector grade.</li>
+        <li><strong>Inspection of newly installed or refurbished equipment</strong> → RPII Post-Installation Inspector grade.</li>
+        <li><strong>Operational inspection (contracted out)</strong> → RPII Operational Inspector grade (often held alongside Annual).</li>
+      </ul>
+      <p>
+        A higher grade typically covers lower grades in practice, so an
+        Annual Inspector can usually deliver operational work. The
+        reverse is not true: an Operational Inspector cannot deliver a
+        compliant annual main inspection. Our detailed page on the
+        <a href="/rpii/grades">RPII inspector grades</a> covers this in
+        depth.
+      </p>
+
+      <h2 id="where-to-find">3. Where to find certified inspectors</h2>
+      <p>
+        Four practical sources of RPII-certified inspectors:
+      </p>
+      <ul>
+        <li>
+          <strong>The RPII public register</strong> at
+          <a href="https://www.playinspectors.com" rel="noopener" target="_blank">playinspectors.com</a>.
+          The authoritative list of every currently certified inspector
+          and the grades they hold. The right place to start for any
+          operator without a preferred existing supplier.
+        </li>
+        <li>
+          <strong>Regional inspection companies</strong> — smaller
+          companies covering a UK region, typically with two to ten
+          inspectors. Often the best value for small-to-medium
+          single-site or small-portfolio operators.
+        </li>
+        <li>
+          <strong>National inspection companies</strong> — national
+          coverage, framework capability, multi-site consistency. Best
+          fit for operators with sites across multiple regions.
+        </li>
+        <li>
+          <strong>Recommendations from peers</strong> — councils talk to
+          other councils, school business managers to other school
+          business managers. Peer recommendations filter for consistency
+          and professionalism in a way pure online search does not.
+        </li>
+      </ul>
+
+      <h2 id="verifying">4. Verifying credentials</h2>
+      <p>
+        Before signing any contract, confirm:
+      </p>
+      <ul>
+        <li>
+          <strong>RPII registration number</strong> — ask for it, and
+          check it on the public register. An inspector unable to
+          provide a registration number is not a safe appointment.
+        </li>
+        <li>
+          <strong>The grade matches the work</strong> — if commissioning
+          an annual main inspection, the inspector must be registered at
+          Annual Inspector grade specifically.
+        </li>
+        <li>
+          <strong>Current professional indemnity insurance</strong> —
+          ask for evidence of the policy and the cover level. £1m
+          minimum is a sensible floor for most independent inspectors,
+          more for larger-scale commercial work.
+        </li>
+        <li>
+          <strong>Independence from site maintenance</strong> — confirm
+          the inspector or their company does not also provide
+          maintenance or repair work on the same sites. This is a
+          conflict-of-interest red flag.
+        </li>
+        <li>
+          <strong>Recent references</strong> — any established inspector
+          should be able to provide two or three recent client
+          references. A refusal to provide references is a warning
+          sign.
+        </li>
+      </ul>
+
+      <ContentCTA
+        headline="Inspectors commissioned through InspectVoice-using firms."
+        body="Many of the UK&rsquo;s independent RPII inspectors now use InspectVoice for their on-site reporting. Operators receive faster, cleaner, photo-evidenced reports — often on the day of inspection rather than weeks later."
+      />
+
+      <h2 id="what-to-specify">5. What to specify in your engagement</h2>
+      <p>
+        A minimum specification for commissioning an annual main
+        inspection:
+      </p>
+      <ul>
+        <li>Scope — site(s), equipment items, and any specific concerns carried forward from the previous inspection;</li>
+        <li>Standard — explicit reference to BS EN 1176 and BS EN 1177;</li>
+        <li>Inspector grade requirement — RPII Annual Inspector as a named minimum;</li>
+        <li>Independence declaration — confirmation that the inspector has no commercial interest in remedial work;</li>
+        <li>Report format — written report with individual equipment assessments, risk ratings, photographs of significant defects, and inspector details (name, signature, RPII number);</li>
+        <li>Delivery timeframe — the interval between on-site inspection and delivered written report. Two to five working days is now standard for inspectors using modern digital reporting; anything over two weeks indicates an outdated workflow;</li>
+        <li>Retention — who retains the report (typically both parties), and in what format;</li>
+        <li>Access and logistics — site opening times, contact person, any specific access requirements.</li>
+      </ul>
+
+      <h2 id="cost" class="scroll-mt-24">6. Cost guidance</h2>
+      <p>
+        Ballpark fee ranges for UK annual main inspections, as a guide
+        only (actual fees vary by inspector, region, and site
+        complexity):
+      </p>
+      <ul>
+        <li><strong>Small single playground</strong> (4–8 items of equipment) — low to mid hundreds of pounds.</li>
+        <li><strong>Medium multi-zone site</strong> (10–20 items, multiple surfacing types) — mid hundreds to low four figures.</li>
+        <li><strong>Large adventure playground or complex site</strong> — four figures depending on complexity.</li>
+        <li><strong>Framework contracts for multi-site operators</strong> — per-site rates typically 15–30% lower than one-off engagements, in exchange for volume commitment.</li>
+      </ul>
+      <p>
+        Two quotes from different inspectors is a reasonable floor for
+        any significant appointment. Three quotes is appropriate for
+        larger sites or framework contracts.
+      </p>
+
+      <h2 id="red-flags">7. Red flags to watch for</h2>
+      <p>
+        Warning signs that should prompt additional scrutiny:
+      </p>
+      <ul>
+        <li><strong>Reluctance to provide an RPII registration number.</strong></li>
+        <li><strong>Quotes far below the going rate</strong> — usually indicates either inexperience or corner-cutting on the actual inspection depth.</li>
+        <li><strong>Combined inspection-and-repair offer from a single supplier</strong> — conflict of interest, procurement red flag.</li>
+        <li><strong>Reports delivered weeks after on-site inspection</strong> — indicates outdated workflow and possible quality issues.</li>
+        <li><strong>Template-only reports with no site-specific detail</strong> — the report should feel clearly specific to your site, not generic.</li>
+        <li><strong>No photographs of defects</strong> — for medium-and-above risk findings, photo evidence is now the professional standard. Its absence suggests a lighter inspection.</li>
+        <li><strong>Inability to discuss past findings on a returning site</strong> — indicates the inspector is not treating inspection as a continuous record.</li>
+      </ul>
+
+      <h2 id="after-the-inspection">8. After the inspection</h2>
+      <p>
+        The inspection report is the input to the operator&rsquo;s
+        maintenance plan. Having commissioned and received a report, the
+        operator should:
+      </p>
+      <ul>
+        <li>Read the report on receipt, not after a delay;</li>
+        <li>Act immediately on very-high and high-risk findings (isolation, closure, prompt repair);</li>
+        <li>Schedule medium-risk findings into planned maintenance with explicit deadlines;</li>
+        <li>Log low-risk findings for routine maintenance cycles;</li>
+        <li>Document completion of each action against the original finding;</li>
+        <li>Retain the full report package (report, photographs, communications) for at least the policy retention period required by their insurance — typically three years minimum.</li>
+      </ul>
+      <p>
+        The worst position an operator can find themselves in is
+        receiving a high-risk finding, filing it without action, and
+        having an incident occur before the next annual inspection. The
+        report then functions as evidence against the operator rather
+        than for them. Prompt, documented action is what converts an
+        inspection report from a compliance artefact into a defence.
+      </p>
+
+      <h2 id="faq">Frequently asked questions</h2>
+      <div class="not-prose mt-6 space-y-4">
+        {faqs.map((item) => (
+          <details class="group rounded-lg border border-slate-200 bg-white p-5 transition hover:border-slate-300">
+            <summary class="flex cursor-pointer items-start justify-between gap-4 text-base font-semibold text-slate-900 [&::-webkit-details-marker]:hidden">
+              <span>{item.q}</span>
+              <svg class="mt-1 h-5 w-5 flex-shrink-0 text-slate-400 transition group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <p class="mt-3 text-base leading-relaxed text-slate-600">{item.a}</p>
+          </details>
+        ))}
+      </div>
+
+      <ContentCTA />
+
+      <RelatedPages
+        pages={[
+          {
+            title: "RPII Explained",
+            description: "The parent guide — what the Register of Play Inspectors International is and why it matters in UK procurement.",
+            href: "/rpii",
+          },
+          {
+            title: "RPII Inspector Grades",
+            description: "Detailed breakdown of the four grades — what each covers and how to match the grade to the work.",
+            href: "/rpii/grades",
+          },
+          {
+            title: "Annual Main Inspection",
+            description: "What the annual inspection itself covers — useful context for operators specifying the work.",
+            href: "/bs-en-1176/annual-inspections",
+          },
+        ]}
+      />
+    </div>
+  </article>
+
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+</BaseLayout>

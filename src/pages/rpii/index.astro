@@ -400,6 +400,27 @@ const faqSchema = {
       <ContentCTA />
 
       <RelatedPages
+        heading="Dive deeper"
+        pages={[
+          {
+            title: "RPII Inspector Grades",
+            description: "Detailed treatment of the four RPII grades — Routine Visual, Operational, Annual, and Post-Installation — and how each maps to BS EN 1176 inspection tiers.",
+            href: "/rpii/grades",
+          },
+          {
+            title: "Becoming RPII-Certified",
+            description: "The career path — who the profession suits, the training routes, cost and timeline, and what to expect after qualifying.",
+            href: "/rpii/becoming-certified",
+          },
+          {
+            title: "Finding an RPII Inspector",
+            description: "For operators commissioning inspection work — how to verify credentials, what to specify, what to pay, and what to avoid.",
+            href: "/rpii/finding-an-inspector",
+          },
+        ]}
+      />
+
+      <RelatedPages
         heading="Related reading"
         pages={[
           {
@@ -412,10 +433,26 @@ const faqSchema = {
             description: "The inspection tier that almost universally requires RPII Annual Inspector certification in UK procurement.",
             href: "/bs-en-1176/annual-inspections",
           },
-          {
+         {
             title: "Risk Ratings",
-            description: "How RPII-certified inspectors categorise defect severity in their reports, and what operators must do with each rating.",
+            description: "How defects are categorised by severity — low, medium, high, very high — and what response each carries.",
             href: "/bs-en-1176/risk-ratings",
+          },
+        ]}
+      />
+
+      <RelatedPages
+        heading="Related reading"
+        pages={[
+          {
+            title: "RPII Explained",
+            description: "The UK body that certifies the inspectors who work to BS EN 1176 — what RPII is, the inspector grades, and why certification matters.",
+            href: "/rpii",
+          },
+          {
+            title: "Finding an RPII Inspector",
+            description: "For operators commissioning inspection work — how to verify credentials and choose the right RPII-certified inspector.",
+            href: "/rpii/finding-an-inspector",
           },
         ]}
       />

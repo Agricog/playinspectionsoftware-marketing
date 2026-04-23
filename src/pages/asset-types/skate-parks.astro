@@ -1,0 +1,367 @@
+---
+/**
+ * /asset-types/skate-parks — cluster page.
+ *
+ * Skate parks under BS EN 14974. Targets: "skate park inspection UK",
+ * "BS EN 14974", "skatepark safety", "skatepark inspection",
+ * "BMX track inspection", "scooter park inspection".
+ *
+ * Important distinction from BS EN 1176 content: skate parks are
+ * designed around managed risk. Users expect and embrace risk as part
+ * of the activity. Inspection remit is correspondingly different.
+ */
+
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ContentHero from "../../components/ContentHero.astro";
+import ContentBreadcrumbs from "../../components/ContentBreadcrumbs.astro";
+import ContentCTA from "../../components/ContentCTA.astro";
+import RelatedPages from "../../components/RelatedPages.astro";
+import { SITE, ORGANISATION } from "../../consts";
+
+const title = "Skate Park Inspection: BS EN 14974 in the UK";
+const description =
+  "Skate parks, BMX tracks, and scooter facilities in the UK are governed by BS EN 14974, not BS EN 1176. A guide to the different design philosophy, the specific inspection considerations, and how skate parks are assessed.";
+const lastUpdatedDisplay = "23 April 2026";
+const lastUpdatedISO = "2026-04-23";
+const datePublishedISO = "2026-04-23";
+const canonical = `${SITE.url.replace(/\/$/, "")}/asset-types/skate-parks`;
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: title,
+  description,
+  datePublished: datePublishedISO,
+  dateModified: lastUpdatedISO,
+  author: { "@type": "Organization", name: ORGANISATION.legalName, url: SITE.url },
+  publisher: { "@type": "Organization", name: SITE.name, url: SITE.url },
+  mainEntityOfPage: { "@type": "WebPage", "@id": canonical },
+  isPartOf: { "@type": "WebPage", "@id": `${SITE.url.replace(/\/$/, "")}/asset-types` },
+};
+
+const faqs = [
+  {
+    q: "Which standard applies to UK skate parks?",
+    a: "BS EN 14974 — the European standard for facilities for users of roller sports equipment. This is the UK adoption of the EN 14974 standard and covers skate parks, BMX tracks, scooter facilities, and similar installations. BS EN 1176 (playground equipment) does not apply to skate parks, even though both involve physical recreation. The two standards embody fundamentally different design philosophies.",
+  },
+  {
+    q: "How is the design philosophy of BS EN 14974 different from BS EN 1176?",
+    a: "BS EN 1176 is built around eliminating foreseeable hazards — the assumption is that a child encountering play equipment does not want or expect serious risk. BS EN 14974 recognises that roller sports inherently involve risk as part of the activity, and that users are actively seeking to engage with that risk as they develop their skills. The standard focuses on ensuring risk is appropriate, transitions between elements are predictable, and catastrophic hazards (exposed rebar, sudden drops, entrapment points) are eliminated — not on removing risk entirely.",
+  },
+  {
+    q: "Does BS EN 14974 require the same three-tier inspection regime as BS EN 1176?",
+    a: "The principles are similar: routine visual, operational, and annual main inspections all apply as sensible practice for skate park management. The specific content of each inspection differs — skate-park-specific hazards like coping condition, rebar exposure at concrete joints, and graffiti-obscured surface defects receive particular attention. UK operators should adopt the three-tier model as the default cadence; inspectors should apply BS EN 14974-specific content within it.",
+  },
+  {
+    q: "Can an RPII Annual Inspector assess a skate park?",
+    a: "In principle yes, but with care. RPII certification establishes competence against BS EN 1176 specifically; it does not automatically include expertise in BS EN 14974. Inspectors who routinely assess skate parks should be familiar with the 14974 standard and typically build experience through direct skate-park inspection work. Operators commissioning skate park inspection should ask explicitly about the inspector&rsquo;s BS EN 14974 experience, not just RPII certification.",
+  },
+  {
+    q: "What&rsquo;s the most common skate park inspection finding?",
+    a: "Surface damage and transitions. Skate park surfaces — whether concrete, steel-edged plywood, or composite — take intensive wear from board trucks, scooter wheels, and BMX tires. Cracking in concrete, wear at transition radii between flat and ramped surfaces, chipping at coping edges, and separation at steel-concrete interfaces all appear progressively and must be caught before they create injury risk. Coping (the metal edging at the top of ramps and bowl rims) is particularly wear-prone and frequently requires replacement or repair during the life of a skate park.",
+  },
+  {
+    q: "How should graffiti be handled at inspection?",
+    a: "Graffiti itself is usually a cosmetic issue rather than a safety one, but it has inspection implications: graffiti can obscure surface defects, damage indicators, and warning signage. A skate park with extensive graffiti coverage requires more careful surface inspection — defects that would be visible on clean concrete may be hidden under paint. Competent inspectors document graffiti coverage in their report because it affects the defensibility of subsequent surface assessments, and operators should consider graffiti removal as part of routine maintenance rather than only as an aesthetic concern.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: { "@type": "Answer", text: item.a.replace(/&rsquo;|&ldquo;|&rdquo;/g, "'") },
+  })),
+};
+---
+<BaseLayout title={title} description={description}>
+  <ContentBreadcrumbs
+    crumbs={[
+      { label: "Home", href: "/" },
+      { label: "Asset Types", href: "/asset-types" },
+      { label: "Skate Parks" },
+    ]}
+  />
+
+  <ContentHero
+    eyebrow="Asset types"
+    title="Skate Park Inspection (BS EN 14974)"
+    description="UK skate parks, BMX tracks, and scooter facilities fall under BS EN 14974 — a standard with a fundamentally different design philosophy to BS EN 1176. A guide to the specifics."
+    lastUpdated={lastUpdatedDisplay}
+    readingTime="7 min read"
+  />
+
+  <article class="mx-auto max-w-3xl px-6 py-12 sm:py-16">
+    <nav aria-label="On this page" class="not-prose mb-12 rounded-lg border border-slate-200 bg-slate-50 p-6">
+      <p class="text-sm font-semibold uppercase tracking-wide text-slate-500">On this page</p>
+      <ol class="mt-3 space-y-2 text-sm text-slate-700">
+        <li><a href="#scope" class="hover:text-brand-700 hover:underline">1. What BS EN 14974 covers</a></li>
+        <li><a href="#philosophy" class="hover:text-brand-700 hover:underline">2. The managed-risk philosophy</a></li>
+        <li><a href="#construction-types" class="hover:text-brand-700 hover:underline">3. Construction types</a></li>
+        <li><a href="#inspection-focus" class="hover:text-brand-700 hover:underline">4. Inspection focus points</a></li>
+        <li><a href="#coping-and-edges" class="hover:text-brand-700 hover:underline">5. Coping, edges, and transitions</a></li>
+        <li><a href="#graffiti" class="hover:text-brand-700 hover:underline">6. Graffiti and surface overlay</a></li>
+        <li><a href="#inspector-competence" class="hover:text-brand-700 hover:underline">7. Inspector competence</a></li>
+        <li><a href="#faq" class="hover:text-brand-700 hover:underline">Frequently asked questions</a></li>
+      </ol>
+    </nav>
+
+    <div class="prose prose-slate max-w-none prose-headings:scroll-mt-24 prose-headings:font-semibold prose-headings:text-slate-900 prose-a:text-brand-700 prose-a:no-underline hover:prose-a:underline prose-strong:text-slate-900">
+      <p class="lead">
+        Skate parks are one of the more misunderstood asset types in UK
+        inspection practice. They are not playgrounds, BS EN 1176 does
+        not apply to them, and the inspection approach is
+        fundamentally different. Part of our wider
+        <a href="/asset-types">asset types guide</a>.
+      </p>
+
+      <h2 id="scope">1. What BS EN 14974 covers</h2>
+      <p>
+        BS EN 14974 is the UK adoption of the European standard
+        covering facilities for users of roller sports equipment. In
+        practical terms, this means:
+      </p>
+      <ul>
+        <li><strong>Skate parks</strong> — bowls, half-pipes, street-style plazas, mini-ramps;</li>
+        <li><strong>BMX tracks</strong> — dirt jump tracks, pump tracks, race tracks;</li>
+        <li><strong>Scooter facilities</strong> — typically overlapping with skate parks;</li>
+        <li><strong>Inline skating facilities</strong> — less common as dedicated installations but covered where they exist.</li>
+      </ul>
+      <p>
+        The standard covers the design, installation, operation, and
+        inspection of these facilities. For UK operators, the practical
+        significance is that skate park inspections must be carried out
+        against BS EN 14974, not BS EN 1176 — even when the facility
+        sits adjacent to a playground at the same site.
+      </p>
+
+      <h2 id="philosophy">2. The managed-risk philosophy</h2>
+      <p>
+        The most important conceptual point about BS EN 14974 is that
+        it is designed around managed risk, not risk elimination. Users
+        of skate parks, BMX tracks, and similar facilities actively
+        seek out risk as part of skill development; the risk is part
+        of the activity.
+      </p>
+      <p>
+        The standard&rsquo;s role is therefore different from BS EN
+        1176&rsquo;s. Where BS EN 1176 eliminates foreseeable hazards
+        from playground equipment, BS EN 14974 ensures that risk is
+        appropriate, predictable, and not amplified by avoidable
+        defects. Specifically, the standard targets:
+      </p>
+      <ul>
+        <li>Catastrophic hazards beyond the inherent risk of the activity (exposed rebar, sudden drops, entrapment points);</li>
+        <li>Unpredictable surface conditions (cracking, chipping, separation);</li>
+        <li>Transition geometry that does not match user expectation;</li>
+        <li>Failure of structural elements (wall collapse, coping detachment);</li>
+        <li>Site-level hazards (inadequate fencing, unsafe access routes).</li>
+      </ul>
+      <p>
+        An inspector applying BS EN 1176-style &ldquo;eliminate every
+        hazard&rdquo; logic to a skate park will either condemn a
+        functional facility or produce a report that misses what
+        actually matters. BS EN 14974 literacy is essential for this
+        asset type.
+      </p>
+
+      <h2 id="construction-types">3. Construction types</h2>
+      <p>
+        UK skate parks fall into three broad construction categories,
+        each with different inspection considerations:
+      </p>
+      <ul>
+        <li>
+          <strong>Cast-in-situ concrete</strong> — the highest-quality
+          construction type, used for bowls, large flow parks, and
+          modern street plazas. Typically 15-30 year design life.
+          Inspection focus: cracking, coping attachment, rebar exposure
+          at crack lines, joint integrity.
+        </li>
+        <li>
+          <strong>Modular / skate-tile systems</strong> — pre-cast
+          concrete elements bolted together, or steel-framed plywood
+          systems. Cheaper to install but shorter life. Inspection
+          focus: connection integrity between modules, surface overlay
+          wear, base substrate condition.
+        </li>
+        <li>
+          <strong>Timber / plywood ramps</strong> — budget
+          installations and smaller community parks. Shorter life
+          again; substantial inspection focus on structural timber and
+          plywood surface condition.
+        </li>
+      </ul>
+
+      <h2 id="inspection-focus">4. Inspection focus points</h2>
+      <p>
+        A BS EN 14974-aligned inspection works through the facility
+        element by element, assessing:
+      </p>
+      <ul>
+        <li>
+          <strong>Transition radii</strong> — the curved zones between
+          flat and vertical or sloped surfaces. These are the
+          highest-wear points on any skate installation and the most
+          common location of defects that affect user safety.
+        </li>
+        <li>
+          <strong>Coping</strong> — the metal edging at the top of
+          ramps and bowl rims. Impact, wear, and corrosion are
+          progressive. Loose or missing coping is a prompt-action
+          finding.
+        </li>
+        <li>
+          <strong>Vertical walls and drop edges</strong> — for
+          structural integrity, surface finish, and visible
+          deterioration.
+        </li>
+        <li>
+          <strong>Rails, ledges, and street elements</strong> — check
+          for movement at base attachment, edge damage, surface
+          condition.
+        </li>
+        <li>
+          <strong>Base surfacing (flat ground)</strong> — continuity,
+          crack development, drainage, settlement.
+        </li>
+        <li>
+          <strong>Site perimeter</strong> — fencing, gates, proximity
+          to roads or water; separation from incompatible uses (e.g.
+          adjacent playground).
+        </li>
+        <li>
+          <strong>Signage</strong> — rules of use, prohibited sports,
+          operator contact information.
+        </li>
+      </ul>
+
+      <ContentCTA
+        headline="Skate park inspections structured correctly."
+        body="InspectVoice supports BS EN 14974 skate park inspections alongside BS EN 1176 playgrounds — with standard-specific templates, terminology, and defect categorisation. Not a playground template pretending to fit."
+      />
+
+      <h2 id="coping-and-edges">5. Coping, edges, and transitions</h2>
+      <p>
+        Coping — the metal (typically steel) edging at the top of ramps
+        and bowl rims — is a defining feature of skate park design.
+        It is also one of the most wear-prone components. Sustained
+        contact with board trucks, scooter decks, and BMX pegs
+        progressively wears and loosens the coping.
+      </p>
+      <p>
+        Inspection focus on coping includes:
+      </p>
+      <ul>
+        <li>Attachment integrity — coping loose in its seat is a significant finding;</li>
+        <li>Profile wear — the characteristic sharp edge can become rounded or, worse, sharp and chipped;</li>
+        <li>Corrosion — outdoor coping in UK weather shows progressive surface rust, which can transition to structural weakening;</li>
+        <li>Alignment — coping sections that have shifted out of alignment create catch-points and transition inconsistency.</li>
+      </ul>
+      <p>
+        Coping replacement is an expected maintenance activity during
+        the life of a skate park, not a failure. The inspection
+        question is whether the coping is currently safe for continued
+        use — if not, the affected element is withdrawn until coping
+        is repaired or replaced.
+      </p>
+
+      <h2 id="graffiti">6. Graffiti and surface overlay</h2>
+      <p>
+        Skate parks attract graffiti at a higher rate than other asset
+        types, both because they are usually unsupervised public spaces
+        and because the skate subculture has historic overlap with
+        graffiti culture. From an inspection perspective, graffiti is
+        problematic less for what it is than for what it obscures.
+      </p>
+      <p>
+        Paint overlay can hide:
+      </p>
+      <ul>
+        <li>Surface cracks that would otherwise be visible;</li>
+        <li>Rebar exposure at crack lines;</li>
+        <li>Chipping at edges and transitions;</li>
+        <li>Structural concrete damage;</li>
+        <li>Safety signage and warning notices.</li>
+      </ul>
+      <p>
+        A competent inspector documents graffiti coverage in their
+        report and flags any area where coverage is sufficient to
+        affect inspection confidence. Operators should treat graffiti
+        removal as a routine maintenance activity — both for facility
+        appearance and for inspection defensibility.
+      </p>
+
+      <h2 id="inspector-competence">7. Inspector competence</h2>
+      <p>
+        Not every RPII-certified inspector has BS EN 14974 competence.
+        Operators commissioning skate park inspection should:
+      </p>
+      <ul>
+        <li>
+          Ask explicitly about the inspector&rsquo;s BS EN 14974
+          experience — not just their RPII certification status;
+        </li>
+        <li>
+          Prefer inspectors with demonstrated skate park portfolio
+          experience;
+        </li>
+        <li>
+          Where possible, favour inspectors with some practical
+          familiarity with skate culture and equipment use — inspectors
+          who understand how the facility is actually used produce
+          better reports than those applying generic inspection
+          principles.
+        </li>
+      </ul>
+      <p>
+        The pool of specifically skate-park-competent UK inspectors is
+        smaller than the general RPII pool. For operators with skate
+        park assets in their portfolio, identifying and retaining a
+        suitable inspector is a strategic procurement concern.
+      </p>
+
+      <h2 id="faq">Frequently asked questions</h2>
+      <div class="not-prose mt-6 space-y-4">
+        {faqs.map((item) => (
+          <details class="group rounded-lg border border-slate-200 bg-white p-5 transition hover:border-slate-300">
+            <summary class="flex cursor-pointer items-start justify-between gap-4 text-base font-semibold text-slate-900 [&::-webkit-details-marker]:hidden">
+              <span set:html={item.q} />
+              <svg class="mt-1 h-5 w-5 flex-shrink-0 text-slate-400 transition group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <p class="mt-3 text-base leading-relaxed text-slate-600">{item.a}</p>
+          </details>
+        ))}
+      </div>
+
+      <ContentCTA />
+
+      <RelatedPages
+        pages={[
+          {
+            title: "Asset Types Overview",
+            description: "The parent guide — five main categories of UK play and recreation equipment and their standards.",
+            href: "/asset-types",
+          },
+          {
+            title: "Traditional Playgrounds",
+            description: "The BS EN 1176 asset category — the contrast to skate parks in both standard and design philosophy.",
+            href: "/asset-types/playgrounds",
+          },
+          {
+            title: "Multi-Use Games Areas",
+            description: "The other major non-playground hard-surfaced asset type that operators need to inspect.",
+            href: "/asset-types/multi-use-games-areas",
+          },
+        ]}
+      />
+    </div>
+  </article>
+
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+</BaseLayout>

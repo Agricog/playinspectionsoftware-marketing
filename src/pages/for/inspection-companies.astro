@@ -1,0 +1,277 @@
+---
+/**
+ * /for/inspection-companies — persona pillar.
+ *
+ * Targets UK playground inspection businesses with 2-10 inspectors.
+ * Keywords: "playground inspection company software", "multi-inspector
+ * playground software", "playground inspection management",
+ * "team playground inspection software".
+ *
+ * Different pain profile from /independent-inspectors: the pain is
+ * consistency across inspectors and central oversight, not personal
+ * admin time.
+ */
+
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ContentHero from "../../components/ContentHero.astro";
+import ContentBreadcrumbs from "../../components/ContentBreadcrumbs.astro";
+import ContentCTA from "../../components/ContentCTA.astro";
+import RelatedPages from "../../components/RelatedPages.astro";
+import { SITE, ORGANISATION, TRIAL } from "../../consts";
+
+const title =
+  "Playground Inspection Software for UK Inspection Companies";
+const description =
+  "Purpose-built software for UK playground inspection companies with multiple RPII-certified inspectors. Consistent reports across the team, central oversight, offline-first sync, and an audit trail for every inspection.";
+const lastUpdatedDisplay = "23 April 2026";
+const lastUpdatedISO = "2026-04-23";
+const datePublishedISO = "2026-04-23";
+const canonical = `${SITE.url.replace(/\/$/, "")}/for/inspection-companies`;
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: title,
+  description,
+  datePublished: datePublishedISO,
+  dateModified: lastUpdatedISO,
+  author: { "@type": "Organization", name: ORGANISATION.legalName, url: SITE.url },
+  publisher: { "@type": "Organization", name: SITE.name, url: SITE.url },
+  mainEntityOfPage: { "@type": "WebPage", "@id": canonical },
+};
+
+const faqs = [
+  {
+    q: "How many inspectors can use one InspectVoice account?",
+    a: "The standard Team plan supports up to 5 inspectors under a single company account. Each inspector has their own login and can work independently on assigned sites, with all data rolling up to a central view visible to designated administrators. For larger teams, an Enterprise tier is available with higher inspector counts and additional administrative controls.",
+  },
+  {
+    q: "Can we ensure all inspectors produce reports in the same format?",
+    a: "Yes. Report templates are set at company level, not per inspector, so the format is enforced from the top down. Every inspector&rsquo;s report uses the same cover page, the same section structure, the same risk-rating terminology. Branding (logo, company details) is centralised and automatically applied. The consistency benefit shows up in client perception immediately — every inspector produces reports that look like they come from the same firm, because they do.",
+  },
+  {
+    q: "Can we see what our inspectors are working on in real time?",
+    a: "Yes. Administrators see all sites, inspections in progress, completed reports, and defect logs across the whole team from a central view. Whether an inspection is booked, in progress on-site, or completed with report delivered can be seen without calling the inspector. For team leaders running multi-inspector schedules, this is the view that previously required phoning round or maintaining a separate spreadsheet.",
+  },
+  {
+    q: "How does the offline-first sync work when multiple inspectors are in the field?",
+    a: "Each inspector&rsquo;s device holds their own offline data until they reach signal. Sync is inspector-specific — each inspector&rsquo;s work uploads independently, with conflict resolution handled at record level. In practice this means five inspectors can be working on separate sites with no signal, and when they each reach signal (in any order, at any time), their work uploads cleanly to the central account without cross-inspector conflicts.",
+  },
+  {
+    q: "Can we bring existing inspection history across when we switch?",
+    a: "Yes, with care. Existing site registers and asset lists import cleanly from spreadsheet or CSV. Historic reports can be attached to their respective sites as reference PDFs. Defect continuity (carried-forward findings) works from the first InspectVoice inspection forward; historic carried-forward items need a one-off mapping exercise during onboarding. For teams switching from established tools, our onboarding includes this data migration as standard.",
+  },
+  {
+    q: "What about clients who want reports in a specific format?",
+    a: "Report templates can be customised per-client at the company level. A local authority requiring a specific report layout for their procurement framework, an insurer requiring a particular structure, a client wanting their own branding — all of these can be configured once and applied automatically to every inspection for that client, regardless of which inspector carries it out.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: { "@type": "Answer", text: item.a },
+  })),
+};
+---
+<BaseLayout title={title} description={description}>
+  <ContentBreadcrumbs
+    crumbs={[
+      { label: "Home", href: "/" },
+      { label: "For Inspection Companies" },
+    ]}
+  />
+
+  <ContentHero
+    eyebrow="For inspection companies"
+    title="One team, one standard, one audit trail."
+    description="For UK playground inspection businesses running multiple RPII-certified inspectors across parallel sites. Consistent reports, central oversight, offline-first sync across the team."
+    lastUpdated={lastUpdatedDisplay}
+  />
+
+  <article class="mx-auto max-w-3xl px-6 py-12 sm:py-16">
+    <div class="prose prose-slate max-w-none prose-headings:scroll-mt-24 prose-headings:font-semibold prose-headings:text-slate-900 prose-a:text-brand-700 prose-a:no-underline hover:prose-a:underline prose-strong:text-slate-900">
+      <h2>Running an inspection business is a consistency problem</h2>
+      <p>
+        The pain of a single-inspector practice is admin time. The pain
+        of an inspection company is consistency. Five inspectors working
+        across twenty sites a week will, without explicit discipline,
+        produce five subtly different styles of report — different
+        phrasing, different structure, different risk-rating tendencies,
+        different photograph conventions. Your clients see a
+        multi-supplier effect from what is meant to be a single firm.
+      </p>
+      <p>
+        Traditional tooling does not solve this. Word templates drift
+        over time as inspectors make local &ldquo;improvements&rdquo;.
+        Spreadsheet-based workflows produce data, not reports. Generic
+        asset-management platforms assume a back-office operator rather
+        than an RPII inspector on-site in the rain.
+      </p>
+      <p>
+        InspectVoice enforces consistency at source. Every inspector
+        dictates into the same template, uses the same risk-rating
+        scale, produces the same report format with your company&rsquo;s
+        branding applied automatically. Client-facing output is
+        identical regardless of which inspector carried out the work.
+      </p>
+
+      <h2>What the team view looks like</h2>
+      <ul>
+        <li>
+          <strong>Central site register</strong> — every client site
+          maintained once, visible to every inspector. Asset lists,
+          historic defects, client-specific report requirements all in
+          one place.
+        </li>
+        <li>
+          <strong>Per-inspector assignment</strong> — sites and
+          inspections assigned to specific inspectors; each inspector
+          sees their own work queue and can work independently.
+        </li>
+        <li>
+          <strong>Live status visibility</strong> — admins see what is
+          booked, what is on-site, what is complete, what is awaiting
+          report delivery. No &ldquo;where are we with X site?&rdquo;
+          phone calls.
+        </li>
+        <li>
+          <strong>Company-wide audit trail</strong> — every inspection,
+          every defect, every report timestamped and tied to the
+          responsible inspector. Professional indemnity cover and
+          procurement framework audits become straightforward.
+        </li>
+        <li>
+          <strong>Client-specific templates</strong> — report formats
+          configurable per client at company level. A council wanting a
+          specific layout, an insurer wanting a particular structure —
+          set once, applied to every inspection for that client.
+        </li>
+      </ul>
+
+      <h2>What inspectors keep</h2>
+      <p>
+        The inspector-level experience is the same as for independent
+        practitioners: voice dictation on-site, photos captured at the
+        equipment, offline-first operation, on-device PDF generation.
+        The things that make InspectVoice work for a self-employed
+        inspector work identically for an employed one.
+      </p>
+      <p>
+        The difference is what happens above the inspector. Reports
+        flow into central oversight automatically; administrators see
+        the team&rsquo;s combined work without disturbing individual
+        inspectors; the company-wide defect register tracks every
+        finding across every site in one coherent view.
+      </p>
+
+      <ContentCTA
+        headline="Bring your team onto a single standard."
+        body={`${TRIAL.durationDays}-day free trial for up to 5 inspectors. Onboard one inspector on a live site, validate the team view, add the rest. Full data migration from your current tooling included in the trial.`}
+      />
+
+      <h2>Where InspectVoice fits commercially</h2>
+      <p>
+        Typical inspection companies served well by InspectVoice:
+      </p>
+      <ul>
+        <li>
+          <strong>Two to ten inspector firms</strong> — where the pain
+          of multi-inspector consistency is real but enterprise
+          asset-management tooling is overkill.
+        </li>
+        <li>
+          <strong>Regional specialists</strong> — companies covering a
+          UK region with a mix of local authority, school, and private
+          clients.
+        </li>
+        <li>
+          <strong>Owner-operated firms</strong> — where the owner is
+          both an active inspector and the managing administrator, and
+          needs a tool that works in both modes.
+        </li>
+        <li>
+          <strong>Growing practices</strong> — firms adding their
+          second, third, fifth inspector who need to scale the reporting
+          standard with the team.
+        </li>
+      </ul>
+      <p>
+        For very large national inspection companies with in-house
+        engineering, bespoke enterprise-scale tooling often makes more
+        sense. InspectVoice is positioned at the small-to-mid company
+        tier where off-the-shelf professional software is the right
+        commercial answer.
+      </p>
+
+      <h2>Commercial basics</h2>
+      <ul>
+        <li>
+          <strong>{TRIAL.durationDays}-day free trial</strong> — up to
+          5 inspectors, no credit card, full feature access.
+        </li>
+        <li>
+          <strong>Team plan</strong> — monthly subscription supporting
+          up to 5 inspectors. All features included: offline-first,
+          voice dictation, photo capture, PDF generation, defect
+          carry-forward, company-wide oversight.
+        </li>
+        <li>
+          <strong>Enterprise tier</strong> — for larger teams, higher
+          inspector counts, and additional administrative controls.
+        </li>
+        <li>
+          <strong>No annual lock-in</strong> — cancel any time, no exit
+          fees.
+        </li>
+        <li>
+          <strong>UK data residency</strong> — all data on UK
+          infrastructure, UK GDPR compliant.
+        </li>
+      </ul>
+
+      <h2>Frequently asked questions</h2>
+      <div class="not-prose mt-6 space-y-4">
+        {faqs.map((item) => (
+          <details class="group rounded-lg border border-slate-200 bg-white p-5 transition hover:border-slate-300">
+            <summary class="flex cursor-pointer items-start justify-between gap-4 text-base font-semibold text-slate-900 [&::-webkit-details-marker]:hidden">
+              <span>{item.q}</span>
+              <svg class="mt-1 h-5 w-5 flex-shrink-0 text-slate-400 transition group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <p class="mt-3 text-base leading-relaxed text-slate-600">{item.a}</p>
+          </details>
+        ))}
+      </div>
+
+      <ContentCTA />
+
+      <RelatedPages
+        pages={[
+          {
+            title: "For Independent Inspectors",
+            description: "InspectVoice positioned for self-employed RPII Annual Inspectors running solo practices.",
+            href: "/for/independent-inspectors",
+          },
+          {
+            title: "For Local Authorities",
+            description: "InspectVoice positioned for UK councils managing multi-site portfolios in-house.",
+            href: "/for/local-authorities",
+          },
+          {
+            title: "RPII Explained",
+            description: "The certification framework your inspectors work to, and why it matters in UK procurement.",
+            href: "/rpii",
+          },
+        ]}
+      />
+    </div>
+  </article>
+
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+</BaseLayout>

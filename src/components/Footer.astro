@@ -1,0 +1,71 @@
+---
+/**
+ * Footer — minimal, professional.
+ *
+ * Final CTA, company info, links to legal pages (placeholders for now —
+ * real /privacy and /terms pages come in step 9 onward).
+ *
+ * Deliberately compact. A site this early in its life doesn't need a
+ * 12-column footer with newsletter signups and social icons that don't exist.
+ */
+import { SITE, ORGANISATION, CTA, TRIAL } from "../consts";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-brand-900 text-brand-100">
+
+  <div class="mx-auto max-w-6xl px-6 py-16 sm:py-20">
+    <div class="text-center">
+      <h2 class="text-2xl font-bold tracking-tight text-white sm:text-3xl">
+        Try it on your next inspection.
+      </h2>
+      <p class="mt-3 text-base text-brand-100">
+        {TRIAL.durationDays}-day free trial. No credit card. Cancel anytime.
+      </p>
+      <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
+        <a
+          href={CTA.signUp}
+          class="inline-flex w-full items-center justify-center rounded-md bg-white px-6 py-3 text-base font-semibold text-brand-900 shadow-sm transition hover:bg-brand-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:w-auto"
+        >
+          Start free trial
+        </a>
+        <a
+          href={CTA.bookDemo}
+          class="inline-flex w-full items-center justify-center rounded-md border border-brand-100 px-6 py-3 text-base font-semibold text-white transition hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:w-auto"
+        >
+          Book a demo
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="border-t border-white/10">
+    <div class="mx-auto max-w-6xl px-6 py-8">
+      <div class="flex flex-col items-center justify-between gap-4 text-sm sm:flex-row">
+        <div class="flex flex-col items-center gap-1 text-center sm:items-start sm:text-left">
+          <p class="font-semibold text-white">{SITE.name}</p>
+          <p class="text-brand-100">
+            A product by {ORGANISATION.legalName}
+          </p>
+        </div>
+
+        <nav class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2" aria-label="Footer">
+          <a href={CTA.product} class="transition hover:text-white">
+            Product
+          </a>
+          <a href="#pricing" class="transition hover:text-white">
+            Pricing
+          </a>
+          <a href={`mailto:${ORGANISATION.email}`} class="transition hover:text-white">
+            Contact
+          </a>
+        </nav>
+      </div>
+
+      <p class="mt-6 text-center text-xs text-brand-100 sm:text-left">
+        © {year} {ORGANISATION.legalName}. All rights reserved.
+      </p>
+    </div>
+  </div>
+</footer>

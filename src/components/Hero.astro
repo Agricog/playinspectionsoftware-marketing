@@ -1,52 +1,66 @@
 ---
 /**
- * Hero section — the first thing every visitor sees.
+ * Hero — top-of-page selling moment.
  *
- * H1 targets primary keyword "playground inspection software" with the value
- * prop in the same breath. Subhead expands. Two CTAs: primary (free trial),
- * secondary (book demo). Trust line below the buttons.
+ * Positioning: honest about the division of labour. The inspector runs
+ * the inspection (walks the site, looks at equipment, applies judgement,
+ * takes photos, measures surfacing, signs the report). InspectVoice
+ * eliminates the admin layer around that inspection by capturing
+ * observations by voice, extracting defects with BS EN 1176 references,
+ * carrying previous findings forward, and producing the signed PDF
+ * on-device before the inspector leaves site.
  *
- * Deliberately no hero image yet — a generic stock photo would weaken the
- * page, and a real product screenshot belongs here once we have a clean one.
- * The visual restraint reads as confidence on first impression.
+ * What we deliberately do NOT claim:
+ *   - That the software "does" the inspection
+ *   - That voice dictation alone produces the report
+ *   - That AI makes the safety judgements
+ * These would misrepresent the product and damage credibility with the
+ * audience (RPII-certified inspectors know what an inspection involves).
  */
 import { CTA, TRIAL } from "../consts";
 ---
+<section class="relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-brand-50/40">
+  <!-- Subtle dot pattern overlay -->
+  <div
+    class="pointer-events-none absolute inset-0 opacity-[0.03]"
+    style="background-image: radial-gradient(circle at 1px 1px, rgb(0,0,0) 1px, transparent 0); background-size: 24px 24px;"
+    aria-hidden="true"
+  />
 
-<section class="border-b border-brand-100 bg-gradient-to-b from-brand-50 to-white">
-  <div class="mx-auto max-w-4xl px-6 py-20 text-center sm:py-28">
-    <p class="mb-4 text-sm font-semibold uppercase tracking-wider text-brand-700">
-      Playground inspection software · BS EN 1176
+  <div class="relative mx-auto max-w-6xl px-6 pb-20 pt-16 sm:pb-28 sm:pt-24">
+    <p class="text-xs font-semibold uppercase tracking-[0.12em] text-brand-700">
+      Playground Inspection Software · BS EN 1176
     </p>
 
-    <h1 class="text-4xl font-bold tracking-tight text-brand-900 sm:text-5xl md:text-6xl">
-      Professional inspection reports,
-      <span class="block text-brand-700">dictated by voice.</span>
+    <h1 class="mt-4 max-w-3xl text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl sm:leading-[1.1] lg:text-[3.4rem]">
+      Inspection admin, eliminated.
     </h1>
 
-    <p class="mx-auto mt-6 max-w-2xl text-lg text-slate-700 sm:text-xl">
-      Built for UK RPII inspectors and inspection companies. Walk the site, dictate
-      what you see, and walk away with a polished BS EN 1176-aligned PDF report.
-      No paperwork. No post-inspection admin. No office time.
+    <p class="mt-6 max-w-2xl text-lg leading-relaxed text-slate-600 sm:text-xl">
+      You still run the inspection &mdash; you know what to look at and
+      what to judge. InspectVoice captures your findings as you speak
+      them, extracts defects with BS EN 1176 references, carries previous
+      findings forward automatically, and produces the signed PDF report
+      on-device before you leave the site. No evening paperwork.
     </p>
 
-    <div class="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
+    <div class="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
       <a
         href={CTA.signUp}
-        class="inline-flex w-full items-center justify-center rounded-md bg-brand-700 px-6 py-3 text-base font-semibold text-white shadow-sm transition hover:bg-brand-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-700 sm:w-auto"
+        class="inline-flex w-full items-center justify-center rounded-md bg-brand-700 px-7 py-3.5 text-base font-semibold text-white shadow-sm transition hover:bg-brand-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-700 sm:w-auto"
       >
         Start your {TRIAL.durationDays}-day free trial
       </a>
       <a
         href={CTA.bookDemo}
-        class="inline-flex w-full items-center justify-center rounded-md border border-brand-700 bg-white px-6 py-3 text-base font-semibold text-brand-700 transition hover:bg-brand-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-700 sm:w-auto"
+        class="inline-flex w-full items-center justify-center rounded-md border border-slate-300 bg-white px-7 py-3.5 text-base font-semibold text-slate-900 shadow-sm transition hover:border-slate-400 hover:bg-slate-50 sm:w-auto"
       >
         Book a 15-minute demo
       </a>
     </div>
 
-    <p class="mt-6 text-sm text-slate-600">
-      No credit card required · Cancel anytime · UK data residency
+    <p class="mt-4 text-sm text-slate-500">
+      No credit card required &middot; Cancel anytime &middot; UK data residency
     </p>
   </div>
 </section>

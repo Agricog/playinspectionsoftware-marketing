@@ -1,0 +1,36 @@
+---
+/**
+ * Site header — minimal top nav.
+ *
+ * Logo (left) + primary CTA (right). Sticky on scroll.
+ * Deliberately uncluttered — this is a marketing site, not an app shell.
+ * No mobile hamburger needed at this stage; only one nav item (the CTA).
+ */
+import { SITE, CTA } from "../consts";
+---
+
+<header class="sticky top-0 z-40 border-b border-brand-100 bg-white/90 backdrop-blur-sm">
+  <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+    <a
+      href="/"
+      class="flex items-center gap-2 text-base font-semibold text-brand-900 transition hover:text-brand-700"
+      aria-label={`${SITE.name} — home`}
+    >
+      <img
+        src="/favicon.svg"
+        alt=""
+        width="28"
+        height="28"
+        class="h-7 w-7"
+      />
+      <span class="hidden sm:inline">{SITE.name}</span>
+    </a>
+
+    <a
+      href={CTA.signUp}
+      class="inline-flex items-center justify-center rounded-md bg-brand-700 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-700"
+    >
+      Start free trial
+    </a>
+  </div>
+</header>

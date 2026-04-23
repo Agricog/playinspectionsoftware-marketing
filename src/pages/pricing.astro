@@ -1,0 +1,284 @@
+---
+/**
+ * /pricing — dedicated pricing page.
+ *
+ * Standalone URL for commercial-intent traffic ("playground inspection
+ * software pricing", "RPII inspector software cost") and for sharing
+ * with prospects who want to evaluate cost without digging through the
+ * homepage.
+ *
+ * Structure:
+ *   Hero → Two pricing cards (Team + Enterprise) → What's included →
+ *   Trust signals → FAQ → Final CTA
+ *
+ * No pricing values are hard-coded as magic numbers — they reference the
+ * PRICING and TRIAL constants in src/consts.ts so a price change is a
+ * single-file update.
+ */
+
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ContentHero from "../components/ContentHero.astro";
+import ContentBreadcrumbs from "../components/ContentBreadcrumbs.astro";
+import ContentCTA from "../components/ContentCTA.astro";
+import { SITE, ORGANISATION, CTA, TRIAL } from "../consts";
+
+const title = "Pricing | Playground Inspection Software";
+const description =
+  "Simple, transparent pricing for InspectVoice — the UK playground inspection software. Team plan at £99/month for up to 5 inspectors. Enterprise tier for larger operators. 30-day free trial, no credit card, no annual lock-in.";
+const lastUpdatedDisplay = "23 April 2026";
+const lastUpdatedISO = "2026-04-23";
+const datePublishedISO = "2026-04-23";
+const canonical = `${SITE.url.replace(/\/$/, "")}/pricing`;
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: title,
+  description,
+  datePublished: datePublishedISO,
+  dateModified: lastUpdatedISO,
+  author: { "@type": "Organization", name: ORGANISATION.legalName, url: SITE.url },
+  publisher: { "@type": "Organization", name: SITE.name, url: SITE.url },
+  mainEntityOfPage: { "@type": "WebPage", "@id": canonical },
+};
+
+const faqs = [
+  {
+    q: "Is there a free trial?",
+    a: `Yes — a full ${TRIAL.durationDays}-day free trial with no credit card required. All features are available during the trial: voice dictation, offline-first operation, photo capture, on-device PDF report generation, defect carry-forward, and multi-site portfolio. Run real inspections on real sites. If you decide InspectVoice is not for you, export your data and walk away — nothing to cancel.`,
+  },
+  {
+    q: "How does the Team plan work?",
+    a: "The Team plan is a single monthly subscription covering up to 5 inspectors under one company account. Each inspector has their own login and can work independently on assigned sites; administrators see the combined team view. Every feature is included — no add-on modules, no per-inspection fees, no storage surcharges. Billing is month-to-month; cancel at any time from your account settings.",
+  },
+  {
+    q: "Do you charge per inspector, per site, or per inspection?",
+    a: "None of the above — the Team plan is a flat monthly fee regardless of how many inspections you carry out, how many sites you manage, or how many photos you upload. Predictable pricing lets inspectors and operators budget cleanly without the per-unit billing friction that most SaaS products impose.",
+  },
+  {
+    q: "What happens when I go over 5 inspectors?",
+    a: "Move to the Enterprise tier. Enterprise accommodates larger teams with higher inspector counts, additional administrative controls, custom report templates per client, and tailored onboarding. Pricing is quoted per engagement based on scale and requirements — contact us for an Enterprise proposal.",
+  },
+  {
+    q: "Is there an annual discount or long-term contract?",
+    a: "No. All plans are month-to-month with no annual commitment and no cancellation penalty. We would rather keep you because the product works for you than because you signed a long contract. If you are a larger operator with procurement requirements that favour annual contracts, Enterprise engagements can be structured that way — but it is never required.",
+  },
+  {
+    q: "Can I cancel anytime?",
+    a: "Yes, at any time, from your account settings. Cancellation is effective at the end of the current billing period — you keep access for what you have already paid for. On cancellation you can export a full archive of all your data (site registers, inspection reports, photographs). There are no exit fees and no data is held hostage.",
+  },
+  {
+    q: "What payment methods do you accept?",
+    a: "Credit and debit cards via Stripe (Visa, Mastercard, American Express). For Enterprise engagements, invoice-based billing in GBP is available. All charges are in GBP and inclusive of VAT where applicable — the price you see is the price you pay.",
+  },
+  {
+    q: "Is InspectVoice GDPR compliant and UK-based?",
+    a: "Yes. All data is stored on UK infrastructure and the service is operated from the UK. UK GDPR compliance is supported by design: clear controller and processor roles, data processing agreements provided on request, subject access requests handled within statutory timescales, and full data export available on demand. No data leaves the UK.",
+  },
+  {
+    q: "What does Enterprise include that Team does not?",
+    a: "Higher inspector counts, additional administrative controls, custom report templates configurable per client, priority support, a named onboarding contact, and standard security questionnaire responses for council and insurer procurement reviews. Specific deliverables are scoped per engagement based on the operator&rsquo;s requirements.",
+  },
+  {
+    q: "How do I get an Enterprise quote?",
+    a: `Email <a href="mailto:${ORGANISATION.email}">${ORGANISATION.email}</a> with your site count, inspector count, and any specific requirements (procurement framework, security questionnaire, custom report templates). We typically respond within one working day with an indicative proposal and a scoping call if required.`,
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: { "@type": "Answer", text: item.a.replace(/<[^>]*>/g, "") },
+  })),
+};
+
+const teamFeatures = [
+  "Voice-dictated inspection capture",
+  "Offline-first operation (no signal required)",
+  "On-device PDF report generation",
+  "Photo evidence integrated with findings",
+  "Defect carry-forward between inspections",
+  "BS EN 1176-aligned report templates",
+  "Multi-site portfolio view",
+  "Up to 5 inspector accounts",
+  "Central team oversight for administrators",
+  "Company branding on reports",
+  "Full data export on demand",
+  "Email support",
+];
+
+const enterpriseAdditions = [
+  "Higher inspector counts",
+  "Additional administrative controls",
+  "Custom report templates per client",
+  "Priority support response times",
+  "Dedicated onboarding contact",
+  "Standard security questionnaire responses",
+  "Invoice-based billing available",
+  "Custom contract terms on request",
+];
+---
+<BaseLayout title={title} description={description}>
+  <ContentBreadcrumbs
+    crumbs={[
+      { label: "Home", href: "/" },
+      { label: "Pricing" },
+    ]}
+  />
+
+  <ContentHero
+    eyebrow="Pricing"
+    title="Simple, transparent pricing."
+    description={`Monthly subscription. All features included. No annual lock-in. ${TRIAL.durationDays}-day free trial on every plan — no credit card required.`}
+    lastUpdated={lastUpdatedDisplay}
+  />
+
+  <!-- Pricing cards -->
+  <section class="mx-auto max-w-6xl px-6 py-12 sm:py-16">
+    <div class="grid gap-6 lg:grid-cols-2">
+      <!-- Team plan -->
+      <div class="flex flex-col rounded-xl border-2 border-brand-600 bg-white p-8 shadow-sm">
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-wide text-brand-700">
+            Team
+          </p>
+          <p class="mt-3 text-base text-slate-600">
+            For independent inspectors and small inspection companies up
+            to 5 inspectors.
+          </p>
+          <p class="mt-6 flex items-baseline gap-2">
+            <span class="text-5xl font-bold tracking-tight text-slate-900">£99</span>
+            <span class="text-base text-slate-600">/ month</span>
+          </p>
+          <p class="mt-1 text-sm text-slate-500">
+            Billed monthly. VAT included. Cancel any time.
+          </p>
+        </div>
+
+        <a
+          href={CTA.signUp}
+          class="mt-8 inline-flex w-full items-center justify-center rounded-md bg-brand-700 px-6 py-3 text-base font-semibold text-white shadow-sm transition hover:bg-brand-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-700"
+        >
+          Start {TRIAL.durationDays}-day free trial
+        </a>
+        <p class="mt-2 text-center text-xs text-slate-500">
+          No credit card required
+        </p>
+
+        <div class="mt-8 border-t border-slate-200 pt-6">
+          <p class="text-sm font-semibold text-slate-900">Everything included:</p>
+          <ul class="mt-4 space-y-3 text-sm text-slate-700">
+            {teamFeatures.map((feature) => (
+              <li class="flex items-start gap-3">
+                <svg class="mt-0.5 h-5 w-5 flex-shrink-0 text-brand-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>{feature}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <!-- Enterprise plan -->
+      <div class="flex flex-col rounded-xl border border-slate-200 bg-slate-50 p-8">
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-wide text-slate-600">
+            Enterprise
+          </p>
+          <p class="mt-3 text-base text-slate-600">
+            For local authorities, national inspection companies, and
+            larger teams with procurement and custom-template needs.
+          </p>
+          <p class="mt-6 flex items-baseline gap-2">
+            <span class="text-5xl font-bold tracking-tight text-slate-900">Custom</span>
+          </p>
+          <p class="mt-1 text-sm text-slate-500">
+            Quoted per engagement. Invoice billing available.
+          </p>
+        </div>
+
+        <a
+          href={`mailto:${ORGANISATION.email}?subject=Enterprise%20enquiry`}
+          class="mt-8 inline-flex w-full items-center justify-center rounded-md border border-slate-300 bg-white px-6 py-3 text-base font-semibold text-slate-900 shadow-sm transition hover:border-slate-400 hover:bg-slate-50"
+        >
+          Contact us for a quote
+        </a>
+        <p class="mt-2 text-center text-xs text-slate-500">
+          Response typically within one working day
+        </p>
+
+        <div class="mt-8 border-t border-slate-200 pt-6">
+          <p class="text-sm font-semibold text-slate-900">Everything in Team, plus:</p>
+          <ul class="mt-4 space-y-3 text-sm text-slate-700">
+            {enterpriseAdditions.map((feature) => (
+              <li class="flex items-start gap-3">
+                <svg class="mt-0.5 h-5 w-5 flex-shrink-0 text-brand-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>{feature}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust signals -->
+  <section class="border-y border-slate-200 bg-slate-50">
+    <div class="mx-auto max-w-6xl px-6 py-12 sm:py-16">
+      <div class="grid gap-8 text-center sm:grid-cols-2 lg:grid-cols-4">
+        <div>
+          <p class="text-3xl font-bold text-brand-700">{TRIAL.durationDays} days</p>
+          <p class="mt-2 text-sm text-slate-600">Free trial, no credit card</p>
+        </div>
+        <div>
+          <p class="text-3xl font-bold text-brand-700">0%</p>
+          <p class="mt-2 text-sm text-slate-600">Annual commitment required</p>
+        </div>
+        <div>
+          <p class="text-3xl font-bold text-brand-700">UK</p>
+          <p class="mt-2 text-sm text-slate-600">Data residency and hosting</p>
+        </div>
+        <div>
+          <p class="text-3xl font-bold text-brand-700">All</p>
+          <p class="mt-2 text-sm text-slate-600">Features in every plan</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="mx-auto max-w-3xl px-6 py-12 sm:py-16">
+    <h2 class="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
+      Pricing FAQ
+    </h2>
+    <div class="mt-8 space-y-4">
+      {faqs.map((item) => (
+        <details class="group rounded-lg border border-slate-200 bg-white p-5 transition hover:border-slate-300">
+          <summary class="flex cursor-pointer items-start justify-between gap-4 text-base font-semibold text-slate-900 [&::-webkit-details-marker]:hidden">
+            <span>{item.q}</span>
+            <svg class="mt-1 h-5 w-5 flex-shrink-0 text-slate-400 transition group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+          </summary>
+          <p class="mt-3 text-base leading-relaxed text-slate-600" set:html={item.a} />
+        </details>
+      ))}
+    </div>
+
+    <div class="mt-16">
+      <ContentCTA
+        headline="Try it on your next inspection."
+        body={`${TRIAL.durationDays}-day free trial with no credit card. Import your site register, run a real inspection, see the finished PDF on-device before you leave the site.`}
+      />
+    </div>
+  </section>
+
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+</BaseLayout>

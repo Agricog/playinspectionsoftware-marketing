@@ -1,0 +1,64 @@
+---
+/**
+ * RelatedPages — card grid of related content pages.
+ *
+ * Dropped at the bottom of pillar and cluster pages to surface sibling
+ * and parent content. Two jobs:
+ *   1. UX — reader finishes one article, wants the next logical read.
+ *   2. SEO — internal linking between topically related pages signals
+ *      Google that we have depth on the subject, and passes link equity
+ *      through the cluster.
+ *
+ * Props:
+ *   - heading: section heading (defaults to "Related reading")
+ *   - pages: array of { title, description, href }
+ */
+
+interface RelatedPage {
+  title: string;
+  description: string;
+  href: string;
+}
+
+interface Props {
+  heading?: string;
+  pages: RelatedPage[];
+}
+
+const { heading = "Related reading", pages } = Astro.props;
+---
+<section class="not-prose mt-16 border-t border-slate-200 pt-12">
+  <h2 class="text-sm font-semibold uppercase tracking-wide text-slate-500">
+    {heading}
+  </h2>
+  <ul class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    {pages.map((page) => (
+      <li>
+        <a
+          href={page.href}
+          class="group flex h-full flex-col rounded-lg border border-slate-200 bg-white p-5 transition hover:border-brand-300 hover:shadow-sm"
+        >
+          <p class="text-base font-semibold text-slate-900 group-hover:text-brand-700">
+            {page.title}
+          </p>
+          <p class="mt-2 flex-1 text-sm leading-relaxed text-slate-600">
+            {page.description}
+          </p>
+          <p class="mt-4 inline-flex items-center gap-1 text-sm font-medium text-brand-700">
+            Read more
+            <svg
+              class="h-4 w-4 transition-transform group-hover:translate-x-0.5"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </p>
+        </a>
+      </li>
+    ))}
+  </ul>
+</section>

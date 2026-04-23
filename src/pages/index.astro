@@ -18,8 +18,10 @@
  * The SEO component's default behaviour is indexable; only pages that pass
  * noindex={true} are blocked from search.
  *
- * Title and description override the site defaults to lead with the primary
- * keyword in the SERP listing.
+ * Title and description lead with the primary keyword ("playground
+ * inspection software") and honestly describe the product: the inspector
+ * runs the inspection, InspectVoice eliminates the admin around it.
+ * No overclaim that voice dictation alone produces the inspection.
  */
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero from "../components/Hero.astro";
@@ -33,7 +35,7 @@ import FAQ from "../components/FAQ.astro";
 ---
 <BaseLayout
   title="Playground Inspection Software for UK RPII Inspectors"
-  description="Professional BS EN 1176 inspection reports dictated by voice. Built for UK playground inspectors and inspection companies. Works offline. 30-day free trial, no credit card."
+  description="BS EN 1176-aligned playground inspection software for UK RPII inspectors and inspection companies. Capture findings by voice on-site, AI drafts the defect entries for your review, signed PDF ready before you leave. Offline-first. 30-day free trial."
 >
   <Hero />
   <Problem />

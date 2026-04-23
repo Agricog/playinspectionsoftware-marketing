@@ -9,7 +9,6 @@
  */
 import { SITE, CTA } from "../consts";
 ---
-
 <header class="sticky top-0 z-40 border-b border-brand-100 bg-white/90 backdrop-blur-sm">
   <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
     <a
@@ -26,22 +25,20 @@ import { SITE, CTA } from "../consts";
       />
       <span class="hidden sm:inline">{SITE.name}</span>
     </a>
-
-    <a
-      <nav class="flex items-center gap-5 sm:gap-6" aria-label="Primary">
-      
+    <nav class="flex items-center gap-5 sm:gap-6" aria-label="Primary">
+      <a
         href="/bs-en-1176"
         class="hidden text-sm font-medium text-slate-700 transition hover:text-brand-700 sm:inline"
       >
         BS EN 1176
       </a>
-      
+      <a
         href="/rpii"
         class="hidden text-sm font-medium text-slate-700 transition hover:text-brand-700 sm:inline"
       >
         RPII
       </a>
-      
+      <a
         href={CTA.signUp}
         class="inline-flex items-center justify-center rounded-md bg-brand-700 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-700"
       >

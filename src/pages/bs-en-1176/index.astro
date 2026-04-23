@@ -1,0 +1,348 @@
+---
+/**
+ * /bs-en-1176 — pillar page.
+ *
+ * Definitive long-form reference on BS EN 1176 for UK playground inspectors,
+ * parks officers, and site operators. Targets the primary SEO keyword
+ * "BS EN 1176" and numerous long-tail variants ("BS EN 1176 inspection",
+ * "annual playground inspection", "critical fall height", "RPII inspection").
+ *
+ * Schemas emitted:
+ *   - Article (via inline JSON-LD below)
+ *   - BreadcrumbList (via ContentBreadcrumbs)
+ *   - FAQPage (via inline JSON-LD at bottom)
+ *
+ * Future cluster pages will live at /bs-en-1176/{routine-inspections,
+ * operational-inspections, annual-inspections, critical-fall-height,
+ * impact-attenuating-surfacing, risk-ratings}.
+ */
+
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ContentHero from "../../components/ContentHero.astro";
+import ContentBreadcrumbs from "../../components/ContentBreadcrumbs.astro";
+import ContentCTA from "../../components/ContentCTA.astro";
+import { SITE, ORGANISATION } from "../../consts";
+
+const title = "BS EN 1176 Explained: The UK Playground Inspection Standard";
+const description =
+  "BS EN 1176 is the standard governing playground equipment safety and inspection in the UK. A complete guide to what it covers, who must comply, the three inspection regimes, and how defects are rated.";
+const lastUpdatedDisplay = "23 April 2026";
+const lastUpdatedISO = "2026-04-23";
+const datePublishedISO = "2026-04-23";
+const canonical = `${SITE.url.replace(/\/$/, "")}/bs-en-1176`;
+
+// Article schema — tells Google this is a definitive reference article
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: title,
+  description,
+  datePublished: datePublishedISO,
+  dateModified: lastUpdatedISO,
+  author: {
+    "@type": "Organization",
+    name: ORGANISATION.legalName,
+    url: SITE.url,
+  },
+  publisher: {
+    "@type": "Organization",
+    name: SITE.name,
+    url: SITE.url,
+  },
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": canonical,
+  },
+};
+
+// FAQPage schema — gets rich result FAQ dropdowns in Google search
+const faqs = [
+  {
+    q: "Is BS EN 1176 a legal requirement in the UK?",
+    a: "BS EN 1176 is a standard, not a statute. There is no UK law that names BS EN 1176 as mandatory. However, UK operators of play equipment have a legal duty of care under the Health and Safety at Work Act 1974 and the Occupiers' Liability Acts 1957 and 1984. Following BS EN 1176 is the established industry method of demonstrating that duty has been met. In practice, failing to inspect and maintain equipment in line with the standard is treated as evidence of negligence if an injury occurs.",
+  },
+  {
+    q: "How often must playground inspections be carried out?",
+    a: "BS EN 1176-7 sets out three inspection regimes with different frequencies. Routine visual inspections are typically done daily or weekly by operator staff. Operational inspections are typically done every one to three months. Annual main inspections must be carried out at least every 12 months and should be completed by a competent person — in the UK, usually an RPII-certified inspector.",
+  },
+  {
+    q: "Who is qualified to carry out a BS EN 1176 annual inspection?",
+    a: "The standard requires an independent competent person. In UK practice, this means an inspector certified by the Register of Play Inspectors International (RPII) — either a Post-Installation Inspector (for new or refurbished sites) or an Annual Inspector (for ongoing annual main inspections). Operational and routine inspections do not require RPII certification, but the person carrying them out must be suitably trained and competent.",
+  },
+  {
+    q: "What is the difference between BS EN 1176 and BS EN 1177?",
+    a: "BS EN 1176 covers the play equipment itself — structure, dimensions, hazard prevention, inspection, and maintenance. BS EN 1177 is a separate but closely related standard covering impact-attenuating surfacing beneath equipment. The two standards are used together: BS EN 1176 specifies when surfacing is required (based on critical fall height), and BS EN 1177 specifies how that surfacing must perform under impact testing.",
+  },
+  {
+    q: "Does BS EN 1176 apply to domestic playgrounds at private homes?",
+    a: "No. BS EN 1176 applies to play equipment intended for collective use by children in public or semi-public settings — parks, schools, housing estates, hotels, nurseries, and similar. Equipment installed for private family use at a single domestic dwelling falls outside its scope and is generally covered by BS EN 71 (the consumer toy safety standard) instead.",
+  },
+  {
+    q: "Is voice-dictated inspection reporting compliant with BS EN 1176?",
+    a: "Yes. BS EN 1176-7 specifies what information an inspection report must contain (findings, risk assessment, recommended actions, inspector details, date), but does not prescribe how the report is captured or written. Voice-dictated systems that produce a complete written report satisfying those content requirements are fully compliant. The professional and legal obligation is the completeness, accuracy, and traceability of the report — not the input method.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.a,
+    },
+  })),
+};
+---
+<BaseLayout title={title} description={description}>
+  <ContentBreadcrumbs
+    crumbs={[
+      { label: "Home", href: "/" },
+      { label: "BS EN 1176" },
+    ]}
+  />
+
+  <ContentHero
+    eyebrow="The Standard"
+    title="BS EN 1176 Explained"
+    description="The UK standard governing playground equipment safety and inspection. A complete guide to what it covers, who must comply, the three inspection regimes, and how defects are rated."
+    lastUpdated={lastUpdatedDisplay}
+    readingTime="9 min read"
+  />
+
+  <article class="mx-auto max-w-3xl px-6 py-12 sm:py-16">
+    <!-- Table of contents -->
+    <nav aria-label="On this page" class="not-prose mb-12 rounded-lg border border-slate-200 bg-slate-50 p-6">
+      <p class="text-sm font-semibold uppercase tracking-wide text-slate-500">On this page</p>
+      <ol class="mt-3 space-y-2 text-sm text-slate-700">
+        <li><a href="#what-is-bs-en-1176" class="hover:text-brand-700 hover:underline">1. What is BS EN 1176?</a></li>
+        <li><a href="#who-must-comply" class="hover:text-brand-700 hover:underline">2. Who must comply</a></li>
+        <li><a href="#parts-of-the-standard" class="hover:text-brand-700 hover:underline">3. The parts of BS EN 1176</a></li>
+        <li><a href="#inspection-regimes" class="hover:text-brand-700 hover:underline">4. The three inspection regimes</a></li>
+        <li><a href="#hazard-categories" class="hover:text-brand-700 hover:underline">5. Hazard categories assessed</a></li>
+        <li><a href="#fall-height-and-surfacing" class="hover:text-brand-700 hover:underline">6. Critical fall height and surfacing</a></li>
+        <li><a href="#risk-ratings" class="hover:text-brand-700 hover:underline">7. Risk ratings and reporting</a></li>
+        <li><a href="#legal-context" class="hover:text-brand-700 hover:underline">8. The legal context in the UK</a></li>
+        <li><a href="#faq" class="hover:text-brand-700 hover:underline">Frequently asked questions</a></li>
+      </ol>
+    </nav>
+
+    <div class="prose prose-slate max-w-none prose-headings:scroll-mt-24 prose-headings:font-semibold prose-headings:text-slate-900 prose-a:text-brand-700 prose-a:no-underline hover:prose-a:underline prose-strong:text-slate-900">
+      <h2 id="what-is-bs-en-1176">1. What is BS EN 1176?</h2>
+      <p>
+        <strong>BS EN 1176</strong> is the British adoption of the European Standard EN 1176,
+        which sets out safety requirements and inspection guidance for fixed play
+        equipment intended for children&rsquo;s collective use. Published by the
+        British Standards Institution (BSI), it is the document UK operators,
+        inspectors, designers and installers work to when they want to demonstrate
+        that a piece of play equipment and its supporting surfacing are safe.
+      </p>
+      <p>
+        The standard exists because playgrounds involve an unavoidable tension:
+        children need challenge and risk to develop, but injury from foreseeable
+        failures — a fractured weld, an entrapment gap, hard ground under a climbing
+        frame — is not acceptable. BS EN 1176 draws the line by specifying what
+        &ldquo;reasonable&rdquo; design, maintenance and inspection look like in
+        practice.
+      </p>
+      <p>
+        It is not itself a law. It is, however, the benchmark every UK court, insurer,
+        local authority and governing body looks to when deciding whether a site has
+        been properly maintained. In practical terms, operating a public playground
+        without working to BS EN 1176 is not a viable position.
+      </p>
+
+      <h2 id="who-must-comply">2. Who must comply</h2>
+      <p>
+        Any organisation that owns, operates, or manages play equipment used by
+        children collectively has a duty of care to those children and their
+        families. In the UK this is a wider group than many realise. It includes:
+      </p>
+      <ul>
+        <li><strong>Local authorities</strong> — parks, recreation grounds, school grounds maintained by the council, estate play areas.</li>
+        <li><strong>Schools and academies</strong> — EYFS settings, primary schools, secondary schools, independent schools; any fixed play equipment on site.</li>
+        <li><strong>Nurseries and early years settings</strong> — including childminders with substantial fixed equipment.</li>
+        <li><strong>Housing associations and private estates</strong> — where communal play areas serve residents.</li>
+        <li><strong>Hotels, holiday parks and campsites</strong> — guest-facing play equipment.</li>
+        <li><strong>Hospitality venues</strong> — pubs, restaurants, visitor attractions, soft play operators with outdoor equipment.</li>
+        <li><strong>Religious and community venues</strong> — churches, scout huts, community centres with play equipment.</li>
+      </ul>
+      <p>
+        The common thread is collective use by children other than the owner&rsquo;s
+        own family. Equipment installed at a single private dwelling for the
+        occupier&rsquo;s children is outside the scope of BS EN 1176 and falls under
+        consumer toy safety rules (BS EN 71) instead.
+      </p>
+
+      <h2 id="parts-of-the-standard">3. The parts of BS EN 1176</h2>
+      <p>
+        BS EN 1176 is not a single document. It is a series of parts, each covering
+        a specific area. The parts most frequently referenced in UK inspection work
+        are:
+      </p>
+      <ul>
+        <li><strong>Part 1</strong> — General safety requirements and test methods. The foundation document covering hazards, materials, structural integrity and testing.</li>
+        <li><strong>Parts 2 to 6</strong> — Equipment-specific requirements for swings, slides, runways, carousels and rocking equipment respectively.</li>
+        <li><strong>Part 7</strong> — Guidance on installation, inspection, operation and maintenance. This is the part that defines the three inspection regimes described below.</li>
+        <li><strong>Part 10</strong> — Fully enclosed play equipment (for example, climbing pods).</li>
+        <li><strong>Part 11</strong> — Spatial networks: large three-dimensional rope climbing structures.</li>
+      </ul>
+      <p>
+        Alongside BS EN 1176 sits <strong>BS EN 1177</strong>, the companion standard
+        for impact-attenuating surfacing. The two are designed to be used together:
+        BS EN 1176 specifies <em>when</em> surfacing is required and to what critical
+        fall height, BS EN 1177 specifies <em>how</em> that surfacing must perform
+        when tested.
+      </p>
+
+      <h2 id="inspection-regimes">4. The three inspection regimes</h2>
+      <p>
+        BS EN 1176-7 sets out a tiered inspection model. Each level has a different
+        frequency, depth, and competency requirement. Meeting the standard means
+        operating all three.
+      </p>
+
+      <h3>Routine visual inspection</h3>
+      <p>
+        A frequent walk-round check for obvious hazards — broken glass, vandalism,
+        missing components, accumulated debris, exposed foundations. Typically done
+        daily or weekly depending on usage intensity. It does not require a trained
+        inspector; operator staff (groundskeepers, school caretakers, site wardens)
+        can carry it out provided they know what to look for. The goal is catching
+        anything that has obviously changed since the previous check.
+      </p>
+
+      <h3>Operational inspection</h3>
+      <p>
+        A more detailed check carried out every one to three months. Covers equipment
+        stability, the condition of fixings and bearings, the state of surfacing, and
+        the progress of any repairs identified at a previous inspection. Still
+        typically performed by trained operator staff, but with more depth than the
+        routine check. Findings are recorded.
+      </p>
+
+      <h3>Annual main inspection</h3>
+      <p>
+        A full, detailed technical inspection carried out at least every 12 months by
+        an independent competent person. In UK practice this means an inspector
+        certified by the <strong>Register of Play Inspectors International (RPII)</strong>
+        — either as a Post-Installation Inspector (for new or refurbished sites) or
+        as an Annual Inspector. The main inspection assesses the overall safety of
+        the site, long-term wear, the effects of weathering and vandalism, and
+        compliance with the standard. A formal written report with risk-rated defects
+        is the output.
+      </p>
+
+      <ContentCTA
+        headline="InspectVoice generates BS EN 1176 inspection reports by voice."
+        body="Dictate as you walk the site. Reports are produced on-device, ready to send, in minutes — no post-inspection admin. Built for UK RPII-certified independent inspectors."
+      />
+
+      <h2 id="hazard-categories">5. Hazard categories assessed</h2>
+      <p>
+        BS EN 1176 groups playground hazards into a small number of well-defined
+        categories. A competent inspector works through each category systematically
+        on every item of equipment:
+      </p>
+      <ul>
+        <li><strong>Entrapment</strong> — head and neck, fingers, limbs, clothing and toggles. The standard specifies gap dimensions that must be avoided because they catch anatomy or fabric.</li>
+        <li><strong>Impact hazards</strong> — sharp edges, protrusions, rigid components inside likely fall zones.</li>
+        <li><strong>Fall height and surfacing</strong> — critical fall height must be matched by surfacing of adequate impact attenuation across the full impact area.</li>
+        <li><strong>Structural integrity</strong> — foundations, welds, bearings, fixings, connectors, load-bearing components.</li>
+        <li><strong>Material degradation</strong> — timber rot, steel corrosion, plastic UV breakdown, rope fraying, fabric wear.</li>
+        <li><strong>Maintenance state</strong> — legibility of signage, accumulated litter or organic matter in surfacing, drainage, paint condition.</li>
+      </ul>
+
+      <h2 id="fall-height-and-surfacing">6. Critical fall height and surfacing</h2>
+      <p>
+        The single most misunderstood concept in playground safety is the
+        relationship between <strong>critical fall height (CFH)</strong> and
+        surfacing. CFH is the greatest free height of fall from any part of a piece
+        of equipment from which a child might fall during intended and foreseeable
+        use. It is a measured value, not a catalogue figure.
+      </p>
+      <p>
+        Where CFH exceeds a defined threshold, impact-attenuating surfacing must be
+        provided across the entire impact area. That surfacing must be rated to at
+        least the CFH of the equipment above it, tested to BS EN 1177. Common
+        surfacing types — engineered wood chip, rubber bonded surfacing (wetpour),
+        rubber tiles, loose-fill bark — each have different performance, maintenance
+        and drainage characteristics. What works well in one context fails in
+        another.
+      </p>
+      <p>
+        For inspectors, the two recurrent issues are <em>surfacing depth</em>
+        (loose-fill surfaces compact, migrate and displace over time, reducing
+        effective attenuation) and <em>impact-area coverage</em> (surfacing may meet
+        spec underneath the equipment but thin out toward the edges where a child
+        actually lands after a swing or slide exit). Both must be assessed on every
+        main inspection.
+      </p>
+
+      <h2 id="risk-ratings">7. Risk ratings and reporting</h2>
+      <p>
+        Inspection findings are not simply listed — they are categorised by severity
+        so the operator can prioritise remedial action. UK inspection practice
+        typically uses a four-tier model broadly analogous to the following:
+      </p>
+      <ul>
+        <li><strong>Low risk</strong> — cosmetic or minor, no immediate action required, address during normal maintenance.</li>
+        <li><strong>Medium risk</strong> — fault likely to worsen; schedule remedial work within a reasonable timeframe.</li>
+        <li><strong>High risk</strong> — foreseeable injury if left; prompt remedial action required, consider restricting access.</li>
+        <li><strong>Very high risk</strong> — immediate hazard; isolate or decommission the equipment without delay.</li>
+      </ul>
+      <p>
+        A BS EN 1176-aligned report records, for every item of equipment, each
+        identified defect with its location, description, photographs where
+        relevant, risk rating, and recommended action. The report is signed and
+        dated by the inspector and forms the operator&rsquo;s primary evidence of
+        compliance — both for insurance and in the event of a post-incident
+        investigation.
+      </p>
+
+      <h2 id="legal-context">8. The legal context in the UK</h2>
+      <p>
+        Although BS EN 1176 is not itself statute, it operates within a statutory
+        framework that gives it substantial weight. Operators of play equipment have
+        obligations under:
+      </p>
+      <ul>
+        <li>The <strong>Health and Safety at Work etc. Act 1974</strong> — a general duty to ensure, so far as reasonably practicable, that non-employees (here, children and families) are not exposed to risks to their health or safety.</li>
+        <li>The <strong>Occupiers&rsquo; Liability Act 1957</strong> — a duty of care to all visitors, including children, to take reasonable care they are reasonably safe on the premises.</li>
+        <li>The <strong>Occupiers&rsquo; Liability Act 1984</strong> — a more limited duty even to trespassers in certain circumstances.</li>
+      </ul>
+      <p>
+        In the event of an injury leading to a claim, the first question asked is
+        whether the operator took reasonable steps to identify and manage
+        foreseeable risks. The practical answer — the thing that satisfies courts,
+        insurers and the Health and Safety Executive — is a documented inspection
+        regime aligned to BS EN 1176-7 with reports retained and remedial actions
+        followed through. Operating without that trail is the position no operator
+        wants to be in.
+      </p>
+
+      <h2 id="faq">Frequently asked questions</h2>
+      <div class="not-prose mt-6 space-y-4">
+        {faqs.map((item) => (
+          <details class="group rounded-lg border border-slate-200 bg-white p-5 transition hover:border-slate-300">
+            <summary class="flex cursor-pointer items-start justify-between gap-4 text-base font-semibold text-slate-900 [&::-webkit-details-marker]:hidden">
+              <span>{item.q}</span>
+              <svg class="mt-1 h-5 w-5 flex-shrink-0 text-slate-400 transition group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <p class="mt-3 text-base leading-relaxed text-slate-600">{item.a}</p>
+          </details>
+        ))}
+      </div>
+
+      <ContentCTA />
+    </div>
+  </article>
+
+  <!-- JSON-LD schemas -->
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+</BaseLayout>

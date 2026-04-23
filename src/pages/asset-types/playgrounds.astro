@@ -1,0 +1,342 @@
+---
+/**
+ * /asset-types/playgrounds — cluster page.
+ *
+ * Traditional playground equipment under BS EN 1176. The core asset
+ * category. Targets queries: "playground inspection UK",
+ * "playground equipment inspection", "types of playground equipment",
+ * "playground equipment safety check".
+ */
+
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ContentHero from "../../components/ContentHero.astro";
+import ContentBreadcrumbs from "../../components/ContentBreadcrumbs.astro";
+import ContentCTA from "../../components/ContentCTA.astro";
+import RelatedPages from "../../components/RelatedPages.astro";
+import { SITE, ORGANISATION } from "../../consts";
+
+const title = "Traditional Playground Inspection (BS EN 1176)";
+const description =
+  "Traditional playground equipment — swings, slides, climbing frames, multi-play units, spring rockers — is the core BS EN 1176 asset category. A guide to equipment types, typical defect patterns, and inspection focus points.";
+const lastUpdatedDisplay = "23 April 2026";
+const lastUpdatedISO = "2026-04-23";
+const datePublishedISO = "2026-04-23";
+const canonical = `${SITE.url.replace(/\/$/, "")}/asset-types/playgrounds`;
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: title,
+  description,
+  datePublished: datePublishedISO,
+  dateModified: lastUpdatedISO,
+  author: { "@type": "Organization", name: ORGANISATION.legalName, url: SITE.url },
+  publisher: { "@type": "Organization", name: SITE.name, url: SITE.url },
+  mainEntityOfPage: { "@type": "WebPage", "@id": canonical },
+  isPartOf: { "@type": "WebPage", "@id": `${SITE.url.replace(/\/$/, "")}/asset-types` },
+};
+
+const faqs = [
+  {
+    q: "What counts as a &lsquo;traditional playground&rsquo; for inspection purposes?",
+    a: "Any fixed play equipment intended for children&rsquo;s collective use that falls under BS EN 1176. This includes single items of equipment (a lone swing set) and large multi-zone installations (multi-play units, themed adventure playgrounds). The defining feature is that the equipment is fixed, outdoors, and designed for children — as opposed to skate facilities (BS EN 14974), adult fitness equipment (BS EN 16630), or sports courts.",
+  },
+  {
+    q: "Which playground equipment wears fastest?",
+    a: "In order: rope-based components (spatial networks, climbing nets), swing bearings, loose-fill surfacing at swing and slide exits, timber at ground-line interface, and spring rockers. Plastic components age slowly but fail relatively suddenly when they do (UV degradation compromising structural plastic). Steel components are durable but can fail at weld points or at ground-line corrosion. Inspection frequency and depth should reflect these differential wear rates.",
+  },
+  {
+    q: "Are spring rockers and toddler equipment inspected differently from larger equipment?",
+    a: "The standard applies the same, but the hazard profile differs. Toddler equipment has lower critical fall heights, simpler failure modes, and younger users with less ability to avoid hazards. Inspection focuses proportionally more on entrapment risk (head and neck, fingers) at toddler scale than at full-size equipment scale; CFH concerns are usually modest; structural integrity still matters but deterioration is typically slower. The risk-rating model applies identically.",
+  },
+  {
+    q: "How detailed should the equipment inventory be in the inspection report?",
+    a: "Every discrete item of equipment should be separately identified, described, and assessed. &ldquo;Playground in good condition&rdquo; is not a compliant report. A proper inventory lists each swing (with seat count), each slide (with type and CFH), each climbing frame (with accessible height and rope components), each spring rocker, each piece of multi-play — with individual condition assessment for each. This level of detail is what distinguishes a BS EN 1176-aligned report from a generic site walk-round.",
+  },
+  {
+    q: "Does inspection cover landscaping, paths, and benches around the equipment?",
+    a: "Strictly the BS EN 1176 scope is the equipment and its impact area. In practice, competent inspection extends to adjacent infrastructure that affects safe use: perimeter fencing, gates, paths leading to the equipment, trip hazards at the boundary of the impact zone, benches that children may use as access points to climb onto equipment. Most inspection companies include this wider site assessment as standard; operators should confirm it is in the scope of any engagement.",
+  },
+  {
+    q: "How should inclusive and accessible play equipment be inspected?",
+    a: "Inclusive play equipment (designed for disabled users, wheelchair-accessible roundabouts, sensory panels, etc.) follows the same BS EN 1176 framework as standard equipment, with additional attention to the specific hazard considerations of the user group. Transfer points, wheelchair-access ramps, and sensory components each have characteristic failure modes. An inspector with experience of inclusive equipment is valuable for operators with significant accessible installations.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: { "@type": "Answer", text: item.a.replace(/&lsquo;|&rsquo;/g, "'") },
+  })),
+};
+---
+<BaseLayout title={title} description={description}>
+  <ContentBreadcrumbs
+    crumbs={[
+      { label: "Home", href: "/" },
+      { label: "Asset Types", href: "/asset-types" },
+      { label: "Traditional Playgrounds" },
+    ]}
+  />
+
+  <ContentHero
+    eyebrow="Asset types"
+    title="Traditional Playground Inspection"
+    description="The core BS EN 1176 asset category — swings, slides, climbing frames, multi-play units, and spring rockers. Well-established inspection methodology, consistent procurement expectations, mature supplier ecosystem."
+    lastUpdated={lastUpdatedDisplay}
+    readingTime="7 min read"
+  />
+
+  <article class="mx-auto max-w-3xl px-6 py-12 sm:py-16">
+    <nav aria-label="On this page" class="not-prose mb-12 rounded-lg border border-slate-200 bg-slate-50 p-6">
+      <p class="text-sm font-semibold uppercase tracking-wide text-slate-500">On this page</p>
+      <ol class="mt-3 space-y-2 text-sm text-slate-700">
+        <li><a href="#scope" class="hover:text-brand-700 hover:underline">1. What traditional playgrounds are</a></li>
+        <li><a href="#equipment-types" class="hover:text-brand-700 hover:underline">2. The main equipment categories</a></li>
+        <li><a href="#defect-patterns" class="hover:text-brand-700 hover:underline">3. Characteristic defect patterns</a></li>
+        <li><a href="#toddler" class="hover:text-brand-700 hover:underline">4. Toddler equipment considerations</a></li>
+        <li><a href="#inclusive" class="hover:text-brand-700 hover:underline">5. Inclusive and accessible equipment</a></li>
+        <li><a href="#site-factors" class="hover:text-brand-700 hover:underline">6. Site factors beyond the equipment</a></li>
+        <li><a href="#faq" class="hover:text-brand-700 hover:underline">Frequently asked questions</a></li>
+      </ol>
+    </nav>
+
+    <div class="prose prose-slate max-w-none prose-headings:scroll-mt-24 prose-headings:font-semibold prose-headings:text-slate-900 prose-a:text-brand-700 prose-a:no-underline hover:prose-a:underline prose-strong:text-slate-900">
+      <p class="lead">
+        Traditional playground equipment is what BS EN 1176 was written
+        around and what the majority of UK RPII annual inspections
+        actually cover. The methodology is mature, procurement
+        expectations are consistent, and the supplier ecosystem is
+        well-established. Part of our wider
+        <a href="/asset-types">asset types guide</a>.
+      </p>
+
+      <h2 id="scope">1. What traditional playgrounds are</h2>
+      <p>
+        In inspection terms, &ldquo;traditional playground&rdquo; means
+        fixed play equipment intended for children&rsquo;s collective
+        use, installed in a public or semi-public setting, and
+        governed by BS EN 1176. This covers the full size range from a
+        lone spring rocker on a village green to a multi-zone
+        adventure playground at a major urban park.
+      </p>
+      <p>
+        What it explicitly excludes: skate facilities (covered by
+        BS EN 14974), adult fitness equipment (BS EN 16630), indoor
+        soft play (different frameworks), and domestic private
+        equipment installed at a single home (outside BS EN 1176 scope
+        entirely; falls under consumer toy safety standards).
+      </p>
+
+      <h2 id="equipment-types">2. The main equipment categories</h2>
+      <p>
+        BS EN 1176 is split into parts that address specific equipment
+        categories. The most commonly encountered in UK inspection work
+        are:
+      </p>
+      <ul>
+        <li>
+          <strong>Swings</strong> (BS EN 1176-2) — single or
+          multi-bay, toddler cradle seats or full flat seats, basket
+          swings, inclusive swings. Primary wear: bearings, chains,
+          suspension points, impact-zone surfacing.
+        </li>
+        <li>
+          <strong>Slides</strong> (BS EN 1176-3) — straight slides,
+          curved slides, tunnel slides, wave slides, embankment slides.
+          Primary inspection focus: start and finish heights, side wall
+          condition, joins between sections, surfacing at exit.
+        </li>
+        <li>
+          <strong>Runways / zip-lines</strong> (BS EN 1176-4) — cable
+          rides, aerial runways. Less common in typical council
+          portfolios but frequent at schools and adventure playgrounds.
+          Primary focus: cable tension, end stops, braking mechanism.
+        </li>
+        <li>
+          <strong>Carousels / roundabouts</strong> (BS EN 1176-5) —
+          rotating equipment. Primary focus: bearings, rotation
+          mechanism, underneath clearance, finger-trap hazards.
+        </li>
+        <li>
+          <strong>Rocking equipment</strong> (BS EN 1176-6) — spring
+          rockers, seesaws. Primary focus: spring condition, seat
+          attachment, clearance at extremes of movement.
+        </li>
+        <li>
+          <strong>Climbing frames and multi-play</strong> (BS EN 1176-1
+          general requirements) — the catch-all for combined climbing,
+          platform, and play structures. The largest category by
+          installed volume; most complex to inspect because each
+          installation is configured differently.
+        </li>
+        <li>
+          <strong>Fully enclosed equipment</strong> (BS EN 1176-10) —
+          climbing pods and similar. Internal inspection required,
+          typically involves entering the equipment.
+        </li>
+        <li>
+          <strong>Spatial networks</strong> (BS EN 1176-11) — large
+          three-dimensional rope climbing structures. Distinct
+          inspection methodology, particularly around rope wear and
+          node clamps.
+        </li>
+      </ul>
+
+      <h2 id="defect-patterns">3. Characteristic defect patterns</h2>
+      <p>
+        Across thousands of UK annual inspections, defect patterns are
+        remarkably consistent. By equipment type:
+      </p>
+      <ul>
+        <li>
+          <strong>Swings</strong> — bearing play, chain wear at the top
+          link, seat attachment looseness, surfacing displacement in
+          the impact area. Chain links at the top of long-service
+          swings are the highest-probability failure point.
+        </li>
+        <li>
+          <strong>Slides</strong> — cracking in stainless steel side
+          walls at joins, separation of plastic slide sections, wear
+          patterns at the high-use centre line, surfacing displacement
+          at exit.
+        </li>
+        <li>
+          <strong>Climbing frames</strong> — loose bolts, bolt caps
+          missing exposing threads, timber rot at ground line, paint
+          failure exposing underlying substrate to corrosion,
+          foundation exposure above surfacing level.
+        </li>
+        <li>
+          <strong>Rope components</strong> — outer sheath wear
+          revealing load-bearing core. This is particularly insidious
+          because the equipment can look cosmetically fine while the
+          structural strength has deteriorated significantly. Annual
+          inspection is critical.
+        </li>
+        <li>
+          <strong>Spring rockers</strong> — spring corrosion (salt-air
+          sites), spring fatigue failure, seat cracking, base plate
+          foundation movement.
+        </li>
+        <li>
+          <strong>Surfacing</strong> — depth loss at impact zones,
+          compaction beneath swings and at slide exits, drainage
+          failure leading to localised wear and contamination.
+        </li>
+      </ul>
+
+      <h2 id="toddler">4. Toddler equipment considerations</h2>
+      <p>
+        Toddler-specific playground equipment (for children under
+        approximately age 4) follows the same BS EN 1176 framework
+        but with a different emphasis:
+      </p>
+      <ul>
+        <li>Critical fall heights are typically lower, so surfacing considerations change;</li>
+        <li>Entrapment dimensions are assessed more strictly because toddler anatomy is smaller;</li>
+        <li>Accessible edges and finger-trap hazards receive more attention;</li>
+        <li>Supervision-model assumptions are different (toddlers are more often directly supervised);</li>
+        <li>Signage specifying age suitability matters more than on general equipment.</li>
+      </ul>
+      <p>
+        Operators frequently under-inspect toddler zones on the
+        mistaken assumption that &ldquo;the equipment is smaller so
+        less can go wrong&rdquo;. The opposite is often true: smaller
+        equipment with younger users is where strict inspection pays
+        off.
+      </p>
+
+      <ContentCTA
+        headline="Inspections structured around every equipment type."
+        body="InspectVoice ships with BS EN 1176-aligned templates for every equipment category — swings, slides, climbers, rockers, multi-play, spatial networks. Pick the type, dictate findings, the report comes out in the correct structure."
+      />
+
+      <h2 id="inclusive">5. Inclusive and accessible equipment</h2>
+      <p>
+        Inclusive play equipment — wheelchair-accessible roundabouts,
+        transfer platforms, sensory panels, inclusive swings —
+        continues to grow as a component of UK public playground
+        provision. Inspection follows BS EN 1176 with additional
+        attention to:
+      </p>
+      <ul>
+        <li>Transfer points (the interface between wheelchair and equipment);</li>
+        <li>Ramp gradients and surface continuity for wheeled access;</li>
+        <li>Sensory panels (condition, contamination, cleaning requirements);</li>
+        <li>Inclusive swing harness condition;</li>
+        <li>Access path widths and surface condition feeding into the inclusive zone.</li>
+      </ul>
+      <p>
+        An inspector with specific experience of inclusive equipment
+        adds value; generic BS EN 1176 inspection can miss nuances of
+        accessible design.
+      </p>
+
+      <h2 id="site-factors">6. Site factors beyond the equipment</h2>
+      <p>
+        BS EN 1176 strictly covers the equipment and its impact area,
+        but a competent site inspection extends to factors that affect
+        safe use of the equipment:
+      </p>
+      <ul>
+        <li>Perimeter fencing and gate function;</li>
+        <li>Paths leading into the equipment zone — surface condition, trip hazards;</li>
+        <li>Proximity hazards (roads, water, cliffs, building works);</li>
+        <li>Boundary benches that might serve as unintended climbing aids;</li>
+        <li>Vegetation — self-seeded saplings in surfacing, overhanging branches obscuring sightlines;</li>
+        <li>Signage — age suitability, emergency contact information, any operator-specific advisory notices;</li>
+        <li>Drainage — standing water accelerates surfacing deterioration and creates slip hazards.</li>
+      </ul>
+      <p>
+        A report that addresses the equipment but ignores the site
+        context is incomplete. Most UK inspection companies include
+        site-wide assessment as standard, but operators should
+        confirm this explicitly for each inspection engagement.
+      </p>
+
+      <h2 id="faq">Frequently asked questions</h2>
+      <div class="not-prose mt-6 space-y-4">
+        {faqs.map((item) => (
+          <details class="group rounded-lg border border-slate-200 bg-white p-5 transition hover:border-slate-300">
+            <summary class="flex cursor-pointer items-start justify-between gap-4 text-base font-semibold text-slate-900 [&::-webkit-details-marker]:hidden">
+              <span set:html={item.q} />
+              <svg class="mt-1 h-5 w-5 flex-shrink-0 text-slate-400 transition group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <p class="mt-3 text-base leading-relaxed text-slate-600">{item.a}</p>
+          </details>
+        ))}
+      </div>
+
+      <ContentCTA />
+
+      <RelatedPages
+        pages={[
+          {
+            title: "Asset Types Overview",
+            description: "The parent guide — the five main categories of UK play and recreation equipment and their standards.",
+            href: "/asset-types",
+          },
+          {
+            title: "BS EN 1176 Explained",
+            description: "The standard this inspection work is carried out against — parts, hazard categories, inspection regimes.",
+            href: "/bs-en-1176",
+          },
+          {
+            title: "Annual Main Inspection",
+            description: "The 12-monthly RPII-certified inspection that most traditional playground work falls under.",
+            href: "/bs-en-1176/annual-inspections",
+          },
+        ]}
+      />
+    </div>
+  </article>
+
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+</BaseLayout>

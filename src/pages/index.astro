@@ -1,16 +1,44 @@
 ---
+/**
+ * Homepage — the canonical entry point.
+ *
+ * Composition (top to bottom):
+ *  1. Hero
+ *  2. Problem (the pains)
+ *  3. HowItWorks (the three-step solution)
+ *  4. Features (six capabilities)
+ *  5. Standards (compliance / trust)
+ *  6. PricingTeaser (£99 Team + Enterprise)
+ *  7. FAQ (long-tail SEO + buyer objections)
+ *
+ * Header and Footer come from BaseLayout.
+ *
+ * IMPORTANT: noindex flag is NOT passed — this page IS for indexing now.
+ * The SEO component's default behaviour is indexable; only pages that pass
+ * noindex={true} are blocked from search.
+ *
+ * Title and description override the site defaults to lead with the primary
+ * keyword in the SERP listing.
+ */
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import Problem from "../components/Problem.astro";
+import HowItWorks from "../components/HowItWorks.astro";
+import Features from "../components/Features.astro";
+import Standards from "../components/Standards.astro";
+import PricingTeaser from "../components/PricingTeaser.astro";
+import FAQ from "../components/FAQ.astro";
 ---
 
-<BaseLayout noindex={true}>
-  <main class="mx-auto max-w-3xl px-6 py-24">
-    <h1
-      class="text-4xl font-bold tracking-tight text-brand-700 sm:text-5xl"
-    >
-      Play Inspection Software
-    </h1>
-    <p class="mt-4 text-lg text-brand-600">
-      Site under construction.
-    </p>
-  </main>
+<BaseLayout
+  title="Playground Inspection Software for UK RPII Inspectors"
+  description="Professional BS EN 1176 inspection reports dictated by voice. Built for UK playground inspectors and inspection companies. Works offline. 30-day free trial, no credit card."
+>
+  <Hero />
+  <Problem />
+  <HowItWorks />
+  <Features />
+  <Standards />
+  <PricingTeaser />
+  <FAQ />
 </BaseLayout>

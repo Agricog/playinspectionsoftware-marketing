@@ -1,0 +1,372 @@
+---
+/**
+ * /bs-en-1176/annual-inspections — cluster page.
+ *
+ * Targets the highest-commercial-intent BS EN 1176 long-tail queries:
+ * "annual playground inspection", "RPII annual inspection",
+ * "playground main inspection", "yearly playground inspection UK".
+ *
+ * This is the page prospective buyers (councils, schools, inspection
+ * companies) land on when they're actively sourcing inspection services
+ * or software. Treat accordingly: substantive, specific, no fluff.
+ */
+
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ContentHero from "../../components/ContentHero.astro";
+import ContentBreadcrumbs from "../../components/ContentBreadcrumbs.astro";
+import ContentCTA from "../../components/ContentCTA.astro";
+import RelatedPages from "../../components/RelatedPages.astro";
+import { SITE, ORGANISATION } from "../../consts";
+
+const title =
+  "BS EN 1176 Annual Main Inspection: A Complete Guide";
+const description =
+  "The definitive UK guide to the BS EN 1176 annual main inspection — what it covers, who must carry it out, what the report must contain, how long it takes, and what happens if one is missed.";
+const lastUpdatedDisplay = "23 April 2026";
+const lastUpdatedISO = "2026-04-23";
+const datePublishedISO = "2026-04-23";
+const canonical = `${SITE.url.replace(/\/$/, "")}/bs-en-1176/annual-inspections`;
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: title,
+  description,
+  datePublished: datePublishedISO,
+  dateModified: lastUpdatedISO,
+  author: {
+    "@type": "Organization",
+    name: ORGANISATION.legalName,
+    url: SITE.url,
+  },
+  publisher: {
+    "@type": "Organization",
+    name: SITE.name,
+    url: SITE.url,
+  },
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": canonical,
+  },
+  isPartOf: {
+    "@type": "WebPage",
+    "@id": `${SITE.url.replace(/\/$/, "")}/bs-en-1176`,
+  },
+};
+
+const faqs = [
+  {
+    q: "How long does an annual playground inspection take?",
+    a: "Duration depends on the number of items of equipment on site and their complexity. For a typical small local-authority playground with 4 to 8 items of equipment, an experienced RPII-certified inspector will usually complete the on-site assessment in one to two hours. A large multi-zone adventure playground with extensive rope networks, fitness equipment and multiple surfacing types may take a full day. Report writing and processing is a separate task that traditionally doubled the total time commitment — one of the reasons voice-dictated reporting has become standard on modern inspections.",
+  },
+  {
+    q: "What qualification is required to carry out a BS EN 1176 annual inspection?",
+    a: "In UK practice the annual main inspection must be performed by a competent independent inspector, and the de facto qualification is certification by the Register of Play Inspectors International (RPII). Two RPII grades cover annual inspection work: Annual Inspector (for ongoing yearly inspections) and Post-Installation Inspector (for newly installed or substantially refurbished equipment). Some operators also accept equivalent qualifications from the Certified Inspectors of Playground Equipment (CIPE) route, but RPII is by far the most widely recognised in the UK.",
+  },
+  {
+    q: "How often does the annual inspection legally have to happen?",
+    a: "BS EN 1176-7 specifies at least every 12 months. There is no UK statute mandating this frequency in law, but operators who depart from the 12-month cadence face a very difficult position if an injury occurs — the annual inspection is the established evidence of ongoing duty of care, and missing one is routinely treated as negligence. In practice, most operators schedule annual inspections in the same calendar month each year to maintain a consistent record.",
+  },
+  {
+    q: "What must a BS EN 1176 annual inspection report contain?",
+    a: "At minimum: the site and operator identity; the date and inspector's name and RPII number; a list of every item of equipment inspected with its condition; every identified defect with location, description, risk rating, and recommended action; an assessment of surfacing (depth, coverage, attenuation); and the inspector's signature. Photographs of defects are now standard practice. The report must be retained by the operator as their primary evidence of compliance.",
+  },
+  {
+    q: "Can the annual inspection be combined with repair work?",
+    a: "No. The whole point of the annual main inspection is independence — the inspector must have no commercial interest in identifying remedial work. Combining inspection with repair creates a conflict of interest that undermines the defensibility of the report. Operators should use a separate inspection provider from their maintenance contractor, and inspection reports should not be written by anyone who will profit from the work they recommend.",
+  },
+  {
+    q: "What happens if an operator misses an annual inspection?",
+    a: "Nothing happens immediately — no regulator arrives, no fine is issued. The consequence appears later, if an injury occurs on site. In any subsequent investigation or legal claim, the absence of a current annual inspection is treated as prima facie evidence that the operator failed to maintain duty of care. Insurers may void cover. Local authority procurement officers may be personally liable. Skipping the annual inspection is the single most common cause of successful injury claims against playground operators.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.a,
+    },
+  })),
+};
+---
+<BaseLayout title={title} description={description}>
+  <ContentBreadcrumbs
+    crumbs={[
+      { label: "Home", href: "/" },
+      { label: "BS EN 1176", href: "/bs-en-1176" },
+      { label: "Annual Main Inspection" },
+    ]}
+  />
+
+  <ContentHero
+    eyebrow="BS EN 1176 inspection regimes"
+    title="BS EN 1176 Annual Main Inspection"
+    description="The annual main inspection is the most detailed of the three inspection regimes in BS EN 1176-7. It is also the one that carries the greatest legal and insurance weight. This is what it covers, who can perform it, and what the report must contain."
+    lastUpdated={lastUpdatedDisplay}
+    readingTime="7 min read"
+  />
+
+  <article class="mx-auto max-w-3xl px-6 py-12 sm:py-16">
+    <nav aria-label="On this page" class="not-prose mb-12 rounded-lg border border-slate-200 bg-slate-50 p-6">
+      <p class="text-sm font-semibold uppercase tracking-wide text-slate-500">On this page</p>
+      <ol class="mt-3 space-y-2 text-sm text-slate-700">
+        <li><a href="#what-it-is" class="hover:text-brand-700 hover:underline">1. What the annual main inspection is</a></li>
+        <li><a href="#who-performs" class="hover:text-brand-700 hover:underline">2. Who is qualified to perform one</a></li>
+        <li><a href="#scope" class="hover:text-brand-700 hover:underline">3. What the inspection covers</a></li>
+        <li><a href="#report" class="hover:text-brand-700 hover:underline">4. What the report must contain</a></li>
+        <li><a href="#scheduling" class="hover:text-brand-700 hover:underline">5. Scheduling and timing</a></li>
+        <li><a href="#independence" class="hover:text-brand-700 hover:underline">6. Why independence matters</a></li>
+        <li><a href="#common-defects" class="hover:text-brand-700 hover:underline">7. Defects commonly found</a></li>
+        <li><a href="#faq" class="hover:text-brand-700 hover:underline">Frequently asked questions</a></li>
+      </ol>
+    </nav>
+
+    <div class="prose prose-slate max-w-none prose-headings:scroll-mt-24 prose-headings:font-semibold prose-headings:text-slate-900 prose-a:text-brand-700 prose-a:no-underline hover:prose-a:underline prose-strong:text-slate-900">
+      <p class="lead">
+        Of the three inspection regimes set out in BS EN 1176-7, the annual main
+        inspection is the one that carries real legal and insurance weight.
+        Routine and operational inspections are about ongoing maintenance
+        discipline; the annual inspection is the independent, dated evidence
+        that the whole site has been competently assessed against the standard
+        within the last twelve months. This guide sits within our wider
+        <a href="/bs-en-1176">BS EN 1176 explainer</a>.
+      </p>
+
+      <h2 id="what-it-is">1. What the annual main inspection is</h2>
+      <p>
+        The annual main inspection is a full technical assessment of every item
+        of play equipment on a site, its foundations, its surfacing, and the
+        site as a whole. It is carried out by a competent independent inspector
+        at least once every 12 months, and its output is a written report
+        documenting the site&rsquo;s condition and any defects found, with
+        a risk rating and recommended action against each defect.
+      </p>
+      <p>
+        Unlike routine and operational inspections, which operator staff can
+        carry out themselves, the annual main inspection is deliberately
+        external. Its purpose is to bring fresh, trained eyes to the site and
+        identify issues that familiarity may have normalised. A loose bolt an
+        in-house caretaker has walked past every week for six months is
+        exactly the kind of defect the annual inspection catches.
+      </p>
+
+      <h2 id="who-performs">2. Who is qualified to perform one</h2>
+      <p>
+        BS EN 1176 specifies &ldquo;a competent person&rdquo; without
+        prescribing a particular qualification. In UK practice, competence is
+        demonstrated through certification by the
+        <strong>Register of Play Inspectors International (RPII)</strong>. Two
+        RPII grades cover annual inspection work:
+      </p>
+      <ul>
+        <li>
+          <strong>RPII Annual Inspector</strong> — certified to carry out the
+          12-monthly annual main inspection on existing sites. This is the
+          standard qualification the majority of UK inspection work requires.
+        </li>
+        <li>
+          <strong>RPII Post-Installation Inspector</strong> — certified to
+          inspect newly installed or substantially refurbished equipment
+          before it is opened to the public. A more demanding qualification,
+          held by a smaller pool of inspectors.
+        </li>
+      </ul>
+      <p>
+        Some operators and specifications will also accept inspectors
+        qualified through Certified Inspectors of Playground Equipment (CIPE)
+        or similar overseas routes, but RPII is the UK benchmark and the one
+        most commonly required in procurement documents.
+      </p>
+
+      <h2 id="scope">3. What the inspection covers</h2>
+      <p>
+        A BS EN 1176-compliant annual main inspection works through every item
+        of equipment on the site and assesses it against the hazard categories
+        defined in the standard. In practical terms the inspector is looking
+        at:
+      </p>
+      <ul>
+        <li>
+          <strong>Structural integrity</strong> — foundations, welds, fixings,
+          bearings, load-bearing timbers and steels, connector components.
+        </li>
+        <li>
+          <strong>Entrapment gaps</strong> — head, neck, finger, limb and
+          clothing; every accessible gap measured or probed against the
+          standard&rsquo;s dimensional rules.
+        </li>
+        <li>
+          <strong>Critical fall height</strong> — the greatest free height of
+          fall from each piece of equipment, measured on-site rather than
+          taken from manufacturer literature.
+        </li>
+        <li>
+          <strong>Surfacing</strong> — type, depth, coverage, drainage,
+          contamination, and effective impact attenuation across the full
+          impact area, not just directly under the equipment.
+        </li>
+        <li>
+          <strong>Material degradation</strong> — timber rot, steel corrosion,
+          plastic UV damage, rope core wear, fabric tear and fade.
+        </li>
+        <li>
+          <strong>Maintenance state</strong> — signage legibility, drainage,
+          litter and organic accumulation, paint finish, lock and gate
+          function.
+        </li>
+        <li>
+          <strong>Site factors</strong> — boundaries, access, proximity
+          hazards (roads, water, cliffs), vegetation encroachment, lines of
+          sight.
+        </li>
+      </ul>
+
+      <h2 id="report">4. What the report must contain</h2>
+      <p>
+        The written report is the inspection&rsquo;s durable output. It is
+        what the operator relies on for the next twelve months, what their
+        insurer will ask for at renewal, and what will be scrutinised first
+        in any post-incident investigation. A BS EN 1176-aligned annual
+        inspection report records:
+      </p>
+      <ul>
+        <li>Site identity, operator, and date of inspection;</li>
+        <li>Inspector&rsquo;s name, signature, and RPII registration number;</li>
+        <li>A full equipment inventory with individual condition assessment;</li>
+        <li>Every identified defect with location, description, risk rating, and recommended action;</li>
+        <li>Photographic evidence for significant defects;</li>
+        <li>Surfacing assessment (type, depth measurements, impact-area coverage);</li>
+        <li>An overall site summary and recommended date of the next inspection.</li>
+      </ul>
+      <p>
+        Modern practice is for reports to be produced and delivered
+        electronically, within days of the on-site assessment rather than
+        weeks. Voice-dictated inspection systems — where findings are
+        captured at the equipment itself and compiled into the formal report
+        on-device — have become the professional standard because they
+        eliminate the transcription delay that used to be the norm.
+      </p>
+
+      <ContentCTA
+        headline="Annual inspection reports produced on-site, ready to send."
+        body="InspectVoice lets RPII inspectors dictate findings equipment-by-equipment as they walk the site, with defects risk-rated and the full report generated on-device before they leave. No evening paperwork."
+      />
+
+      <h2 id="scheduling">5. Scheduling and timing</h2>
+      <p>
+        BS EN 1176 requires the inspection at least every twelve months. Best
+        practice is to fix it in the same calendar month each year, creating
+        a clean annual cadence that is easy to defend and easy for the
+        operator to budget. Operators with multiple sites typically stagger
+        their inspections through the year to spread workload for their
+        chosen inspector.
+      </p>
+      <p>
+        Timing-of-year considerations matter too. Inspections carried out in
+        deep winter will not pick up vegetation-related hazards that appear
+        in summer (ivy obscuring fixings, self-seeded saplings in surfacing).
+        Inspections in high summer can miss drainage and frost-heave issues.
+        Many inspectors prefer shoulder seasons (spring or autumn) for a
+        balanced view, but the most important factor is consistency — same
+        month, every year.
+      </p>
+
+      <h2 id="independence">6. Why independence matters</h2>
+      <p>
+        The annual main inspection is valuable <em>because</em> it is
+        independent. An inspector who has no commercial interest in the
+        remedial work their report recommends produces a finding that
+        insurers, courts and procurement officers can trust. An inspector
+        who will also be selling the operator the repairs they identify has
+        a built-in conflict — they are financially rewarded for finding more
+        problems.
+      </p>
+      <p>
+        Most local authority procurement specifications now require this
+        separation explicitly. Operators are well advised to contract annual
+        inspections from a different supplier than their maintenance
+        contractor, even if the cost per inspection is marginally higher.
+        The defensibility of the report is worth more than the saving.
+      </p>
+
+      <h2 id="common-defects">7. Defects commonly found</h2>
+      <p>
+        Across thousands of annual inspections on UK sites, a relatively
+        small number of defect types account for most findings:
+      </p>
+      <ul>
+        <li>
+          <strong>Worn rope and net components</strong> — particularly on
+          climbing frames and spatial networks, where the inner core of a
+          wear-coated rope may be significantly degraded while the exterior
+          looks fine.
+        </li>
+        <li>
+          <strong>Loose or missing fixings</strong> — bolts backing out,
+          split pins missing, caps missing from bolt heads, leaving sharp
+          threads exposed.
+        </li>
+        <li>
+          <strong>Surfacing displacement</strong> — loose-fill bark or wood
+          chip migrating from the impact zone, particularly at swing exits
+          and slide exits where repeated impact displaces material.
+        </li>
+        <li>
+          <strong>Timber rot at ground level</strong> — the ground-line
+          interface is the single most common failure point in timber
+          equipment, often invisible until probed.
+        </li>
+        <li>
+          <strong>Foundation exposure</strong> — concrete footings becoming
+          exposed above surfacing level over time, creating both an
+          entrapment and an impact hazard.
+        </li>
+        <li>
+          <strong>Signage issues</strong> — missing, faded, or incorrect age
+          suitability signage, which is a compliance finding in its own
+          right.
+        </li>
+      </ul>
+
+      <h2 id="faq">Frequently asked questions</h2>
+      <div class="not-prose mt-6 space-y-4">
+        {faqs.map((item) => (
+          <details class="group rounded-lg border border-slate-200 bg-white p-5 transition hover:border-slate-300">
+            <summary class="flex cursor-pointer items-start justify-between gap-4 text-base font-semibold text-slate-900 [&::-webkit-details-marker]:hidden">
+              <span>{item.q}</span>
+              <svg class="mt-1 h-5 w-5 flex-shrink-0 text-slate-400 transition group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <p class="mt-3 text-base leading-relaxed text-slate-600">{item.a}</p>
+          </details>
+        ))}
+      </div>
+
+      <ContentCTA />
+
+      <RelatedPages
+        pages={[
+          {
+            title: "BS EN 1176 Explained",
+            description: "The complete guide to the standard — what it covers, who must comply, and the three inspection regimes.",
+            href: "/bs-en-1176",
+          },
+          {
+            title: "Operational Inspection",
+            description: "The middle tier — monthly to quarterly checks carried out by trained operator staff.",
+            href: "/bs-en-1176/operational-inspections",
+          },
+        ]}
+      />
+    </div>
+  </article>
+
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+</BaseLayout>

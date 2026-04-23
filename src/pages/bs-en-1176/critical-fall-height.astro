@@ -1,0 +1,347 @@
+---
+/**
+ * /bs-en-1176/critical-fall-height — cluster page.
+ *
+ * Targets technical long-tail queries: "critical fall height", "CFH playground",
+ * "BS EN 1176 fall height", "playground fall height measurement",
+ * "free height of fall".
+ *
+ * More technical audience than the inspection-regime pages — inspectors,
+ * specifiers, procurement officers. Content matches: precise, measured,
+ * no oversimplification.
+ */
+
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ContentHero from "../../components/ContentHero.astro";
+import ContentBreadcrumbs from "../../components/ContentBreadcrumbs.astro";
+import ContentCTA from "../../components/ContentCTA.astro";
+import RelatedPages from "../../components/RelatedPages.astro";
+import { SITE, ORGANISATION } from "../../consts";
+
+const title =
+  "Critical Fall Height Explained (BS EN 1176)";
+const description =
+  "Critical fall height (CFH) is the BS EN 1176 concept that decides whether impact-attenuating surfacing is required and to what performance. A technical guide to how CFH is defined, measured, and applied in UK playground inspection.";
+const lastUpdatedDisplay = "23 April 2026";
+const lastUpdatedISO = "2026-04-23";
+const datePublishedISO = "2026-04-23";
+const canonical = `${SITE.url.replace(/\/$/, "")}/bs-en-1176/critical-fall-height`;
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: title,
+  description,
+  datePublished: datePublishedISO,
+  dateModified: lastUpdatedISO,
+  author: {
+    "@type": "Organization",
+    name: ORGANISATION.legalName,
+    url: SITE.url,
+  },
+  publisher: {
+    "@type": "Organization",
+    name: SITE.name,
+    url: SITE.url,
+  },
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": canonical,
+  },
+  isPartOf: {
+    "@type": "WebPage",
+    "@id": `${SITE.url.replace(/\/$/, "")}/bs-en-1176`,
+  },
+};
+
+const faqs = [
+  {
+    q: "At what fall height does impact-attenuating surfacing become required?",
+    a: "BS EN 1176 requires impact-attenuating surfacing beneath and around any play equipment where the free height of fall exceeds 600 mm. Below this threshold, standard hard surfacing (grass, paving, bound surfaces) is considered acceptable. Above it, the surfacing must be rated to at least the critical fall height of the equipment above it, tested to BS EN 1177.",
+  },
+  {
+    q: "Is critical fall height the same as the height of the equipment?",
+    a: "No. Critical fall height is the greatest vertical distance from the highest point a child could fall from during intended and foreseeable use, down to the surface they would land on. It is not the overall height of the equipment. A climbing frame 3 m tall with a deck at 1.5 m and a guardrail above may have a CFH of 1.5 m, not 3 m — because the guardrail is designed to prevent falls from the higher level. Getting this distinction right is central to a defensible inspection.",
+  },
+  {
+    q: "How is critical fall height measured in practice?",
+    a: "On-site measurement using a tape or laser measure, taken from the highest point of foreseeable fall down to the compacted surface beneath. For swings it is measured from the pivot height less the seat drop; for slides from the slide entry platform; for climbing equipment from the highest hand-hold or platform without adequate fall prevention. Inspectors record the measured value in the report rather than relying on manufacturer catalogue figures, which reflect design intent rather than installed reality.",
+  },
+  {
+    q: "Does the manufacturer&rsquo;s stated fall height always apply on-site?",
+    a: "No, and assuming so is one of the most common mistakes in inspection reporting. The manufacturer states the design CFH for the equipment as supplied. On-site, the actual CFH may be different — compacted surfacing below the design level increases it; raised edging around the equipment decreases it; modification or damage can change it significantly. The on-site CFH is the measurement that matters.",
+  },
+  {
+    q: "What happens if the on-site critical fall height exceeds the surfacing rating?",
+    a: "The site is non-compliant with BS EN 1176 and the equipment must be treated as presenting a foreseeable injury risk. The standard remedial options are: increase the surfacing performance (deeper loose-fill, upgraded unitary surfacing, or complete replacement to a higher-rated material); reduce the equipment&rsquo;s CFH through modification (adding guardrails, re-platforming); or withdraw the equipment from use until one of the first two is done. An inspector finding this situation typically risk-rates it as high or very high depending on the margin.",
+  },
+  {
+    q: "Is critical fall height relevant to indoor soft play?",
+    a: "Indirectly. Indoor soft play falls under a different European standard (BS EN 1176-10 covers fully enclosed play equipment, but indoor commercial soft play is primarily governed by BS EN 1176-11 and BS EN 1176-1 where applicable, alongside specific soft play standards). The underlying principle — that fall height dictates the surfacing requirement — still applies, but the specific thresholds and materials differ significantly from outdoor fixed equipment.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.a,
+    },
+  })),
+};
+---
+<BaseLayout title={title} description={description}>
+  <ContentBreadcrumbs
+    crumbs={[
+      { label: "Home", href: "/" },
+      { label: "BS EN 1176", href: "/bs-en-1176" },
+      { label: "Critical Fall Height" },
+    ]}
+  />
+
+  <ContentHero
+    eyebrow="BS EN 1176 technical concepts"
+    title="Critical Fall Height Explained"
+    description="Critical fall height (CFH) is the single measurement that decides whether impact-attenuating surfacing is required, and to what performance. Misunderstood more often than any other concept in UK playground safety."
+    lastUpdated={lastUpdatedDisplay}
+    readingTime="7 min read"
+  />
+
+  <article class="mx-auto max-w-3xl px-6 py-12 sm:py-16">
+    <nav aria-label="On this page" class="not-prose mb-12 rounded-lg border border-slate-200 bg-slate-50 p-6">
+      <p class="text-sm font-semibold uppercase tracking-wide text-slate-500">On this page</p>
+      <ol class="mt-3 space-y-2 text-sm text-slate-700">
+        <li><a href="#definition" class="hover:text-brand-700 hover:underline">1. What critical fall height is</a></li>
+        <li><a href="#threshold" class="hover:text-brand-700 hover:underline">2. The 600 mm threshold</a></li>
+        <li><a href="#measurement" class="hover:text-brand-700 hover:underline">3. How it is measured</a></li>
+        <li><a href="#equipment-types" class="hover:text-brand-700 hover:underline">4. CFH on different equipment types</a></li>
+        <li><a href="#misunderstandings" class="hover:text-brand-700 hover:underline">5. Common misunderstandings</a></li>
+        <li><a href="#recording" class="hover:text-brand-700 hover:underline">6. Recording CFH in reports</a></li>
+        <li><a href="#remedial" class="hover:text-brand-700 hover:underline">7. Remedial options when CFH exceeds surfacing rating</a></li>
+        <li><a href="#faq" class="hover:text-brand-700 hover:underline">Frequently asked questions</a></li>
+      </ol>
+    </nav>
+
+    <div class="prose prose-slate max-w-none prose-headings:scroll-mt-24 prose-headings:font-semibold prose-headings:text-slate-900 prose-a:text-brand-700 prose-a:no-underline hover:prose-a:underline prose-strong:text-slate-900">
+      <p class="lead">
+        Critical fall height — CFH — is the measurement at the heart of
+        playground surfacing compliance. Every piece of equipment has one;
+        every surfacing choice is rated against one; every inspection report
+        records one. It is also the concept most commonly mis-stated in
+        practice. Part of our wider <a href="/bs-en-1176">BS EN 1176 explainer</a>.
+      </p>
+
+      <h2 id="definition">1. What critical fall height is</h2>
+      <p>
+        Critical fall height is the greatest vertical distance from which a
+        child could fall during the intended and foreseeable use of a piece
+        of play equipment, measured to the surface they would land on.
+      </p>
+      <p>
+        Several parts of that definition carry real weight. <em>Intended and
+        foreseeable use</em> covers not only how the equipment was designed
+        to be played on, but also how children actually use it in practice —
+        standing on swing seats, climbing on the outside of climbing frames,
+        using slide tops as platforms. Foreseeable misuse falls inside the
+        assessment; genuinely unforeseeable misuse does not. A child
+        climbing the top of an A-frame swing is foreseeable; a child being
+        hoisted onto the roof of a slide by a parent is not.
+      </p>
+      <p>
+        &ldquo;The surface they would land on&rdquo; means the actual,
+        compacted surface present on the day of inspection — not the
+        design-level surface shown on drawings or imagined at installation.
+        Loose-fill surfacing compacts and migrates over time; the on-site
+        reality is what governs the CFH assessment.
+      </p>
+
+      <h2 id="threshold">2. The 600 mm threshold</h2>
+      <p>
+        BS EN 1176 sets a key threshold at 600 mm:
+      </p>
+      <ul>
+        <li>
+          <strong>CFH of 600 mm or below</strong> — impact-attenuating
+          surfacing is not required. The equipment may be placed on any
+          surface considered fit for purpose, including grass, bound
+          surfaces, or paving, provided the surface itself presents no
+          hazard (no trip edges, no protrusions).
+        </li>
+        <li>
+          <strong>CFH above 600 mm</strong> — impact-attenuating surfacing
+          tested to BS EN 1177 is required, with a performance rating at
+          least equal to the measured CFH.
+        </li>
+      </ul>
+      <p>
+        The threshold is deliberately set low. Research underlying the
+        standard found that falls of less than 600 mm onto hard surfaces
+        very rarely cause serious head injury, while falls above that
+        height carry sharply increasing risk. The 600 mm line is not
+        arbitrary: it sits at the approximate height above which
+        head-injury outcomes depend materially on the surface landed on.
+      </p>
+
+      <h2 id="measurement">3. How it is measured</h2>
+      <p>
+        CFH is measured on-site using a tape or laser measure, vertically,
+        between two points:
+      </p>
+      <ol>
+        <li>
+          <strong>The upper point</strong> — the highest point a child
+          could fall from during intended and foreseeable use. This may be
+          the top of a deck, a handhold, a climbing net node, or the seat
+          height of a swing in foreseeable misuse. Equipment-specific rules
+          apply: swings, slides, and spatial networks each have their own
+          measurement conventions in BS EN 1176.
+        </li>
+        <li>
+          <strong>The lower point</strong> — the surface level, measured at
+          the compacted height of the surfacing in the impact zone. For
+          loose-fill surfacing this means the level after expected
+          compaction, not freshly raked. For unitary surfacing it means the
+          top of the surface as installed.
+        </li>
+      </ol>
+      <p>
+        Both points require judgement. An inspector who measures from the
+        obvious height (the top of a slide) without considering the
+        foreseeable higher access points (the top of the slide&rsquo;s own
+        parapet, if used as a step) will under-report CFH. An inspector
+        measuring to freshly raked loose-fill rather than its compacted
+        level will also under-report.
+      </p>
+
+      <h2 id="equipment-types">4. CFH on different equipment types</h2>
+      <p>
+        BS EN 1176 gives equipment-specific conventions for how CFH is
+        measured. The detail varies by part of the standard (swings in Part
+        2, slides in Part 3, etc.) but the principle is consistent. In
+        summary:
+      </p>
+      <ul>
+        <li><strong>Swings</strong> — measured from the pivot, accounting for the seat at its lowest natural point. Higher fall heights may apply if the seat can be used as a standing platform.</li>
+        <li><strong>Slides</strong> — measured from the highest point of the slide entry platform or take-off edge.</li>
+        <li><strong>Climbing frames</strong> — measured from the highest foreseeable hand- or foothold, accounting for how children actually climb and stand on the equipment.</li>
+        <li><strong>Spatial networks (rope frames)</strong> — measured from the highest accessible node of the network; the standard includes specific rules for how accessibility is determined.</li>
+        <li><strong>Rocking equipment</strong> — measured from the highest point in its extreme position of movement.</li>
+        <li><strong>Multi-unit structures</strong> — CFH is measured independently for each separately accessible area.</li>
+      </ul>
+
+      <h2 id="misunderstandings">5. Common misunderstandings</h2>
+      <p>
+        The recurring errors in CFH assessment are:
+      </p>
+      <ul>
+        <li>
+          <strong>Treating the catalogue figure as definitive</strong> — manufacturers state a design CFH, but on-site reality may differ. Inspections should record the measured value.
+        </li>
+        <li>
+          <strong>Measuring to uncompacted loose-fill</strong> — freshly raked bark is at its maximum depth. Compacted bark, particularly in the heavily used impact zones, is 20–30% shallower. Measuring to the compacted level is the requirement.
+        </li>
+        <li>
+          <strong>Ignoring foreseeable misuse</strong> — if a child can stand on it, that standing height counts. Platforms, guardrail tops, and slide parapets all need consideration.
+        </li>
+        <li>
+          <strong>Not measuring all access points</strong> — a structure may have one primary climbing route but three other ways up. The CFH is the highest accessible point across all of them.
+        </li>
+        <li>
+          <strong>Confusing fall height with equipment height</strong> — a 3 m climbing tower with a proper guardrail at 1.5 m has a CFH of 1.5 m. The extra 1.5 m above the guardrail is not accessible.
+        </li>
+      </ul>
+
+      <ContentCTA
+        headline="CFH captured accurately, every time."
+        body="InspectVoice supports per-equipment critical fall height recording with prompts that remind inspectors to measure compacted surfacing level and highest foreseeable fall point. The numbers go straight into the report."
+      />
+
+      <h2 id="recording">6. Recording CFH in reports</h2>
+      <p>
+        A BS EN 1176-aligned inspection report records CFH for every item
+        of equipment. The record should include:
+      </p>
+      <ul>
+        <li>The measured value in millimetres;</li>
+        <li>The location on the equipment from which it was measured (&ldquo;top of slide platform&rdquo;, &ldquo;highest accessible net node&rdquo;);</li>
+        <li>The surfacing type and rated performance at that location;</li>
+        <li>Any discrepancy between measured CFH and surfacing rating as a specific defect with risk rating.</li>
+      </ul>
+      <p>
+        The record provides the operator and their insurer with a clear,
+        defensible position. If the measured CFH matches the surfacing
+        rating the site is compliant; if it does not, the report documents
+        the issue and the recommended remedial action.
+      </p>
+
+      <h2 id="remedial">7. Remedial options when CFH exceeds surfacing rating</h2>
+      <p>
+        When an inspection finds equipment with an on-site CFH greater than
+        the surfacing can accommodate, the operator has three options:
+      </p>
+      <ol>
+        <li>
+          <strong>Upgrade the surfacing</strong> — increase the depth of
+          loose-fill, add top-up material, or replace with a higher-rated
+          unitary surface. Most common and usually least disruptive.
+        </li>
+        <li>
+          <strong>Reduce the equipment CFH</strong> — add guardrails at
+          critical heights, block access to higher points, or modify
+          platforms. Practical where the equipment design supports it.
+        </li>
+        <li>
+          <strong>Withdraw the equipment from use</strong> — required if
+          the discrepancy is significant and neither of the above can be
+          completed quickly. The equipment is closed until remediation is
+          complete.
+        </li>
+      </ol>
+      <p>
+        An inspector encountering this situation typically risk-rates it
+        high or very high, depending on the margin between the CFH and the
+        surfacing performance. &ldquo;Not compliant but not dangerous&rdquo;
+        is not a recognised category.
+      </p>
+
+      <h2 id="faq">Frequently asked questions</h2>
+      <div class="not-prose mt-6 space-y-4">
+        {faqs.map((item) => (
+          <details class="group rounded-lg border border-slate-200 bg-white p-5 transition hover:border-slate-300">
+            <summary class="flex cursor-pointer items-start justify-between gap-4 text-base font-semibold text-slate-900 [&::-webkit-details-marker]:hidden">
+              <span>{item.q}</span>
+              <svg class="mt-1 h-5 w-5 flex-shrink-0 text-slate-400 transition group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <p class="mt-3 text-base leading-relaxed text-slate-600">{item.a}</p>
+          </details>
+        ))}
+      </div>
+
+      <ContentCTA />
+
+      <RelatedPages
+        pages={[
+          {
+            title: "BS EN 1176 Explained",
+            description: "The complete guide to the standard — what it covers, who must comply, and the three inspection regimes.",
+            href: "/bs-en-1176",
+          },
+          {
+            title: "Impact-Attenuating Surfacing",
+            description: "The companion concept to CFH — the surfacing materials that absorb fall energy, and how they are tested and graded.",
+            href: "/bs-en-1176/impact-attenuating-surfacing",
+          },
+        ]}
+      />
+    </div>
+  </article>
+
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+</BaseLayout>

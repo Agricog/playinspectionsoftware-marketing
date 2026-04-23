@@ -1,0 +1,365 @@
+---
+/**
+ * /rpii/grades — cluster page.
+ *
+ * Deep dive on the four RPII inspector grades. The pillar page touches on
+ * each briefly; this page is the definitive treatment. Targets queries
+ * like "RPII annual inspector", "RPII post-installation inspector",
+ * "RPII inspector levels", "what grade RPII inspector do I need".
+ *
+ * Dual audience: prospective inspectors choosing which grade to pursue,
+ * and operators working out which grade their inspection work requires.
+ */
+
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ContentHero from "../../components/ContentHero.astro";
+import ContentBreadcrumbs from "../../components/ContentBreadcrumbs.astro";
+import ContentCTA from "../../components/ContentCTA.astro";
+import RelatedPages from "../../components/RelatedPages.astro";
+import { SITE, ORGANISATION } from "../../consts";
+
+const title = "RPII Inspector Grades Explained";
+const description =
+  "The Register of Play Inspectors International offers four inspector grades, each tied to a specific tier of BS EN 1176 inspection. A guide to what each grade covers, who typically holds it, and which grade is required for which work.";
+const lastUpdatedDisplay = "23 April 2026";
+const lastUpdatedISO = "2026-04-23";
+const datePublishedISO = "2026-04-23";
+const canonical = `${SITE.url.replace(/\/$/, "")}/rpii/grades`;
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: title,
+  description,
+  datePublished: datePublishedISO,
+  dateModified: lastUpdatedISO,
+  author: { "@type": "Organization", name: ORGANISATION.legalName, url: SITE.url },
+  publisher: { "@type": "Organization", name: SITE.name, url: SITE.url },
+  mainEntityOfPage: { "@type": "WebPage", "@id": canonical },
+  isPartOf: { "@type": "WebPage", "@id": `${SITE.url.replace(/\/$/, "")}/rpii` },
+};
+
+const faqs = [
+  {
+    q: "Which RPII grade do I need to carry out annual playground inspections?",
+    a: "The RPII Annual Inspector grade. This is the certification that UK public procurement contracts almost universally specify for annual main inspections, and it is the minimum credential an independent inspector needs to produce annual reports that will be accepted by councils, schools, housing associations and insurers.",
+  },
+  {
+    q: "Can an Annual Inspector also carry out operational and routine inspections?",
+    a: "In practice yes — an inspector holding the Annual grade is considered competent to carry out the less demanding operational and routine inspections at the same sites. However, RPII certification is granted per grade, so strictly a separate Routine Visual or Operational certification may be required depending on the operator&rsquo;s procurement wording. Most commercial inspectors hold multiple grades for this reason.",
+  },
+  {
+    q: "What&rsquo;s the difference between the Annual Inspector and Post-Installation Inspector grades?",
+    a: "They cover different inspection contexts. The Annual Inspector grade covers the 12-monthly main inspection of existing, operating sites. The Post-Installation Inspector grade covers the inspection of newly installed or substantially refurbished equipment before it is opened to the public — a more technically demanding remit because it assesses equipment against the design specification and installation quality, not just against service wear. Post-Installation certification typically requires prior inspection experience and is held by a smaller pool of inspectors.",
+  },
+  {
+    q: "Do operator staff need an RPII grade to do routine inspections?",
+    a: "Not legally, but it is strongly advisable. BS EN 1176 requires routine inspections to be carried out by a competent person, and RPII Routine Visual Inspector certification is the cleanest way for operator staff to demonstrate competence. For parks teams, school caretakers and maintenance operatives, the Routine grade is accessible in terms of training time and cost, and the certification adds defensibility to the whole inspection chain.",
+  },
+  {
+    q: "How does someone progress from Routine Visual Inspector to Annual Inspector?",
+    a: "Through additional training and assessment at each grade. The grades are not a strict ladder — a candidate can enter at any level their background and experience supports — but a common progression is to start at Routine Visual (short course, accessible to operator staff), move to Operational Inspector as inspection responsibility grows, and progress to Annual Inspector with the appropriate technical training and assessment. Full progression routes are published by RPII.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: { "@type": "Answer", text: item.a },
+  })),
+};
+---
+<BaseLayout title={title} description={description}>
+  <ContentBreadcrumbs
+    crumbs={[
+      { label: "Home", href: "/" },
+      { label: "RPII", href: "/rpii" },
+      { label: "Inspector Grades" },
+    ]}
+  />
+
+  <ContentHero
+    eyebrow="RPII certification"
+    title="RPII Inspector Grades Explained"
+    description="Four grades, one for each tier of inspection defined in BS EN 1176 plus a specialist route for new installations. A detailed guide to what each grade covers, who holds it, and which grade is required for which work."
+    lastUpdated={lastUpdatedDisplay}
+    readingTime="7 min read"
+  />
+
+  <article class="mx-auto max-w-3xl px-6 py-12 sm:py-16">
+    <nav aria-label="On this page" class="not-prose mb-12 rounded-lg border border-slate-200 bg-slate-50 p-6">
+      <p class="text-sm font-semibold uppercase tracking-wide text-slate-500">On this page</p>
+      <ol class="mt-3 space-y-2 text-sm text-slate-700">
+        <li><a href="#overview" class="hover:text-brand-700 hover:underline">1. Overview of the four grades</a></li>
+        <li><a href="#routine-visual" class="hover:text-brand-700 hover:underline">2. Routine Visual Inspector</a></li>
+        <li><a href="#operational" class="hover:text-brand-700 hover:underline">3. Operational Inspector</a></li>
+        <li><a href="#annual" class="hover:text-brand-700 hover:underline">4. Annual Inspector</a></li>
+        <li><a href="#post-installation" class="hover:text-brand-700 hover:underline">5. Post-Installation Inspector</a></li>
+        <li><a href="#which-grade-when" class="hover:text-brand-700 hover:underline">6. Which grade is required for which work</a></li>
+        <li><a href="#holding-multiple" class="hover:text-brand-700 hover:underline">7. Holding multiple grades</a></li>
+        <li><a href="#faq" class="hover:text-brand-700 hover:underline">Frequently asked questions</a></li>
+      </ol>
+    </nav>
+
+    <div class="prose prose-slate max-w-none prose-headings:scroll-mt-24 prose-headings:font-semibold prose-headings:text-slate-900 prose-a:text-brand-700 prose-a:no-underline hover:prose-a:underline prose-strong:text-slate-900">
+      <p class="lead">
+        RPII does not issue a single &ldquo;playground inspector&rdquo;
+        qualification. Instead, certification is granted per grade, with
+        each grade mapped to one of the inspection tiers defined in
+        BS EN 1176 plus a specialist qualification for newly installed
+        equipment. The grades exist because the competences required at
+        each tier are genuinely different. Part of our wider
+        <a href="/rpii">RPII explainer</a>.
+      </p>
+
+      <h2 id="overview">1. Overview of the four grades</h2>
+      <p>
+        The four RPII inspector grades are:
+      </p>
+      <ul>
+        <li><strong>Routine Visual Inspector</strong> — daily-to-weekly operator-level check;</li>
+        <li><strong>Operational Inspector</strong> — monthly-to-quarterly detailed check;</li>
+        <li><strong>Annual Inspector</strong> — independent 12-monthly main inspection;</li>
+        <li><strong>Post-Installation Inspector</strong> — inspection of new or refurbished installations.</li>
+      </ul>
+      <p>
+        The first three map directly onto the three inspection regimes
+        defined in BS EN 1176-7: routine visual inspection, operational
+        inspection, and annual main inspection respectively. The
+        Post-Installation grade covers a distinct remit — checking newly
+        installed or substantially refurbished equipment against its
+        design specification before it opens to the public.
+      </p>
+      <p>
+        Each grade has its own training route, assessment, and renewal
+        requirements. An inspector may hold one grade, several, or all
+        four. For commercial inspection companies it is common to employ
+        inspectors with multiple grades to provide the full service
+        offering from a single visit.
+      </p>
+
+      <h2 id="routine-visual">2. Routine Visual Inspector</h2>
+      <p>
+        <strong>Covers:</strong> the routine visual inspection defined in
+        BS EN 1176-7 — the daily-to-weekly walk-round check for obvious
+        hazards and changes since the previous inspection.
+      </p>
+      <p>
+        <strong>Who typically holds it:</strong> operator staff — grounds
+        maintenance operatives, school caretakers, parks officers,
+        nursery and EYFS site leads. The grade is designed to be
+        accessible to practitioners who are not full-time inspectors.
+      </p>
+      <p>
+        <strong>Training:</strong> a short RPII-approved course covering
+        the hazard categories, the escalation process, and the
+        documentation requirements. Typically one or two days.
+      </p>
+      <p>
+        <strong>Value:</strong> for operators, Routine Visual certification
+        of the staff doing daily checks closes an important defensibility
+        gap. Untrained staff with a clipboard is a weak position;
+        RPII-certified staff following a structured process is a strong
+        one. The cost per certified inspector is modest.
+      </p>
+      <p>
+        <strong>Sits alongside:</strong> our page on the
+        <a href="/bs-en-1176/routine-inspections">routine visual inspection</a>
+        covers the actual work this grade qualifies the holder to
+        perform.
+      </p>
+
+      <h2 id="operational">3. Operational Inspector</h2>
+      <p>
+        <strong>Covers:</strong> the operational inspection defined in
+        BS EN 1176-7 — the monthly-to-quarterly check that assesses
+        equipment stability, fixing integrity, wear patterns, and the
+        progress of previously identified defects.
+      </p>
+      <p>
+        <strong>Who typically holds it:</strong> operator staff with
+        inspection responsibility beyond daily checks — senior grounds
+        operatives, specialist in-house inspection teams at larger
+        operators, and a subset of commercial inspectors who handle
+        operational work alongside annual inspections.
+      </p>
+      <p>
+        <strong>Training:</strong> more substantial than the Routine
+        Visual course, covering equipment-specific assessment, surfacing
+        depth measurement, fixing assessment, and more detailed reporting.
+      </p>
+      <p>
+        <strong>Value:</strong> for larger operators with multiple sites,
+        in-house Operational Inspector certification can significantly
+        reduce the cost of maintaining the mid-tier inspection regime
+        compared to contracting it out. For independent inspectors, the
+        grade is rarely sold standalone — it tends to be bundled with
+        Annual Inspector work.
+      </p>
+      <p>
+        <strong>Sits alongside:</strong> our page on the
+        <a href="/bs-en-1176/operational-inspections">operational inspection</a>
+        covers the actual work this grade qualifies the holder to
+        perform.
+      </p>
+
+      <h2 id="annual">4. Annual Inspector</h2>
+      <p>
+        <strong>Covers:</strong> the annual main inspection defined in
+        BS EN 1176-7 — the independent, detailed, 12-monthly technical
+        assessment of a site that produces the formal written report
+        retained as the operator&rsquo;s primary evidence of compliance.
+      </p>
+      <p>
+        <strong>Who typically holds it:</strong> commercial
+        playground inspectors, whether self-employed or working for
+        inspection companies. This is the grade with the greatest
+        commercial weight — the grade named in almost every UK public
+        procurement specification for annual inspection work.
+      </p>
+      <p>
+        <strong>Training:</strong> substantial technical training covering
+        the full scope of BS EN 1176 and BS EN 1177, formal written
+        assessment, and typically a practical assessment at a real site.
+        Candidates without prior inspection experience usually spend time
+        at the Routine Visual or Operational grades first.
+      </p>
+      <p>
+        <strong>Value:</strong> Annual Inspector certification is
+        effectively the price of entry for commercial annual inspection
+        work in the UK. An inspector without it cannot compete
+        commercially for public-sector contracts. An inspector with it
+        can.
+      </p>
+      <p>
+        <strong>Sits alongside:</strong> our page on the
+        <a href="/bs-en-1176/annual-inspections">annual main inspection</a>
+        covers the actual work this grade qualifies the holder to
+        perform.
+      </p>
+
+      <ContentCTA
+        headline="Built for the RPII Annual Inspector workflow."
+        body="InspectVoice is designed around the way independent RPII-certified inspectors actually work — voice-dictated findings at the equipment, defects risk-rated on-site, PDF reports produced on-device before leaving the site."
+      />
+
+      <h2 id="post-installation">5. Post-Installation Inspector</h2>
+      <p>
+        <strong>Covers:</strong> the inspection of newly installed or
+        substantially refurbished play equipment before it opens to the
+        public. This assesses the equipment against its design
+        specification, confirms correct installation, and verifies
+        compliance with BS EN 1176 from day one of service.
+      </p>
+      <p>
+        <strong>Who typically holds it:</strong> experienced commercial
+        inspectors, frequently those with backgrounds in engineering,
+        construction or manufacturing quality assurance. The certified
+        population is significantly smaller than the Annual Inspector
+        pool.
+      </p>
+      <p>
+        <strong>Training:</strong> the most technically demanding of the
+        RPII routes, typically requiring prior inspection experience,
+        relevant technical qualifications, and a formal assessment at a
+        real post-installation site.
+      </p>
+      <p>
+        <strong>Value:</strong> demand is concentrated around new
+        installations and major refurbishments. Developers, landscape
+        architects, and local authorities commissioning new playgrounds
+        typically require a Post-Installation inspection before handover
+        and public opening. The smaller certified pool combined with
+        consistent demand means Post-Installation Inspectors command
+        premium rates.
+      </p>
+
+      <h2 id="which-grade-when">6. Which grade is required for which work</h2>
+      <p>
+        The short version:
+      </p>
+      <ul>
+        <li><strong>Daily or weekly in-house checks</strong> — Routine Visual Inspector (for the staff doing the checks).</li>
+        <li><strong>Monthly or quarterly in-house or contract checks</strong> — Operational Inspector.</li>
+        <li><strong>Annual main inspection for existing sites</strong> — Annual Inspector.</li>
+        <li><strong>Inspection of new or refurbished equipment before opening</strong> — Post-Installation Inspector.</li>
+      </ul>
+      <p>
+        UK procurement specifications almost universally require the
+        matching grade. Attempting to use a lower grade than specified is
+        not a defensible position — the operator commissioning the work
+        has chosen the grade for a reason, usually to match their
+        insurance requirements.
+      </p>
+
+      <h2 id="holding-multiple">7. Holding multiple grades</h2>
+      <p>
+        Most commercial inspectors hold multiple grades. A typical
+        full-service independent inspector will hold Annual Inspector
+        certification as their primary commercial offering, plus
+        Routine Visual and Operational certifications to support training
+        work with operator-side clients. Post-Installation adds a
+        specialist revenue stream that justifies its additional training
+        investment.
+      </p>
+      <p>
+        For candidates entering the profession, the progression is
+        usually:
+      </p>
+      <ol>
+        <li>Routine Visual first — accessible, quick, establishes footing;</li>
+        <li>Operational second — deepens technical competence and adds commercial value;</li>
+        <li>Annual Inspector next — the commercial qualification;</li>
+        <li>Post-Installation last — specialist grade, typically pursued after establishing an annual-inspection practice.</li>
+      </ol>
+      <p>
+        Entering directly at the Annual Inspector grade is possible with
+        relevant prior experience, but the progression route is the most
+        common path.
+      </p>
+
+      <h2 id="faq">Frequently asked questions</h2>
+      <div class="not-prose mt-6 space-y-4">
+        {faqs.map((item) => (
+          <details class="group rounded-lg border border-slate-200 bg-white p-5 transition hover:border-slate-300">
+            <summary class="flex cursor-pointer items-start justify-between gap-4 text-base font-semibold text-slate-900 [&::-webkit-details-marker]:hidden">
+              <span>{item.q}</span>
+              <svg class="mt-1 h-5 w-5 flex-shrink-0 text-slate-400 transition group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <p class="mt-3 text-base leading-relaxed text-slate-600">{item.a}</p>
+          </details>
+        ))}
+      </div>
+
+      <ContentCTA />
+
+      <RelatedPages
+        pages={[
+          {
+            title: "RPII Explained",
+            description: "The parent guide — what the Register of Play Inspectors International is, why it matters, and how it fits UK playground safety.",
+            href: "/rpii",
+          },
+          {
+            title: "Becoming RPII-Certified",
+            description: "The career path — who the profession suits, training routes, assessment, and what to expect after qualifying.",
+            href: "/rpii/becoming-certified",
+          },
+          {
+            title: "Finding an RPII Inspector",
+            description: "For operators commissioning inspection work — how to verify credentials and choose the right inspector.",
+            href: "/rpii/finding-an-inspector",
+          },
+        ]}
+      />
+    </div>
+  </article>
+
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+</BaseLayout>

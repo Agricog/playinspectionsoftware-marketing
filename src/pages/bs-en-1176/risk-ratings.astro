@@ -1,0 +1,372 @@
+---
+/**
+ * /bs-en-1176/risk-ratings — cluster page.
+ *
+ * Targets queries about how inspection findings are categorised:
+ * "playground inspection risk rating", "BS EN 1176 risk categories",
+ * "playground defect risk assessment", "playground hazard severity".
+ *
+ * Dual audience: inspectors (how to apply ratings consistently) and
+ * operators (what to do with ratings once they have them). Content
+ * addresses both without conflating them.
+ */
+
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ContentHero from "../../components/ContentHero.astro";
+import ContentBreadcrumbs from "../../components/ContentBreadcrumbs.astro";
+import ContentCTA from "../../components/ContentCTA.astro";
+import RelatedPages from "../../components/RelatedPages.astro";
+import { SITE, ORGANISATION } from "../../consts";
+
+const title =
+  "Playground Inspection Risk Ratings (BS EN 1176)";
+const description =
+  "BS EN 1176 inspection findings are categorised by severity to drive remedial action. A guide to the four-tier UK risk rating model — what each level means, how they are applied, and what operators must do with them.";
+const lastUpdatedDisplay = "23 April 2026";
+const lastUpdatedISO = "2026-04-23";
+const datePublishedISO = "2026-04-23";
+const canonical = `${SITE.url.replace(/\/$/, "")}/bs-en-1176/risk-ratings`;
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: title,
+  description,
+  datePublished: datePublishedISO,
+  dateModified: lastUpdatedISO,
+  author: {
+    "@type": "Organization",
+    name: ORGANISATION.legalName,
+    url: SITE.url,
+  },
+  publisher: {
+    "@type": "Organization",
+    name: SITE.name,
+    url: SITE.url,
+  },
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": canonical,
+  },
+  isPartOf: {
+    "@type": "WebPage",
+    "@id": `${SITE.url.replace(/\/$/, "")}/bs-en-1176`,
+  },
+};
+
+const faqs = [
+  {
+    q: "Does BS EN 1176 prescribe a specific risk rating scale?",
+    a: "Not strictly. The standard requires defects to be categorised by severity so that remedial action can be prioritised, but it does not mandate a specific number of tiers or the wording of each. In UK practice, a four-tier scale (low / medium / high / very high) has emerged as the de facto industry standard. Some inspection companies use a three-tier or five-tier variation, but the underlying principle — severity drives priority — is consistent.",
+  },
+  {
+    q: "Who decides the risk rating of a defect?",
+    a: "The inspector does, applying professional judgement to the finding. Rating is not a calculation from a formula — it is a competent assessment of how likely the defect is to cause harm, how severe that harm could be, and how quickly the situation could deteriorate. Two experienced RPII inspectors looking at the same defect should arrive at closely similar ratings; if they would not, the defect sits in a borderline zone and should be flagged as such in the report.",
+  },
+  {
+    q: "What is the operator obliged to do once a defect has been rated?",
+    a: "The rating determines urgency. A very-high-risk defect obliges the operator to isolate the equipment without delay. High-risk defects require prompt remedial action, typically within days. Medium-risk defects should be scheduled into normal maintenance within a reasonable period. Low-risk items can be addressed during routine maintenance. Operators who receive a high or very-high risk rating and fail to act on it in a timely manner risk losing the defensibility the inspection report would otherwise provide.",
+  },
+  {
+    q: "Can an operator disagree with an inspector&rsquo;s risk rating?",
+    a: "Yes, and occasionally they should. If the operator has information the inspector did not — for example, that a piece of equipment is scheduled for replacement within 30 days — the appropriate response is to document the disagreement and the mitigating action, rather than to simply ignore the finding. The worst outcome is silent non-compliance: receiving a high-risk finding, not acting on it, and keeping no record of why. That position is indefensible if an incident follows.",
+  },
+  {
+    q: "How do risk ratings carry forward between inspections?",
+    a: "A well-run inspection regime tracks defects across their full lifecycle. A finding identified at one annual inspection that is not resolved by the next should appear on the following report as an outstanding defect, usually with an escalated rating to reflect the fact that the hazard has now persisted through a full inspection cycle. Modern inspection software maintains this thread automatically; paper-based systems rely on operator discipline.",
+  },
+  {
+    q: "Should photographs accompany every risk-rated defect?",
+    a: "For medium, high, and very-high ratings, yes. A defect substantial enough to carry a risk rating is substantial enough to document with a photograph. Low-risk cosmetic findings may be described in text only. The photograph serves three purposes: it shows the condition at the point of inspection; it helps the operator&rsquo;s maintenance team locate the issue without revisiting the site; and it provides evidence for any subsequent claim or investigation. Photograph-light reports are a weakness in an otherwise strong inspection record.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.a,
+    },
+  })),
+};
+---
+<BaseLayout title={title} description={description}>
+  <ContentBreadcrumbs
+    crumbs={[
+      { label: "Home", href: "/" },
+      { label: "BS EN 1176", href: "/bs-en-1176" },
+      { label: "Risk Ratings" },
+    ]}
+  />
+
+  <ContentHero
+    eyebrow="BS EN 1176 technical concepts"
+    title="Risk Ratings in Playground Inspection Reports"
+    description="An inspection is only useful if its findings are categorised by urgency. A guide to the four-tier risk rating model used in UK playground inspection — what each level means, how inspectors apply them, and what operators must do in response."
+    lastUpdated={lastUpdatedDisplay}
+    readingTime="6 min read"
+  />
+
+  <article class="mx-auto max-w-3xl px-6 py-12 sm:py-16">
+    <nav aria-label="On this page" class="not-prose mb-12 rounded-lg border border-slate-200 bg-slate-50 p-6">
+      <p class="text-sm font-semibold uppercase tracking-wide text-slate-500">On this page</p>
+      <ol class="mt-3 space-y-2 text-sm text-slate-700">
+        <li><a href="#why-rate" class="hover:text-brand-700 hover:underline">1. Why risk-rate findings at all</a></li>
+        <li><a href="#four-tiers" class="hover:text-brand-700 hover:underline">2. The four-tier model</a></li>
+        <li><a href="#low" class="hover:text-brand-700 hover:underline">3. Low risk</a></li>
+        <li><a href="#medium" class="hover:text-brand-700 hover:underline">4. Medium risk</a></li>
+        <li><a href="#high" class="hover:text-brand-700 hover:underline">5. High risk</a></li>
+        <li><a href="#very-high" class="hover:text-brand-700 hover:underline">6. Very high risk</a></li>
+        <li><a href="#judgement" class="hover:text-brand-700 hover:underline">7. How inspectors apply ratings consistently</a></li>
+        <li><a href="#operator-response" class="hover:text-brand-700 hover:underline">8. What the operator does with the ratings</a></li>
+        <li><a href="#faq" class="hover:text-brand-700 hover:underline">Frequently asked questions</a></li>
+      </ol>
+    </nav>
+
+    <div class="prose prose-slate max-w-none prose-headings:scroll-mt-24 prose-headings:font-semibold prose-headings:text-slate-900 prose-a:text-brand-700 prose-a:no-underline hover:prose-a:underline prose-strong:text-slate-900">
+      <p class="lead">
+        An inspection report that lists every defect as equally urgent is
+        not useful. The operator has a finite maintenance budget and a
+        finite amount of time; the inspector&rsquo;s job is not only to
+        find issues, but to tell the operator which ones matter most.
+        That is what risk rating is for. Part of our wider
+        <a href="/bs-en-1176">BS EN 1176 explainer</a>.
+      </p>
+
+      <h2 id="why-rate">1. Why risk-rate findings at all</h2>
+      <p>
+        BS EN 1176 requires defects to be categorised by severity so that
+        remedial action can be prioritised. It does not prescribe a
+        specific scale — the choice of tiers and language is left to the
+        inspector or inspection company — but it requires that the scheme
+        used is clearly explained in the report and applied consistently.
+      </p>
+      <p>
+        In UK practice a four-tier model has emerged as the de facto
+        standard across independent inspectors, inspection companies and
+        local authority procurement specifications. The four tiers are
+        low, medium, high, and very high. Some organisations use different
+        labels (minor/moderate/major/critical; green/amber/red/black;
+        routine/prompt/urgent/immediate) but the underlying structure
+        matches.
+      </p>
+
+      <h2 id="four-tiers">2. The four-tier model</h2>
+      <p>
+        The distinguishing factor between the tiers is the combination of
+        likelihood (how probable is an injury if the defect is left?) and
+        severity (if an injury occurs, how serious might it be?). A
+        competent inspector assesses both dimensions on every finding.
+      </p>
+      <p>
+        The rest of this page works through each tier in turn, with the
+        kinds of defect typically rated at that level and the response
+        time expected of the operator.
+      </p>
+
+      <h2 id="low">3. Low risk</h2>
+      <p>
+        <strong>Meaning:</strong> the finding does not create a foreseeable
+        injury risk at its current state. It is recorded because it is
+        likely to worsen if left indefinitely, or because it is part of the
+        operator&rsquo;s regular maintenance responsibility.
+      </p>
+      <p>
+        <strong>Typical examples:</strong> paint fading on steel components;
+        minor graffiti; signage showing early wear but still legible;
+        cosmetic damage to plastic components; early-stage weathering on
+        timber that has not yet affected structural integrity; minor litter
+        accumulation in the impact zone.
+      </p>
+      <p>
+        <strong>Response time:</strong> address during normal maintenance
+        cycles. No specific deadline attaches; the finding is logged and
+        picked up alongside routine scheduled work.
+      </p>
+
+      <h2 id="medium">4. Medium risk</h2>
+      <p>
+        <strong>Meaning:</strong> the finding is likely to develop into a
+        more serious defect if left. An injury is foreseeable but not yet
+        likely. The operator should plan specific remedial work rather than
+        leaving it to routine maintenance.
+      </p>
+      <p>
+        <strong>Typical examples:</strong> loose fixings that can be
+        re-torqued but show signs of repeated loosening; bearing wear on
+        swings producing noticeable play; timber showing early rot; rope
+        outer sheath wear exposing the load-bearing core; surfacing depth
+        below specification in the impact zone but not severely so;
+        drainage issues producing occasional standing water.
+      </p>
+      <p>
+        <strong>Response time:</strong> scheduled remedial action within a
+        defined period, typically two to six weeks depending on severity.
+        The finding is tracked and re-assessed at the next operational
+        inspection.
+      </p>
+
+      <h2 id="high">5. High risk</h2>
+      <p>
+        <strong>Meaning:</strong> the finding creates a foreseeable risk of
+        injury, either now or in the very near term. Prompt remedial
+        action is required; the operator should consider restricting
+        access until the work is done.
+      </p>
+      <p>
+        <strong>Typical examples:</strong> entrapment gaps within BS EN 1176
+        danger dimensions; significant timber rot at ground line affecting
+        structural capacity; broken components with exposed sharp edges;
+        missing guardrails or other fall-prevention features; rope core
+        damage exposing load-bearing strands; surfacing performance
+        significantly below equipment CFH; exposed foundations creating
+        trip and impact hazards; damaged or missing boundary fencing at
+        sites adjacent to hazards (roads, water).
+      </p>
+      <p>
+        <strong>Response time:</strong> prompt action, typically within
+        days. Operators should consider restricting access to the affected
+        equipment until the defect is resolved. The inspector may explicitly
+        recommend closure in the report.
+      </p>
+
+      <ContentCTA
+        headline="Risk ratings applied with care, every time."
+        body="InspectVoice supports per-defect risk rating with guided prompts and a visible audit trail. Ratings carry forward between inspections, so outstanding defects do not silently drop off the register."
+      />
+
+      <h2 id="very-high">6. Very high risk</h2>
+      <p>
+        <strong>Meaning:</strong> the finding represents an immediate
+        hazard. Injury is likely if the equipment is used in its current
+        state. The equipment must be withdrawn from use without delay.
+      </p>
+      <p>
+        <strong>Typical examples:</strong> imminent structural failure
+        (visible cracks in load-bearing members, foundations undermined);
+        catastrophic rope or net failure likely on next use; equipment
+        which has been damaged by vandalism, fire, or collision and is no
+        longer structurally sound; any defect where the inspector
+        concludes that continued use is not safe.
+      </p>
+      <p>
+        <strong>Response time:</strong> immediate — the affected equipment
+        is isolated or decommissioned that day. This is the one risk
+        rating that does not leave room for scheduling. The inspector&rsquo;s
+        report will usually document that the equipment was closed at the
+        point of inspection, with the operator expected to arrange
+        permanent remediation or removal as soon as practicable.
+      </p>
+
+      <h2 id="judgement">7. How inspectors apply ratings consistently</h2>
+      <p>
+        Risk rating is a professional judgement, not a formula. Two
+        inspectors looking at the same defect should arrive at closely
+        similar ratings; if they would not, that is a sign the defect sits
+        near a boundary between tiers and the report should note the
+        borderline assessment rather than forcing one label.
+      </p>
+      <p>
+        The factors a competent inspector weighs:
+      </p>
+      <ul>
+        <li>
+          <strong>Likelihood of harm</strong> — how probable is it that a
+          child using the equipment as foreseeable will contact the
+          defect? A finger-entrapment gap on a frequently-used handrail
+          carries higher likelihood than the same gap on a rarely-accessed
+          structural element.
+        </li>
+        <li>
+          <strong>Severity of potential harm</strong> — a minor pinch
+          injury sits in a different tier to a fall from 2 m onto a hard
+          surface, even if both are foreseeable.
+        </li>
+        <li>
+          <strong>Rate of deterioration</strong> — a low-risk finding that
+          is obviously deteriorating rapidly may be rated medium despite
+          its current state.
+        </li>
+        <li>
+          <strong>Child age range on site</strong> — the same defect on
+          toddler equipment sits differently to the same defect on
+          teenage equipment. Younger users are less able to assess and
+          avoid hazards.
+        </li>
+        <li>
+          <strong>Site supervision context</strong> — a supervised nursery
+          playground is a different risk context to an unsupervised public
+          park. Inspectors typically assume the worst-case supervision
+          scenario consistent with the site&rsquo;s actual use.
+        </li>
+      </ul>
+
+      <h2 id="operator-response">8. What the operator does with the ratings</h2>
+      <p>
+        The inspection report is the input. The operator&rsquo;s remedial
+        plan is the output. The rating system exists to tell the
+        operator — clearly, unambiguously, in a way that is legible to
+        their insurers and to any investigator — what they need to do and
+        how quickly.
+      </p>
+      <p>
+        A well-run operator response includes:
+      </p>
+      <ul>
+        <li>Reviewing the inspection report on receipt, not after a delay;</li>
+        <li>Acting immediately on very-high-risk items (isolation or closure);</li>
+        <li>Scheduling high-risk items within days;</li>
+        <li>Planning medium-risk items into the maintenance programme with clear deadlines;</li>
+        <li>Logging low-risk items for the next maintenance cycle;</li>
+        <li>Documenting completion of each action against the original finding;</li>
+        <li>Retaining the record for the full inspection cycle — it is the evidence that duty of care was discharged.</li>
+      </ul>
+      <p>
+        The worst outcome is silent non-compliance: receiving a
+        high-risk finding, failing to act, and keeping no record of why.
+        An operator in that position has no defence if an incident
+        follows. The inspection report becomes evidence against them
+        rather than evidence of compliance.
+      </p>
+
+      <h2 id="faq">Frequently asked questions</h2>
+      <div class="not-prose mt-6 space-y-4">
+        {faqs.map((item) => (
+          <details class="group rounded-lg border border-slate-200 bg-white p-5 transition hover:border-slate-300">
+            <summary class="flex cursor-pointer items-start justify-between gap-4 text-base font-semibold text-slate-900 [&::-webkit-details-marker]:hidden">
+              <span>{item.q}</span>
+              <svg class="mt-1 h-5 w-5 flex-shrink-0 text-slate-400 transition group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <p class="mt-3 text-base leading-relaxed text-slate-600">{item.a}</p>
+          </details>
+        ))}
+      </div>
+
+      <ContentCTA />
+
+      <RelatedPages
+        pages={[
+          {
+            title: "BS EN 1176 Explained",
+            description: "The complete guide to the standard — what it covers, who must comply, and the three inspection regimes.",
+            href: "/bs-en-1176",
+          },
+          {
+            title: "Annual Main Inspection",
+            description: "The inspection tier at which most risk ratings are applied to a site — the independent 12-monthly assessment.",
+            href: "/bs-en-1176/annual-inspections",
+          },
+        ]}
+      />
+    </div>
+  </article>
+
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+</BaseLayout>

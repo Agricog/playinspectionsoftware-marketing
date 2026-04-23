@@ -1,0 +1,52 @@
+---
+/**
+ * Hero section — the first thing every visitor sees.
+ *
+ * H1 targets primary keyword "playground inspection software" with the value
+ * prop in the same breath. Subhead expands. Two CTAs: primary (free trial),
+ * secondary (book demo). Trust line below the buttons.
+ *
+ * Deliberately no hero image yet — a generic stock photo would weaken the
+ * page, and a real product screenshot belongs here once we have a clean one.
+ * The visual restraint reads as confidence on first impression.
+ */
+import { CTA, TRIAL } from "../consts";
+---
+
+<section class="border-b border-brand-100 bg-gradient-to-b from-brand-50 to-white">
+  <div class="mx-auto max-w-4xl px-6 py-20 text-center sm:py-28">
+    <p class="mb-4 text-sm font-semibold uppercase tracking-wider text-brand-700">
+      Playground inspection software · BS EN 1176
+    </p>
+
+    <h1 class="text-4xl font-bold tracking-tight text-brand-900 sm:text-5xl md:text-6xl">
+      Professional inspection reports,
+      <span class="block text-brand-700">dictated by voice.</span>
+    </h1>
+
+    <p class="mx-auto mt-6 max-w-2xl text-lg text-slate-700 sm:text-xl">
+      Built for UK RPII inspectors and inspection companies. Walk the site, dictate
+      what you see, and walk away with a polished BS EN 1176-aligned PDF report.
+      No paperwork. No post-inspection admin. No office time.
+    </p>
+
+    <div class="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
+      <a
+        href={CTA.signUp}
+        class="inline-flex w-full items-center justify-center rounded-md bg-brand-700 px-6 py-3 text-base font-semibold text-white shadow-sm transition hover:bg-brand-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-700 sm:w-auto"
+      >
+        Start your {TRIAL.durationDays}-day free trial
+      </a>
+      <a
+        href={CTA.bookDemo}
+        class="inline-flex w-full items-center justify-center rounded-md border border-brand-700 bg-white px-6 py-3 text-base font-semibold text-brand-700 transition hover:bg-brand-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-700 sm:w-auto"
+      >
+        Book a 15-minute demo
+      </a>
+    </div>
+
+    <p class="mt-6 text-sm text-slate-600">
+      No credit card required · Cancel anytime · UK data residency
+    </p>
+  </div>
+</section>

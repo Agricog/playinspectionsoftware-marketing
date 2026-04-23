@@ -49,6 +49,9 @@ export const CTA = {
 
   // The product's homepage — used in the header logo link / footer
   product: "https://inspectvoice.co.uk",
+
+  // Enterprise contact — for councils & large organisations
+  enterpriseContact: "mailto:mick@autaimate.com?subject=Enterprise%20enquiry%20-%20Play%20Inspection%20Software",
 } as const;
 
 /**
@@ -58,4 +61,26 @@ export const TRIAL = {
   durationDays: 30,
   requiresCard: false,
   pricingNote: "Monthly subscription. No annual lock-in.",
+} as const;
+
+/**
+ * Pricing — surfaced on the marketing site to build trust and filter intent.
+ *
+ * Single source of truth. Update here when the price changes (e.g. £99 → £149)
+ * and every reference across the site updates automatically.
+ */
+export const PRICING = {
+  team: {
+    name: "Team",
+    price: 99,
+    currency: "£",
+    cadence: "month",
+    audience: "For independent inspectors and inspection companies",
+    inspectorLimit: 5,
+  },
+  enterprise: {
+    name: "Enterprise",
+    price: null, // bespoke
+    audience: "For local authorities and large organisations",
+  },
 } as const;

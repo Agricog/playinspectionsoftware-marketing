@@ -1,0 +1,427 @@
+---
+/**
+ * /rpii — pillar page.
+ *
+ * Second pillar in the content architecture. Complements /bs-en-1176:
+ * the standard on one pillar, the certified people who work to it on the
+ * other. Targets the primary SEO keyword "RPII" and long-tail variants
+ * ("RPII certification", "RPII inspector", "how to become a playground
+ * inspector", "RPII annual inspector", "play inspector qualification UK").
+ *
+ * Audience is broader than a cluster page — covers both prospective
+ * inspectors (career-path queries) and operators (procurement queries).
+ * The external authority link to playinspectors.com is deliberate: trust
+ * signal to Google, helpful to the reader.
+ *
+ * Future cluster pages will live at /rpii/{grades, certification-routes,
+ * cpd-and-renewal, finding-an-inspector}.
+ */
+
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ContentHero from "../../components/ContentHero.astro";
+import ContentBreadcrumbs from "../../components/ContentBreadcrumbs.astro";
+import ContentCTA from "../../components/ContentCTA.astro";
+import RelatedPages from "../../components/RelatedPages.astro";
+import { SITE, ORGANISATION } from "../../consts";
+
+const title = "RPII Explained: Playground Inspector Certification in the UK";
+const description =
+  "The Register of Play Inspectors International (RPII) is the UK benchmark for playground inspector competence. A complete guide to what RPII is, the inspector grades, how to get certified, and what operators should expect from their inspector.";
+const lastUpdatedDisplay = "23 April 2026";
+const lastUpdatedISO = "2026-04-23";
+const datePublishedISO = "2026-04-23";
+const canonical = `${SITE.url.replace(/\/$/, "")}/rpii`;
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: title,
+  description,
+  datePublished: datePublishedISO,
+  dateModified: lastUpdatedISO,
+  author: {
+    "@type": "Organization",
+    name: ORGANISATION.legalName,
+    url: SITE.url,
+  },
+  publisher: {
+    "@type": "Organization",
+    name: SITE.name,
+    url: SITE.url,
+  },
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": canonical,
+  },
+};
+
+const faqs = [
+  {
+    q: "Is RPII certification legally required to inspect UK playgrounds?",
+    a: "No. There is no UK statute that specifies RPII certification as a legal requirement for playground inspection. However, BS EN 1176 requires the annual main inspection to be carried out by a competent independent person, and RPII certification is the de facto UK standard for demonstrating that competence. In procurement practice — local authority contracts, school tenders, housing association frameworks — RPII certification is almost universally specified as a minimum requirement.",
+  },
+  {
+    q: "What is the difference between the RPII inspector grades?",
+    a: "Each grade corresponds to a specific inspection type defined in BS EN 1176. The Routine Visual Inspector qualification covers the daily-to-weekly operator-level check. The Operational Inspector qualification covers the more detailed monthly-to-quarterly check. The Annual Inspector qualification covers the independent 12-monthly main inspection — the grade with the most procurement weight. The Post-Installation Inspector qualification covers inspection of newly installed or substantially refurbished equipment and is typically the most demanding route.",
+  },
+  {
+    q: "How do you become RPII-certified?",
+    a: "Through an RPII-approved training course followed by assessment. The specific route depends on the grade: Routine Visual and Operational Inspector courses are relatively short and accessible to operator staff; Annual Inspector certification requires more substantial technical training and a formal assessment; Post-Installation Inspector certification typically requires existing inspection experience and technical qualifications. Full current routes and training providers are listed on the RPII website.",
+  },
+  {
+    q: "How often does RPII certification need renewing?",
+    a: "RPII certifications are subject to periodic re-registration with associated continuing professional development (CPD) requirements. Inspectors must demonstrate ongoing activity in the field and maintain current knowledge of changes to BS EN 1176 and related standards. Certifications that lapse through missed renewal can be reinstated, but typically with additional requirements. Current renewal periods and CPD requirements are published by RPII.",
+  },
+  {
+    q: "How do I check whether an inspector is genuinely RPII-certified?",
+    a: "RPII maintains a public register of certified inspectors. Every certified inspector has a unique registration number, which should appear on every inspection report they issue. Operators commissioning inspections should confirm the inspector&rsquo;s registration via the official register before accepting the work, and should expect the registration number to appear on the final report alongside the inspector&rsquo;s signature.",
+  },
+  {
+    q: "Is CIPE or any other qualification equivalent to RPII?",
+    a: "Certified Inspectors of Playground Equipment (CIPE) is a US-rooted qualification with international recognition. Some UK operators accept CIPE as equivalent to RPII, particularly for sites with American play equipment. However, in mainstream UK public procurement RPII remains the expected benchmark, and an RPII qualification is more commonly specified. An inspector with both credentials may have an advantage in mixed-market work.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.a,
+    },
+  })),
+};
+---
+<BaseLayout title={title} description={description}>
+  <ContentBreadcrumbs
+    crumbs={[
+      { label: "Home", href: "/" },
+      { label: "RPII" },
+    ]}
+  />
+
+  <ContentHero
+    eyebrow="The Certification"
+    title="RPII Explained"
+    description="The Register of Play Inspectors International — the UK benchmark for playground inspector competence. What RPII is, the grades, how to get certified, and what operators should expect."
+    lastUpdated={lastUpdatedDisplay}
+    readingTime="8 min read"
+  />
+
+  <article class="mx-auto max-w-3xl px-6 py-12 sm:py-16">
+    <nav aria-label="On this page" class="not-prose mb-12 rounded-lg border border-slate-200 bg-slate-50 p-6">
+      <p class="text-sm font-semibold uppercase tracking-wide text-slate-500">On this page</p>
+      <ol class="mt-3 space-y-2 text-sm text-slate-700">
+        <li><a href="#what-rpii-is" class="hover:text-brand-700 hover:underline">1. What RPII is</a></li>
+        <li><a href="#why-it-matters" class="hover:text-brand-700 hover:underline">2. Why RPII matters</a></li>
+        <li><a href="#grades" class="hover:text-brand-700 hover:underline">3. The inspector grades</a></li>
+        <li><a href="#becoming-certified" class="hover:text-brand-700 hover:underline">4. Becoming RPII-certified</a></li>
+        <li><a href="#cpd-and-renewal" class="hover:text-brand-700 hover:underline">5. CPD and renewal</a></li>
+        <li><a href="#independence" class="hover:text-brand-700 hover:underline">6. Independence and conflicts of interest</a></li>
+        <li><a href="#finding-inspector" class="hover:text-brand-700 hover:underline">7. Finding an RPII-certified inspector</a></li>
+        <li><a href="#misconceptions" class="hover:text-brand-700 hover:underline">8. Common misconceptions</a></li>
+        <li><a href="#faq" class="hover:text-brand-700 hover:underline">Frequently asked questions</a></li>
+      </ol>
+    </nav>
+
+    <div class="prose prose-slate max-w-none prose-headings:scroll-mt-24 prose-headings:font-semibold prose-headings:text-slate-900 prose-a:text-brand-700 prose-a:no-underline hover:prose-a:underline prose-strong:text-slate-900">
+      <p class="lead">
+        If <a href="/bs-en-1176">BS EN 1176</a> is the rulebook of UK playground
+        safety, the Register of Play Inspectors International is the list of
+        people qualified to apply it. RPII is not a regulator, a government
+        agency, or a statutory body — but in UK procurement, insurance and
+        legal practice, RPII certification is what &ldquo;competent
+        inspector&rdquo; means.
+      </p>
+
+      <h2 id="what-rpii-is">1. What RPII is</h2>
+      <p>
+        The Register of Play Inspectors International (RPII) is the
+        independent body responsible for certifying playground inspectors
+        in the UK. It is a membership organisation funded by inspector
+        subscriptions, and its function is to operate a register of
+        individuals who have demonstrated competence in one or more of the
+        inspection grades defined by BS EN 1176.
+      </p>
+      <p>
+        RPII does not itself inspect playgrounds. It does not employ or
+        supply inspectors. Its role is to set the competence bar, assess
+        candidates against it, maintain the public register of those who
+        have passed, and require ongoing CPD so that registered inspectors
+        stay current with the standard and with industry practice.
+      </p>
+      <p>
+        The body&rsquo;s full public-facing website is at
+        <a href="https://www.playinspectors.com" rel="noopener" target="_blank">playinspectors.com</a>,
+        where the live register, current training routes, renewal
+        requirements, and the public complaints process can all be
+        accessed.
+      </p>
+
+      <h2 id="why-it-matters">2. Why RPII matters</h2>
+      <p>
+        RPII certification is not a legal requirement in any UK statute. It
+        matters because of the weight it carries in three parallel systems:
+      </p>
+      <ul>
+        <li>
+          <strong>Procurement</strong> — local authority contracts, school
+          tenders, housing association frameworks, and the tender documents
+          for most insurance-backed operators explicitly require RPII
+          certification for annual inspection work. An uncertified inspector
+          is not a commercial proposition for most UK sites.
+        </li>
+        <li>
+          <strong>Insurance</strong> — operators&rsquo; public liability
+          insurers expect to see current RPII-certified annual inspection
+          reports. A reported incident on a site with an inspection report
+          from an uncertified inspector is a difficult starting position
+          for any claim.
+        </li>
+        <li>
+          <strong>Legal defensibility</strong> — in the event of an
+          incident, the first question asked is whether the operator took
+          reasonable steps. A current RPII inspection report is the
+          shortest, clearest demonstration that they did. Absent that, the
+          operator is arguing competence from first principles.
+        </li>
+      </ul>
+      <p>
+        The effect is that RPII certification is, in practical terms,
+        almost mandatory for anyone doing commercial playground inspection
+        work in the UK — even though no law says so.
+      </p>
+
+      <h2 id="grades">3. The inspector grades</h2>
+      <p>
+        RPII offers separate certifications for each of the three
+        inspection tiers defined in BS EN 1176-7, plus a distinct
+        qualification for newly installed equipment:
+      </p>
+
+      <h3>Routine Visual Inspector</h3>
+      <p>
+        Certifies the holder to carry out the daily-to-weekly visual
+        checks that make up the first tier of the BS EN 1176 inspection
+        model. Accessible to operator staff (grounds teams, school
+        caretakers, parks operatives). Shortest training route, relatively
+        modest assessment. A practical baseline qualification for anyone
+        responsible for a site&rsquo;s day-to-day safety.
+      </p>
+
+      <h3>Operational Inspector</h3>
+      <p>
+        Certifies the holder to carry out operational inspections — the
+        more detailed monthly-to-quarterly check. More substantial training
+        than the Routine grade, covering equipment familiarity, fixing
+        assessment, surfacing depth measurement, and progress tracking of
+        previously identified defects. The practical mid-tier qualification
+        for site operators who want to bring operational inspections
+        in-house.
+      </p>
+
+      <h3>Annual Inspector</h3>
+      <p>
+        Certifies the holder to carry out the full annual main inspection
+        on existing sites. This is the grade with the greatest
+        commercial weight — it is what public procurement contracts
+        typically specify. Training is substantial and assessment is
+        formal. Once qualified, the Annual Inspector is able to operate
+        independently (subject to the independence requirements discussed
+        below).
+      </p>
+
+      <h3>Post-Installation Inspector</h3>
+      <p>
+        Certifies the holder to inspect newly installed or substantially
+        refurbished equipment before it is opened to the public. This is
+        typically the most demanding RPII route, usually requiring prior
+        inspection experience and technical qualifications relevant to
+        construction and engineering. The certified pool is smaller than
+        the Annual Inspector pool, and demand is concentrated around new
+        installations and major site refurbishments.
+      </p>
+
+      <ContentCTA
+        headline="InspectVoice is built for RPII-certified inspectors."
+        body="Voice-dictated defect capture, on-device PDF report generation, findings carried forward across inspections, and full audit trail — designed around the workflow of independent UK RPII inspectors in the field."
+      />
+
+      <h2 id="becoming-certified">4. Becoming RPII-certified</h2>
+      <p>
+        The certification route depends on the grade. In summary:
+      </p>
+      <ul>
+        <li>
+          <strong>Routine and Operational grades</strong> — accessible to
+          candidates without existing inspection qualifications.
+          Completion of an RPII-approved training course followed by
+          assessment. Turnaround can be a matter of weeks.
+        </li>
+        <li>
+          <strong>Annual Inspector grade</strong> — requires more
+          substantial training, a formal written assessment, and usually a
+          practical assessment at a real site. Candidates without existing
+          relevant qualifications typically work up through the lower
+          grades first.
+        </li>
+        <li>
+          <strong>Post-Installation Inspector grade</strong> — typically
+          requires existing inspection experience, technical qualifications
+          relevant to construction or engineering, and a more demanding
+          assessment. The smallest certified population of any grade.
+        </li>
+      </ul>
+      <p>
+        Training is delivered through a network of RPII-approved course
+        providers. RPII itself sets and assesses the standard rather than
+        providing all training directly. Current approved providers and
+        course dates are listed on the RPII website.
+      </p>
+      <p>
+        A significant portion of successful candidates enter from adjacent
+        backgrounds — grounds maintenance, construction, engineering,
+        health and safety — where existing skills map well onto the
+        technical content of playground inspection. A smaller proportion
+        come from pure parks and leisure backgrounds.
+      </p>
+
+      <h2 id="cpd-and-renewal">5. CPD and renewal</h2>
+      <p>
+        RPII certification is not a one-off qualification. Registered
+        inspectors are required to:
+      </p>
+      <ul>
+        <li>Re-register periodically — the current cycle is published on the RPII website;</li>
+        <li>Demonstrate ongoing CPD — attendance at approved training events, engagement with updates to BS EN 1176 and BS EN 1177, and continued inspection activity;</li>
+        <li>Maintain appropriate professional indemnity insurance cover;</li>
+        <li>Operate within RPII&rsquo;s code of conduct, including the independence requirements set out below.</li>
+      </ul>
+      <p>
+        Certification that lapses through missed renewal is not lost
+        permanently but typically requires refresher training or
+        re-assessment to reinstate. Active inspectors maintain continuous
+        registration as standard practice.
+      </p>
+
+      <h2 id="independence">6. Independence and conflicts of interest</h2>
+      <p>
+        The value of an RPII-certified annual inspection is rooted in
+        independence. An inspector with a commercial interest in finding
+        remedial work cannot produce a finding that carries the same
+        weight as one from a disinterested party. RPII&rsquo;s code of
+        conduct formally addresses this: registered inspectors are
+        expected to declare relevant conflicts, decline inspections where
+        genuine conflicts exist, and separate their inspection work from
+        any repair or maintenance contracting they also do.
+      </p>
+      <p>
+        In practice, the cleanest operator arrangement is to contract
+        annual inspections from one supplier and maintenance or repair
+        from a different supplier. The marginal cost of that separation is
+        far less than the loss of defensibility if the two roles are
+        blurred.
+      </p>
+
+      <h2 id="finding-inspector">7. Finding an RPII-certified inspector</h2>
+      <p>
+        Operators commissioning inspection work should:
+      </p>
+      <ul>
+        <li>Check the public RPII register to confirm the inspector&rsquo;s current registration and grade;</li>
+        <li>Require the inspector&rsquo;s RPII registration number to appear on the final report;</li>
+        <li>Ensure the inspector holds the correct grade for the work — Annual Inspector for annual main inspections, Post-Installation Inspector for new installations;</li>
+        <li>Establish independence from any ongoing maintenance or repair contractor;</li>
+        <li>Ask for current professional indemnity insurance evidence.</li>
+      </ul>
+      <p>
+        For small-volume operators (a single school, a parish council)
+        finding an RPII inspector is typically a matter of locating a
+        local specialist; for larger operators with a national footprint,
+        framework contracts with national inspection companies are common.
+      </p>
+
+      <h2 id="misconceptions">8. Common misconceptions</h2>
+      <p>
+        The recurring misunderstandings about RPII in operator-side
+        conversations:
+      </p>
+      <ul>
+        <li>
+          <strong>&ldquo;RPII is a government body&rdquo;</strong> — no.
+          It is an independent membership organisation. It has no
+          statutory enforcement powers.
+        </li>
+        <li>
+          <strong>&ldquo;Any inspector will do if they show a
+          certificate&rdquo;</strong> — the grade matters. A Routine
+          Visual certificate does not qualify its holder to produce an
+          annual main inspection.
+        </li>
+        <li>
+          <strong>&ldquo;My landscaper&rsquo;s insurance includes
+          inspection&rdquo;</strong> — occasionally true, often not, and
+          even when true, does not substitute for independent
+          RPII-certified inspection.
+        </li>
+        <li>
+          <strong>&ldquo;One annual report covers us for years&rdquo;</strong>
+          — no. The inspection is valid for one year from the date of
+          inspection and must be repeated annually for ongoing
+          compliance.
+        </li>
+        <li>
+          <strong>&ldquo;RPII certification makes the inspector legally
+          liable for injuries&rdquo;</strong> — the inspector is
+          responsible for the quality and accuracy of their report.
+          Operational responsibility for the site, including acting on
+          the report&rsquo;s findings, remains with the operator.
+        </li>
+      </ul>
+
+      <h2 id="faq">Frequently asked questions</h2>
+      <div class="not-prose mt-6 space-y-4">
+        {faqs.map((item) => (
+          <details class="group rounded-lg border border-slate-200 bg-white p-5 transition hover:border-slate-300">
+            <summary class="flex cursor-pointer items-start justify-between gap-4 text-base font-semibold text-slate-900 [&::-webkit-details-marker]:hidden">
+              <span>{item.q}</span>
+              <svg class="mt-1 h-5 w-5 flex-shrink-0 text-slate-400 transition group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <p class="mt-3 text-base leading-relaxed text-slate-600">{item.a}</p>
+          </details>
+        ))}
+      </div>
+
+      <ContentCTA />
+
+      <RelatedPages
+        heading="Related reading"
+        pages={[
+          {
+            title: "BS EN 1176 Explained",
+            description: "The UK standard that RPII-certified inspectors work to — what it covers, who must comply, and the three inspection regimes.",
+            href: "/bs-en-1176",
+          },
+          {
+            title: "Annual Main Inspection",
+            description: "The inspection tier that almost universally requires RPII Annual Inspector certification in UK procurement.",
+            href: "/bs-en-1176/annual-inspections",
+          },
+          {
+            title: "Risk Ratings",
+            description: "How RPII-certified inspectors categorise defect severity in their reports, and what operators must do with each rating.",
+            href: "/bs-en-1176/risk-ratings",
+          },
+        ]}
+      />
+    </div>
+  </article>
+
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+</BaseLayout>

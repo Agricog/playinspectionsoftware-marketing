@@ -21,6 +21,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import ContentHero from "../../components/ContentHero.astro";
 import ContentBreadcrumbs from "../../components/ContentBreadcrumbs.astro";
 import ContentCTA from "../../components/ContentCTA.astro";
+import RelatedPages from "../../components/RelatedPages.astro";
 import { SITE, ORGANISATION } from "../../consts";
 
 const title = "BS EN 1176 Explained: The UK Playground Inspection Standard";
@@ -339,6 +340,42 @@ const faqSchema = {
       </div>
 
       <ContentCTA />
+
+      <RelatedPages
+        heading="Dive deeper"
+        pages={[
+          {
+            title: "Routine Visual Inspection",
+            description: "The daily-to-weekly walk-round carried out by operator staff — practical checklist and escalation approach.",
+            href: "/bs-en-1176/routine-inspections",
+          },
+          {
+            title: "Operational Inspection",
+            description: "The middle tier — monthly to quarterly checks covering equipment stability, wear, and maintenance progress.",
+            href: "/bs-en-1176/operational-inspections",
+          },
+          {
+            title: "Annual Main Inspection",
+            description: "The top tier — the independent 12-monthly assessment by an RPII-certified inspector.",
+            href: "/bs-en-1176/annual-inspections",
+          },
+          {
+            title: "Critical Fall Height",
+            description: "How CFH is defined and measured, and why it dictates the surfacing requirement beneath every piece of equipment.",
+            href: "/bs-en-1176/critical-fall-height",
+          },
+          {
+            title: "Impact-Attenuating Surfacing",
+            description: "Surfacing materials, BS EN 1177 testing, impact-area coverage, and what inspectors look at on every main inspection.",
+            href: "/bs-en-1176/impact-attenuating-surfacing",
+          },
+          {
+            title: "Risk Ratings",
+            description: "How defects are categorised by severity — low, medium, high, very high — and what response each carries.",
+            href: "/bs-en-1176/risk-ratings",
+          },
+        ]}
+      />
     </div>
   </article>
 

@@ -1,0 +1,464 @@
+---
+/**
+ * /playground-inspection-software — pillar page.
+ *
+ * Third topical pillar, targeting the exact-match primary commercial
+ * keyword "playground inspection software" and related variants:
+ * "playground inspection app", "BS EN 1176 software", "RPII inspection
+ * software", "playground safety software UK", "best playground
+ * inspection software".
+ *
+ * Positioned as a buyer's guide rather than a product pitch — defines
+ * the category, covers evaluation criteria, and surfaces the modern
+ * capability set (voice dictation, offline-first, on-device PDF) as
+ * the standard to expect rather than as InspectVoice-specific
+ * marketing.
+ *
+ * Future cluster pages may cover /playground-inspection-software/{
+ * voice-dictation, offline-first, defect-carry-forward,
+ * evaluating-options, migration-from-paper }.
+ */
+
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ContentHero from "../../components/ContentHero.astro";
+import ContentBreadcrumbs from "../../components/ContentBreadcrumbs.astro";
+import ContentCTA from "../../components/ContentCTA.astro";
+import RelatedPages from "../../components/RelatedPages.astro";
+import { SITE, ORGANISATION } from "../../consts";
+
+const title = "Playground Inspection Software: A 2026 Buyer's Guide";
+const description =
+  "What playground inspection software is, what good systems do in 2026, and how UK operators, RPII inspectors, and council parks teams should evaluate their options. A practical buyer's guide from Play Inspection Software.";
+const lastUpdatedDisplay = "23 April 2026";
+const lastUpdatedISO = "2026-04-23";
+const datePublishedISO = "2026-04-23";
+const canonical = `${SITE.url.replace(/\/$/, "")}/playground-inspection-software`;
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: title,
+  description,
+  datePublished: datePublishedISO,
+  dateModified: lastUpdatedISO,
+  author: { "@type": "Organization", name: ORGANISATION.legalName, url: SITE.url },
+  publisher: { "@type": "Organization", name: SITE.name, url: SITE.url },
+  mainEntityOfPage: { "@type": "WebPage", "@id": canonical },
+};
+
+const faqs = [
+  {
+    q: "Do I actually need playground inspection software, or is paper enough?",
+    a: "Paper still works for a single site with a single inspector carrying out low-frequency inspections. Above that threshold — multiple sites, multiple inspectors, frequent routine checks, or any volume of defect tracking — the cost of paper in missed records, lost time, and weak audit trails starts to exceed the cost of software. The tipping point for most UK operators sits somewhere between one and three sites. For independent RPII inspectors doing commercial work, software has become the professional standard regardless of site count, because the time saved on post-inspection admin pays for the subscription within the first few inspections.",
+  },
+  {
+    q: "What&rsquo;s the difference between playground inspection software and generic asset management systems?",
+    a: "Generic asset management systems treat a playground as a row in a spreadsheet — they can record that an inspection happened and attach a document, but they do not understand the structure of a BS EN 1176 inspection. Purpose-built playground inspection software knows about the three inspection tiers, the risk rating model, critical fall height measurement, surfacing assessment, and the reporting conventions UK procurement expects. Either approach can satisfy the basic compliance requirement; only purpose-built software produces reports that read like they came from a professional inspection practice.",
+  },
+  {
+    q: "Should playground inspection software work offline?",
+    a: "Yes. Many UK inspection sites have unreliable mobile data — rural parks, housing estate interiors, even urban sites in signal shadows. Software that requires connectivity for basic inspection functions (dictation, photo capture, defect entry) will fail at the moment of use. Offline-first is the 2026 professional standard: every function works without signal, with automatic sync when connection returns. Any evaluation of playground inspection software should include a real on-site test in a low-signal location.",
+  },
+  {
+    q: "Is voice dictation reliable enough for formal inspection reports?",
+    a: "For modern implementations, yes. Voice dictation does not replace the inspector&rsquo;s judgement; it captures the inspector&rsquo;s words more efficiently than typing. The critical thing is that dictated output is structured into the correct report section, not dumped as a free-text blob. Good systems recognise which item of equipment is being described, which defect category is being discussed, and apply the correct risk rating from the inspector&rsquo;s spoken assessment. The inspector remains responsible for the report&rsquo;s accuracy — the software handles the capture.",
+  },
+  {
+    q: "How much should playground inspection software cost?",
+    a: "Subscription pricing for UK-focused playground inspection software typically falls in the low hundreds of pounds per month for small teams, with enterprise-scale tooling for large authorities priced higher. Be cautious of quotes significantly above or below this band. Very cheap tools are usually repurposed generic software that lacks BS EN 1176 structure; very expensive tools often embed inspection services that an independent RPII inspector does not need. The total cost calculation should include subscription plus time saved on post-inspection admin — the latter usually dominates the former for commercial inspectors.",
+  },
+  {
+    q: "Can I import my existing site register and inspection history?",
+    a: "Good playground inspection software accepts bulk import of site registers and asset lists from spreadsheets or CSV. Historic reports are typically attached as reference PDFs rather than reconstructed inside the new system — the structural differences between systems make full reconstruction impractical and rarely valuable. Defect continuity (carried-forward findings) usually starts from the first inspection in the new system forward. Any vendor claiming full historic data reconstruction is worth scrutinising; claiming import of site registers and reference attachment of historic reports is realistic.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: { "@type": "Answer", text: item.a },
+  })),
+};
+---
+<BaseLayout title={title} description={description}>
+  <ContentBreadcrumbs
+    crumbs={[
+      { label: "Home", href: "/" },
+      { label: "Playground Inspection Software" },
+    ]}
+  />
+
+  <ContentHero
+    eyebrow="Buyer's guide"
+    title="Playground Inspection Software in 2026"
+    description="What the category does, what good systems do today, and how UK operators and RPII inspectors should evaluate their options. A practical buyer's guide, not a product pitch."
+    lastUpdated={lastUpdatedDisplay}
+    readingTime="8 min read"
+  />
+
+  <article class="mx-auto max-w-3xl px-6 py-12 sm:py-16">
+    <nav aria-label="On this page" class="not-prose mb-12 rounded-lg border border-slate-200 bg-slate-50 p-6">
+      <p class="text-sm font-semibold uppercase tracking-wide text-slate-500">On this page</p>
+      <ol class="mt-3 space-y-2 text-sm text-slate-700">
+        <li><a href="#what-it-is" class="hover:text-brand-700 hover:underline">1. What playground inspection software is</a></li>
+        <li><a href="#who-uses-it" class="hover:text-brand-700 hover:underline">2. Who uses it and why</a></li>
+        <li><a href="#core-capabilities" class="hover:text-brand-700 hover:underline">3. Core capabilities a good system should have</a></li>
+        <li><a href="#modern-vs-legacy" class="hover:text-brand-700 hover:underline">4. Modern capabilities vs legacy approaches</a></li>
+        <li><a href="#evaluation-checklist" class="hover:text-brand-700 hover:underline">5. Evaluation checklist</a></li>
+        <li><a href="#deployment" class="hover:text-brand-700 hover:underline">6. Deployment considerations</a></li>
+        <li><a href="#data-and-security" class="hover:text-brand-700 hover:underline">7. Data and security considerations</a></li>
+        <li><a href="#migration" class="hover:text-brand-700 hover:underline">8. Migration from paper or legacy systems</a></li>
+        <li><a href="#faq" class="hover:text-brand-700 hover:underline">Frequently asked questions</a></li>
+      </ol>
+    </nav>
+
+    <div class="prose prose-slate max-w-none prose-headings:scroll-mt-24 prose-headings:font-semibold prose-headings:text-slate-900 prose-a:text-brand-700 prose-a:no-underline hover:prose-a:underline prose-strong:text-slate-900">
+      <p class="lead">
+        Playground inspection software is the category of tools used by UK
+        RPII-certified inspectors, parks teams, and site operators to
+        carry out and record <a href="/bs-en-1176">BS EN 1176</a>-aligned
+        inspections. A decade ago the category barely existed
+        commercially; today it is the professional standard for
+        inspection work above single-site scale. This page is a practical
+        buyer&rsquo;s guide to what the category does and how to choose
+        well.
+      </p>
+
+      <h2 id="what-it-is">1. What playground inspection software is</h2>
+      <p>
+        Playground inspection software is purpose-built software that
+        handles three connected jobs:
+      </p>
+      <ol>
+        <li>
+          <strong>Capture</strong> — recording inspection findings
+          on-site, including equipment inventory, defect identification,
+          risk ratings, photographs, and surfacing measurements.
+        </li>
+        <li>
+          <strong>Report generation</strong> — producing a formal written
+          inspection report in the structure BS EN 1176 expects and that
+          UK procurement, insurance, and legal contexts require.
+        </li>
+        <li>
+          <strong>Continuity and oversight</strong> — tracking defects
+          across inspection cycles, managing multi-site portfolios, and
+          providing the audit trail that demonstrates ongoing duty of
+          care.
+        </li>
+      </ol>
+      <p>
+        The category distinction that matters is between <em>purpose-built
+        playground inspection software</em> (which understands the
+        structure of a BS EN 1176 inspection) and <em>generic asset
+        management systems</em> (which can record that an inspection
+        happened but do not know what one contains). Both can satisfy
+        basic compliance; only the former produces reports that read as
+        professional inspection output.
+      </p>
+
+      <h2 id="who-uses-it">2. Who uses it and why</h2>
+      <p>
+        Three primary user groups, each with a different driver:
+      </p>
+      <ul>
+        <li>
+          <strong>Independent RPII-certified inspectors</strong> — the
+          driver is time. A typical annual inspection produces roughly
+          equal amounts of on-site work and post-inspection paperwork;
+          software that eliminates the paperwork doubles practical
+          capacity. See <a href="/for/independent-inspectors">our page
+          for independent inspectors</a>.
+        </li>
+        <li>
+          <strong>Multi-inspector inspection companies</strong> — the
+          driver is consistency. Five inspectors working from Word
+          templates produce five visibly different reports; a single
+          company-enforced template produces one coherent client-facing
+          output. See <a href="/for/inspection-companies">our page for
+          inspection companies</a>.
+        </li>
+        <li>
+          <strong>Local authorities and large operators</strong> — the
+          driver is portfolio oversight. Tracking compliance across
+          dozens or hundreds of sites manually is where things fall
+          through the cracks; a unified platform makes the whole estate
+          visible. See <a href="/for/local-authorities">our page for
+          local authorities</a>.
+        </li>
+      </ul>
+      <p>
+        A fourth group — small operators with a single site (a nursery,
+        a village hall, a pub play area) — sometimes benefits from
+        software but often does not need it. Paper records plus a
+        contracted annual inspector are proportionate for truly
+        single-site low-frequency inspection.
+      </p>
+
+      <h2 id="core-capabilities">3. Core capabilities a good system should have</h2>
+      <p>
+        Regardless of the specific vendor, any serious playground
+        inspection software in 2026 should do all of the following:
+      </p>
+      <ul>
+        <li>
+          <strong>Structured inspection capture</strong> — findings
+          attached to specific items of equipment, with BS EN 1176 hazard
+          categories and risk ratings built in rather than free-text.
+        </li>
+        <li>
+          <strong>Photo evidence integration</strong> — photographs
+          captured at the defect, attached automatically to the finding,
+          appearing in the right place in the final report.
+        </li>
+        <li>
+          <strong>Per-equipment critical fall height recording</strong> —
+          CFH measured and recorded on-site, compared to surfacing
+          rating, flagging any discrepancy as a finding in its own
+          right.
+        </li>
+        <li>
+          <strong>Formal report generation</strong> — BS EN 1176-aligned
+          PDF output with cover page, equipment inventory, individual
+          defect records, risk ratings, and inspector signature with
+          RPII registration number.
+        </li>
+        <li>
+          <strong>Defect carry-forward</strong> — findings from the
+          previous inspection appearing automatically on the next one,
+          flagged as resolved, still present, or worsened.
+        </li>
+        <li>
+          <strong>Multi-site portfolio view</strong> — even single-
+          inspector practitioners accumulate dozens of sites over time;
+          a clean multi-site view matters from the second inspection
+          onward.
+        </li>
+        <li>
+          <strong>Export and data portability</strong> — the operator or
+          inspector owns their data and can export it without friction.
+        </li>
+      </ul>
+
+      <h2 id="modern-vs-legacy">4. Modern capabilities vs legacy approaches</h2>
+      <p>
+        The category has evolved substantially over the past five years.
+        Three capabilities have moved from &ldquo;cutting edge&rdquo; to
+        &ldquo;professional baseline&rdquo; in that time:
+      </p>
+
+      <h3>Voice dictation at the equipment</h3>
+      <p>
+        Legacy approach: the inspector writes notes on a clipboard or
+        taps into a mobile form, then types the report later. Modern
+        approach: the inspector dictates findings verbally at the
+        equipment, with the software structuring the dictation into the
+        correct report sections automatically. The time saving is
+        substantial — typically an hour of evening paperwork eliminated
+        per inspection day. The quality impact is also real: findings
+        captured at the moment of observation are more detailed and
+        accurate than notes reconstructed from memory.
+      </p>
+
+      <h3>Offline-first operation</h3>
+      <p>
+        Legacy approach: cloud-based web tools that degrade or fail
+        without signal. Modern approach: full local-first operation —
+        dictation, photos, report generation all work without any
+        network connection, with automatic sync when signal returns.
+        For UK inspection work in rural parks, housing estates, and
+        signal-shadow urban sites, this is not a nice-to-have; it is
+        the difference between software that works on-site and software
+        that does not.
+      </p>
+
+      <h3>On-device PDF generation</h3>
+      <p>
+        Legacy approach: inspection data uploaded to a server, which
+        generates the report hours or days later. Modern approach: the
+        formal PDF report is generated on the device itself, available
+        before the inspector leaves the site. The benefit is not merely
+        speed — it is that the inspector can review the completed
+        report in context, with the site still in front of them, and
+        correct any issue immediately rather than after the fact.
+      </p>
+
+      <ContentCTA
+        headline="All three modern capabilities, as standard."
+        body="InspectVoice delivers voice dictation, offline-first operation, and on-device PDF generation as core functionality — not premium add-ons. Built specifically for UK RPII-certified inspection work."
+      />
+
+      <h2 id="evaluation-checklist">5. Evaluation checklist</h2>
+      <p>
+        When evaluating a specific playground inspection software
+        option, work through the following checklist. Any item answered
+        weakly is a reason to scrutinise further.
+      </p>
+      <ul>
+        <li>Does it understand BS EN 1176 structure (hazard categories, risk ratings, surfacing assessment) out of the box, or does it need configuring to fit?</li>
+        <li>Will it work without signal on-site, for every core inspection function — not just read-only viewing?</li>
+        <li>Does it generate the formal PDF report on-device, or does it require a server round-trip?</li>
+        <li>Can defects be carried forward automatically between inspections, or does this require manual tracking?</li>
+        <li>Does the report output look professional enough to send directly to a client or an insurer without editing?</li>
+        <li>Is there a real free trial — not a sales demo — with no credit card required?</li>
+        <li>Is there an annual lock-in, or can the subscription be cancelled at any time?</li>
+        <li>Where is data hosted? Is UK data residency explicit?</li>
+        <li>Can the user export all their data on demand, in a structured format?</li>
+        <li>What happens to the data if the subscription is cancelled?</li>
+        <li>Does it support both in-house and contracted inspector workflows under one account?</li>
+        <li>Is support responsive? A test email before signing up is a cheap data point.</li>
+      </ul>
+
+      <h2 id="deployment">6. Deployment considerations</h2>
+      <p>
+        Modern playground inspection software is typically delivered as
+        a progressive web app (PWA) — running in a mobile browser but
+        installable to the device&rsquo;s home screen and operating
+        like a native app. The PWA model matters because:
+      </p>
+      <ul>
+        <li>It works across iOS, Android, and desktop from a single codebase;</li>
+        <li>It can operate fully offline once installed;</li>
+        <li>Updates deploy centrally without requiring app store review cycles;</li>
+        <li>It avoids the mobile-app-store gatekeeping that has historically limited B2B inspection tools.</li>
+      </ul>
+      <p>
+        Native iOS or Android apps are a viable alternative but carry
+        the disadvantage that new features roll out at app-store pace
+        rather than at vendor pace. Pure web applications that cannot
+        be installed to the home screen should be regarded with
+        suspicion — they indicate that offline operation is not a first
+        principle.
+      </p>
+
+      <h2 id="data-and-security">7. Data and security considerations</h2>
+      <p>
+        For any playground inspection software handling UK operator
+        data, the following should be non-negotiable:
+      </p>
+      <ul>
+        <li>
+          <strong>UK data residency</strong> — production data held on
+          infrastructure located in the United Kingdom. No data leaving
+          UK jurisdiction.
+        </li>
+        <li>
+          <strong>UK GDPR compliance</strong> — data processing
+          agreement available, subject access requests handled within
+          statutory timescales, clear controller/processor roles.
+        </li>
+        <li>
+          <strong>Encryption</strong> — HTTPS enforced, database and
+          object storage encrypted, HSTS enabled.
+        </li>
+        <li>
+          <strong>Multi-tenant isolation</strong> — one
+          customer&rsquo;s data isolated from another at the database
+          layer, with row-level security.
+        </li>
+        <li>
+          <strong>Authentication</strong> — per-user accounts,
+          revocable access, role-based permissions for team accounts.
+        </li>
+        <li>
+          <strong>Backup and recovery</strong> — documented backup
+          schedule, tested recovery procedure.
+        </li>
+        <li>
+          <strong>Export on demand</strong> — the customer can retrieve
+          all their data at any time, in a structured format.
+        </li>
+      </ul>
+
+      <h2 id="migration">8. Migration from paper or legacy systems</h2>
+      <p>
+        Operators and inspectors migrating to purpose-built software
+        typically come from one of three starting points:
+      </p>
+      <ul>
+        <li>
+          <strong>Paper books and hand-written reports</strong> —
+          migration is essentially a fresh start. Existing sites get
+          entered into the new system (usually via bulk CSV import);
+          historical reports are retained as scanned reference PDFs
+          attached to each site; defect continuity starts from the
+          first inspection in the new system.
+        </li>
+        <li>
+          <strong>Word templates and email-attached reports</strong> —
+          similar migration pattern to paper, with the slight advantage
+          that existing report structure can be visually compared to
+          the new system&rsquo;s output to set customer expectations.
+        </li>
+        <li>
+          <strong>Existing inspection software</strong> — migration is
+          more involved but still practical. Site register and asset
+          list export from the legacy system, import into the new one.
+          Historic reports attached as reference PDFs. Expect the
+          migration to take a calendar month of back-and-forth before
+          operational use begins.
+        </li>
+      </ul>
+      <p>
+        The most common migration mistake is waiting for perfect data
+        before starting. Partial migration with ongoing refinement is
+        almost always faster to productive use than trying to get every
+        historical site and every archived report into the new system
+        before the first live inspection.
+      </p>
+
+      <h2 id="faq">Frequently asked questions</h2>
+      <div class="not-prose mt-6 space-y-4">
+        {faqs.map((item) => (
+          <details class="group rounded-lg border border-slate-200 bg-white p-5 transition hover:border-slate-300">
+            <summary class="flex cursor-pointer items-start justify-between gap-4 text-base font-semibold text-slate-900 [&::-webkit-details-marker]:hidden">
+              <span>{item.q}</span>
+              <svg class="mt-1 h-5 w-5 flex-shrink-0 text-slate-400 transition group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <p class="mt-3 text-base leading-relaxed text-slate-600">{item.a}</p>
+          </details>
+        ))}
+      </div>
+
+      <ContentCTA />
+
+      <RelatedPages
+        pages={[
+          {
+            title: "BS EN 1176 Explained",
+            description: "The standard playground inspection software is built around — a complete guide to what it covers and how compliance is structured.",
+            href: "/bs-en-1176",
+          },
+          {
+            title: "RPII Explained",
+            description: "The certification framework for the inspectors the software is designed to support.",
+            href: "/rpii",
+          },
+          {
+            title: "For Independent Inspectors",
+            description: "InspectVoice positioned for self-employed RPII Annual Inspectors running solo practices.",
+            href: "/for/independent-inspectors",
+          },
+          {
+            title: "For Inspection Companies",
+            description: "InspectVoice positioned for multi-inspector firms delivering inspection services at scale.",
+            href: "/for/inspection-companies",
+          },
+          {
+            title: "For Local Authorities",
+            description: "InspectVoice positioned for UK councils managing multi-site playground portfolios.",
+            href: "/for/local-authorities",
+          },
+        ]}
+      />
+    </div>
+  </article>
+
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+</BaseLayout>

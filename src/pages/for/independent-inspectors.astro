@@ -1,0 +1,267 @@
+---
+/**
+ * /for/independent-inspectors — persona pillar.
+ *
+ * Targets the primary commercial audience: self-employed UK RPII Annual
+ * Inspectors running one-person or small independent practices. Keywords:
+ * "playground inspection software for independent inspectors",
+ * "RPII inspector app", "self-employed playground inspector tools",
+ * "playground inspector software UK".
+ *
+ * Commercial tone. Structured as: who / pain / solution / differentiators
+ * / features / FAQ / CTA. No table of contents — this is not a reference
+ * article, it reads linearly.
+ */
+
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ContentHero from "../../components/ContentHero.astro";
+import ContentBreadcrumbs from "../../components/ContentBreadcrumbs.astro";
+import ContentCTA from "../../components/ContentCTA.astro";
+import RelatedPages from "../../components/RelatedPages.astro";
+import { SITE, ORGANISATION, TRIAL } from "../../consts";
+
+const title =
+  "Playground Inspection Software for Independent RPII Inspectors";
+const description =
+  "Purpose-built software for self-employed UK RPII-certified playground inspectors. Voice-dictated reports, offline-first, on-device PDF generation — designed around the reality of independent inspection work.";
+const lastUpdatedDisplay = "23 April 2026";
+const lastUpdatedISO = "2026-04-23";
+const datePublishedISO = "2026-04-23";
+const canonical = `${SITE.url.replace(/\/$/, "")}/for/independent-inspectors`;
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: title,
+  description,
+  datePublished: datePublishedISO,
+  dateModified: lastUpdatedISO,
+  author: { "@type": "Organization", name: ORGANISATION.legalName, url: SITE.url },
+  publisher: { "@type": "Organization", name: SITE.name, url: SITE.url },
+  mainEntityOfPage: { "@type": "WebPage", "@id": canonical },
+};
+
+const faqs = [
+  {
+    q: "Do I need a signal on-site to use InspectVoice?",
+    a: "No. InspectVoice is offline-first. Voice dictation, photo capture, findings, risk ratings, and PDF report generation all work without any network connection. Sync to the server happens automatically when you next have signal. This is important in practice — many UK sites, particularly rural parks and housing estates, have unreliable mobile data.",
+  },
+  {
+    q: "Does it work on iPad?",
+    a: "Yes. InspectVoice is a progressive web app that runs on iPad, iPhone, Android and desktop. Most independent inspectors use an iPad on-site. Full voice dictation is supported on iPad when online; for offline dictation on iPad Safari specifically, audio is recorded locally and transcribed when you next reach signal.",
+  },
+  {
+    q: "How long does it take to learn?",
+    a: "Most inspectors are producing their first client-ready report within an hour. The voice dictation model maps directly onto the way inspectors already describe findings verbally — the software just captures, structures, and formats what you would say anyway. Existing BS EN 1176 templates are built in, so there is no setup phase before you can start a real inspection.",
+  },
+  {
+    q: "Can I bring across inspection history from my current tool?",
+    a: "Yes, for most cases. Site registers and asset lists can be imported from spreadsheets or CSV. Historic inspection reports can be retained as reference PDFs attached to each site. For defect continuity (carried-forward findings) to work fully, the current annual inspection serves as the reset point — from that inspection forward, defects are tracked between inspections automatically.",
+  },
+  {
+    q: "What happens if I want to leave?",
+    a: "All of your data — site registers, inspections, reports, photos — is yours and exportable. There is no annual lock-in, no cancellation penalty, no data held hostage. Cancel at any time. On cancellation you can export a full archive of everything in the account.",
+  },
+  {
+    q: "Is the software compliant with BS EN 1176?",
+    a: "BS EN 1176 specifies what an inspection report must contain, not how it is produced. InspectVoice&rsquo;s reports are structured around the standard&rsquo;s requirements and include everything a BS EN 1176-aligned annual main inspection report should contain — equipment inventory, per-item findings, risk ratings, photographs, surfacing assessment, inspector identification. Full BS EN 1176 compliance is the inspector&rsquo;s professional responsibility; InspectVoice provides the report scaffolding that makes compliance straightforward.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: { "@type": "Answer", text: item.a },
+  })),
+};
+---
+<BaseLayout title={title} description={description}>
+  <ContentBreadcrumbs
+    crumbs={[
+      { label: "Home", href: "/" },
+      { label: "For Independent Inspectors" },
+    ]}
+  />
+
+  <ContentHero
+    eyebrow="For independent inspectors"
+    title="Inspection software built for the way you actually work."
+    description="Voice-dictated findings on-site, PDF reports generated before you leave, offline-first so signal is never an issue. Designed around the reality of self-employed UK RPII-certified inspection practice."
+    lastUpdated={lastUpdatedDisplay}
+  />
+
+  <article class="mx-auto max-w-3xl px-6 py-12 sm:py-16">
+    <div class="prose prose-slate max-w-none prose-headings:scroll-mt-24 prose-headings:font-semibold prose-headings:text-slate-900 prose-a:text-brand-700 prose-a:no-underline hover:prose-a:underline prose-strong:text-slate-900">
+      <h2>The real problem: post-inspection admin</h2>
+      <p>
+        You already know how to inspect. You have the RPII Annual
+        Inspector certification, you know BS EN 1176 and BS EN 1177, you
+        know what you are looking at on every piece of equipment. The
+        actual inspection work is not the hard part of the job.
+      </p>
+      <p>
+        The hard part — the part that eats your evenings and limits how
+        many sites you can take on — is the paperwork after the
+        inspection. Typing up notes scribbled on a clipboard. Compiling
+        photographs from the phone. Formatting risk ratings. Producing
+        the final PDF. On a typical inspection day, an hour on-site
+        routinely turns into two hours of admin that evening. For a busy
+        inspector that is a quarter of every working week spent not
+        inspecting.
+      </p>
+      <p>
+        InspectVoice removes almost all of that. Findings are captured by
+        voice at the equipment itself, photographs are attached at the
+        point of capture, risk ratings are assigned on-site, and the
+        formal PDF report is generated on the device before you leave
+        the car park.
+      </p>
+
+      <h2>What makes it different</h2>
+      <ul>
+        <li>
+          <strong>Voice dictation at the equipment</strong> — describe
+          the finding exactly as you would to a colleague; the software
+          captures the wording, structures it, and files it under the
+          right item of equipment.
+        </li>
+        <li>
+          <strong>Offline-first</strong> — every function works without
+          signal. Dictation, photos, ratings, PDF generation — all
+          on-device. Sync happens automatically when you reach signal
+          again. Rural sites stop being a problem.
+        </li>
+        <li>
+          <strong>On-device PDF generation</strong> — no waiting for a
+          server to process the report. You leave the site with the
+          finished PDF in hand.
+        </li>
+        <li>
+          <strong>BS EN 1176-aligned structure</strong> — report
+          templates built around the standard&rsquo;s requirements. No
+          setup phase, no template-building exercise before you can
+          start real work.
+        </li>
+        <li>
+          <strong>Defect carry-forward</strong> — findings from the
+          previous inspection appear automatically on the next one,
+          flagged as &ldquo;resolved&rdquo;, &ldquo;still present&rdquo;,
+          or &ldquo;worsened&rdquo;. A continuous record across
+          inspection cycles, built in rather than maintained by hand.
+        </li>
+        <li>
+          <strong>Photo evidence integrated</strong> — attach photos at
+          the point of finding; they appear in the right place in the
+          PDF automatically.
+        </li>
+      </ul>
+
+      <h2>What you keep from your existing practice</h2>
+      <p>
+        InspectVoice replaces the reporting tooling, not your inspection
+        method. The professional judgement, the risk-rating decisions,
+        the client relationships, the commercial structure of your
+        business — all remain entirely yours. The software sits in the
+        position previously occupied by notebook-plus-camera-plus-Word.
+      </p>
+      <p>
+        Your existing site register can be imported from a spreadsheet.
+        Your historical reports can be retained for reference. Your
+        existing clients see the same inspector doing the same
+        professional work, just receiving the report faster and in a
+        more polished format.
+      </p>
+
+      <ContentCTA
+        headline="Try it on your next inspection."
+        body={`${TRIAL.durationDays}-day free trial with no credit card. Import your site register, run a real inspection, see the finished PDF on-device before you leave the site. If it doesn't work for you, walk away.`}
+      />
+
+      <h2>What the professional result looks like</h2>
+      <p>
+        The PDF that comes out of InspectVoice is what an RPII-certified
+        Annual Inspector&rsquo;s report should look like in 2026:
+      </p>
+      <ul>
+        <li>Cover page with site, inspector, date, and inspector&rsquo;s RPII registration number;</li>
+        <li>Equipment inventory with condition summary for each item;</li>
+        <li>Each identified defect with location, description, risk rating, photograph where relevant, and recommended action;</li>
+        <li>Surfacing assessment with measured depths where applicable;</li>
+        <li>Overall site summary;</li>
+        <li>Inspector declaration and signature;</li>
+        <li>Organised, formatted, client-ready — not a dump of raw notes.</li>
+      </ul>
+      <p>
+        Clients notice. Reports that arrive on the day of inspection, in
+        a visibly professional format, with clear photographs and
+        unambiguous risk ratings, carry weight that typed-up-three-days-later
+        Word documents do not.
+      </p>
+
+      <h2>Commercial basics</h2>
+      <ul>
+        <li>
+          <strong>{TRIAL.durationDays}-day free trial</strong> — no
+          credit card required. Run real inspections with real data.
+          Export everything at the end if you decide against continuing.
+        </li>
+        <li>
+          <strong>Monthly subscription</strong>, with all features
+          included. No separate modules, no per-inspection fees, no
+          document-storage surcharges.
+        </li>
+        <li>
+          <strong>No annual lock-in</strong> — cancel at any point, no
+          exit fees.
+        </li>
+        <li>
+          <strong>UK data residency</strong> — all data stored on UK
+          infrastructure, UK GDPR compliant.
+        </li>
+      </ul>
+
+      <h2>Frequently asked questions</h2>
+      <div class="not-prose mt-6 space-y-4">
+        {faqs.map((item) => (
+          <details class="group rounded-lg border border-slate-200 bg-white p-5 transition hover:border-slate-300">
+            <summary class="flex cursor-pointer items-start justify-between gap-4 text-base font-semibold text-slate-900 [&::-webkit-details-marker]:hidden">
+              <span>{item.q}</span>
+              <svg class="mt-1 h-5 w-5 flex-shrink-0 text-slate-400 transition group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <p class="mt-3 text-base leading-relaxed text-slate-600">{item.a}</p>
+          </details>
+        ))}
+      </div>
+
+      <ContentCTA />
+
+      <RelatedPages
+        pages={[
+          {
+            title: "BS EN 1176 Explained",
+            description: "The standard your reports are structured around. Full reference on the three inspection regimes and the hazard categories.",
+            href: "/bs-en-1176",
+          },
+          {
+            title: "RPII Explained",
+            description: "The certification the profession runs on, and why it carries the weight it does in UK procurement.",
+            href: "/rpii",
+          },
+          {
+            title: "Annual Main Inspection",
+            description: "The tier of work InspectVoice is primarily built around — the 12-monthly RPII-certified inspection.",
+            href: "/bs-en-1176/annual-inspections",
+          },
+        ]}
+      />
+    </div>
+  </article>
+
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+</BaseLayout>

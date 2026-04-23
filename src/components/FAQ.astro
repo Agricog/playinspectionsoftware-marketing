@@ -1,0 +1,114 @@
+---
+/**
+ * FAQ — six questions doing double duty.
+ *
+ * Each question is shaped around a real long-tail keyword we want to rank for:
+ *  - "is X BS EN 1176 compliant"
+ *  - "playground inspection app offline"
+ *  - "where is X data stored"
+ *  - "playground inspection software pricing"
+ *  - "RPII inspection app"
+ *  - "how does AI defect extraction work"
+ *
+ * Native <details>/<summary> for the disclosure UI — zero JS required, fully
+ * accessible, works without React or any client-side hydration. Cleanest
+ * possible solution for an Astro static site.
+ *
+ * Also emits FAQPage JSON-LD schema in a single <script type="application/ld+json">
+ * block — Google uses this for rich result eligibility (the expandable
+ * Q&A snippets in search results).
+ */
+
+const faqs = [
+  {
+    question: "Is the software BS EN 1176 compliant?",
+    answer:
+      "Yes. Report templates for routine, operational, and annual inspection types follow the structure and terminology of BS EN 1176. Defect categorisation, risk rating, and recommended actions are all aligned with the standard. The platform is designed for use by RPII-certified inspectors who are themselves responsible for compliance — the software supports their judgment, it doesn't replace it.",
+  },
+  {
+    question: "Does it work offline?",
+    answer:
+      "Yes. Voice dictation, photo capture, and inspection data are all recorded locally on your device. Reports can even be generated as PDFs on the device without a connection. Data syncs to the cloud automatically when you're back in coverage. Designed for real fieldwork — playgrounds in rural areas, school grounds with weak signal, anywhere the connection drops.",
+  },
+  {
+    question: "Where is my data stored?",
+    answer:
+      "All data is stored on infrastructure in the United Kingdom. Encrypted at rest using AES-256 and in transit using TLS. UK GDPR compliant. Each customer's data is isolated using row-level security in the database — no cross-tenant access is possible. Full DPIA and DPA documentation available for council and enterprise customers.",
+  },
+  {
+    question: "How much does it cost?",
+    answer:
+      "£99 per month for the Team plan, which covers up to 5 inspectors and unlimited inspections and sites. No per-inspection fees, no annual lock-in, cancel anytime. A 30-day free trial is available with no credit card required. Bespoke pricing is available for local authorities and large organisations needing more inspectors, custom report templates, or dedicated support.",
+  },
+  {
+    question: "Who is it built for?",
+    answer:
+      "UK RPII-certified independent inspectors and inspection companies carrying out routine, operational, and annual inspections of playgrounds, MUGAs, skate parks, outdoor gyms, and other public space assets. Larger councils and parks departments use the Enterprise tier for in-house inspection teams.",
+  },
+  {
+    question: "How does the AI defect extraction work?",
+    answer:
+      "When you finish dictating an inspection, the audio is transcribed and analysed to extract individual defects — each with a location, risk rating, recommended action, and any photo evidence you captured. You review and edit the extracted defects before signing the report. Nothing is auto-published — the inspector remains in full control of every entry.",
+  },
+];
+
+// JSON-LD FAQPage schema for Google rich results
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.answer,
+    },
+  })),
+};
+---
+
+<section class="border-b border-brand-100 bg-white">
+  <div class="mx-auto max-w-4xl px-6 py-20 sm:py-24">
+    <div class="text-center">
+      <p class="mb-3 text-sm font-semibold uppercase tracking-wider text-brand-700">
+        Frequently asked questions
+      </p>
+      <h2 class="text-3xl font-bold tracking-tight text-brand-900 sm:text-4xl">
+        Questions inspectors actually ask.
+      </h2>
+    </div>
+
+    <div class="mx-auto mt-12 divide-y divide-brand-100 border-y border-brand-100">
+      {
+        faqs.map((faq) => (
+          <details class="group py-5">
+            <summary class="flex cursor-pointer list-none items-start justify-between gap-4 text-left text-base font-semibold text-brand-900 transition hover:text-brand-700">
+              <span>{faq.question}</span>
+              <span
+                class="mt-1 flex-shrink-0 text-brand-700 transition group-open:rotate-45"
+                aria-hidden="true"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="h-5 w-5"
+                >
+                  <line x1="12" y1="5" x2="12" y2="19" />
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                </svg>
+              </span>
+            </summary>
+            <p class="mt-3 pr-9 text-base text-slate-700">{faq.answer}</p>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />

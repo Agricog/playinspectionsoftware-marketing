@@ -1,19 +1,22 @@
 ---
 /**
- * Footer — minimal, professional.
+ * Footer — professional, structured.
  *
- * Final CTA, company info, links to legal pages.
+ * Evolved from the original compact footer to a three-area layout as the
+ * site has gained persona pages and topical pillars that deserve
+ * navigation surface:
  *
- * Deliberately compact. A site this early in its life doesn't need a
- * 12-column footer with newsletter signups and social icons that don't exist.
+ *   Top    — final CTA section
+ *   Middle — brand block + three link columns (Who we help / Resources / Company)
+ *   Bottom — copyright line
+ *
+ * On mobile the link columns stack under the brand block.
  */
 import { SITE, ORGANISATION, CTA, TRIAL } from "../consts";
-
 const year = new Date().getFullYear();
 ---
-
 <footer class="bg-brand-900 text-brand-100">
-
+  <!-- Final CTA -->
   <div class="mx-auto max-w-6xl px-6 py-16 sm:py-20">
     <div class="text-center">
       <h2 class="text-2xl font-bold tracking-tight text-white sm:text-3xl">
@@ -39,36 +42,102 @@ const year = new Date().getFullYear();
     </div>
   </div>
 
+  <!-- Link columns -->
   <div class="border-t border-white/10">
-    <div class="mx-auto max-w-6xl px-6 py-8">
-      <div class="flex flex-col items-center justify-between gap-4 text-sm sm:flex-row">
-        <div class="flex flex-col items-center gap-1 text-center sm:items-start sm:text-left">
-          <p class="font-semibold text-white">{SITE.name}</p>
-          <p class="text-brand-100">
-            A product by {ORGANISATION.legalName}
+    <div class="mx-auto max-w-6xl px-6 py-12 sm:py-16">
+      <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="text-center sm:text-left">
+          <p class="text-base font-semibold text-white">{SITE.name}</p>
+          <p class="mt-2 text-sm text-brand-100">
+            A product by {ORGANISATION.legalName}.
+          </p>
+          <p class="mt-2 text-sm text-brand-100">
+            UK-built playground inspection software for RPII inspectors
+            and the organisations that commission them.
           </p>
         </div>
 
-        <nav class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2" aria-label="Footer">
-          <a href={CTA.product} class="transition hover:text-white">
-            Product
-          </a>
-          <a href="#pricing" class="transition hover:text-white">
-            Pricing
-          </a>
-          <a href={`mailto:${ORGANISATION.email}`} class="transition hover:text-white">
-            Contact
-          </a>
-          <a href="/privacy" class="transition hover:text-white">
-            Privacy
-          </a>
-          <a href="/terms" class="transition hover:text-white">
-            Terms
-          </a>
+        <nav aria-label="Who we help" class="text-center sm:text-left">
+          <p class="text-sm font-semibold uppercase tracking-wide text-white">
+            Who we help
+          </p>
+          <ul class="mt-4 space-y-3 text-sm">
+            <li>
+              <a href="/for/independent-inspectors" class="transition hover:text-white">
+                Independent inspectors
+              </a>
+            </li>
+            <li>
+              <a href="/for/inspection-companies" class="transition hover:text-white">
+                Inspection companies
+              </a>
+            </li>
+            <li>
+              <a href="/for/local-authorities" class="transition hover:text-white">
+                Local authorities
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <nav aria-label="Resources" class="text-center sm:text-left">
+          <p class="text-sm font-semibold uppercase tracking-wide text-white">
+            Resources
+          </p>
+          <ul class="mt-4 space-y-3 text-sm">
+            <li>
+              <a href="/bs-en-1176" class="transition hover:text-white">
+                BS EN 1176
+              </a>
+            </li>
+            <li>
+              <a href="/rpii" class="transition hover:text-white">
+                RPII
+              </a>
+            </li>
+            <li>
+              <a href={CTA.product} class="transition hover:text-white">
+                Product
+              </a>
+            </li>
+            <li>
+              <a href="#pricing" class="transition hover:text-white">
+                Pricing
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <nav aria-label="Company" class="text-center sm:text-left">
+          <p class="text-sm font-semibold uppercase tracking-wide text-white">
+            Company
+          </p>
+          <ul class="mt-4 space-y-3 text-sm">
+            <li>
+              <a href={`mailto:${ORGANISATION.email}`} class="transition hover:text-white">
+                Contact
+              </a>
+            </li>
+            <li>
+              <a href="/privacy" class="transition hover:text-white">
+                Privacy
+              </a>
+            </li>
+            <li>
+              <a href="/terms" class="transition hover:text-white">
+                Terms
+              </a>
+            </li>
+          </ul>
         </nav>
       </div>
+    </div>
+  </div>
 
-      <p class="mt-6 text-center text-xs text-brand-100 sm:text-left">
+  <!-- Copyright -->
+  <div class="border-t border-white/10">
+    <div class="mx-auto max-w-6xl px-6 py-6">
+      <p class="text-center text-xs text-brand-100 sm:text-left">
         © {year} {ORGANISATION.legalName}. All rights reserved.
       </p>
     </div>

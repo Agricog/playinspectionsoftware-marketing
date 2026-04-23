@@ -1,0 +1,349 @@
+---
+/**
+ * /bs-en-1176/routine-inspections — cluster page.
+ *
+ * Targets high-volume low-specialist queries: "daily playground inspection
+ * checklist", "weekly playground inspection", "routine playground safety check",
+ * "playground inspection form".
+ *
+ * Audience is almost entirely operator-side: grounds teams, caretakers,
+ * parks operatives, the people who actually walk the site with a clipboard.
+ * Content is deliberately practical and checklist-oriented — this is not
+ * an inspector-focused page.
+ */
+
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ContentHero from "../../components/ContentHero.astro";
+import ContentBreadcrumbs from "../../components/ContentBreadcrumbs.astro";
+import ContentCTA from "../../components/ContentCTA.astro";
+import RelatedPages from "../../components/RelatedPages.astro";
+import { SITE, ORGANISATION } from "../../consts";
+
+const title =
+  "BS EN 1176 Routine Visual Inspection: A Practical Checklist";
+const description =
+  "The BS EN 1176 routine visual inspection is the daily-to-weekly walk-round check carried out by operator staff. A practical guide to what to look for, how long it should take, and how to record findings.";
+const lastUpdatedDisplay = "23 April 2026";
+const lastUpdatedISO = "2026-04-23";
+const datePublishedISO = "2026-04-23";
+const canonical = `${SITE.url.replace(/\/$/, "")}/bs-en-1176/routine-inspections`;
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: title,
+  description,
+  datePublished: datePublishedISO,
+  dateModified: lastUpdatedISO,
+  author: {
+    "@type": "Organization",
+    name: ORGANISATION.legalName,
+    url: SITE.url,
+  },
+  publisher: {
+    "@type": "Organization",
+    name: SITE.name,
+    url: SITE.url,
+  },
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": canonical,
+  },
+  isPartOf: {
+    "@type": "WebPage",
+    "@id": `${SITE.url.replace(/\/$/, "")}/bs-en-1176`,
+  },
+};
+
+const faqs = [
+  {
+    q: "How often should routine visual inspections be carried out?",
+    a: "BS EN 1176-7 recommends daily to weekly, with the specific frequency set by the operator based on site usage and risk exposure. A heavily used urban park in an area with high vandalism warrants daily inspection. A school playground only used during term-time school hours may be adequately served by weekly inspections during term, and a brief pre-opening inspection after each holiday. The operator&rsquo;s risk assessment should document the chosen cadence and the reasoning.",
+  },
+  {
+    q: "Does a routine visual inspection require training?",
+    a: "Yes, though less formal training than the operational or annual inspections. A person carrying out a routine inspection should know what the hazard categories are, what obvious changes look like, which defects are stop-using issues and which are report-and-carry-on issues, and who to escalate a finding to. Handing an untrained person a clipboard is not a routine inspection — it is a liability. Many operators use the RPII Routine Visual Inspection course to train their grounds staff to a consistent standard.",
+  },
+  {
+    q: "What should be in a daily playground inspection checklist?",
+    a: "At minimum: litter and broken glass; evidence of vandalism or fire damage; obvious damage to equipment (broken components, missing fixings, visible splintering); displaced or contaminated surfacing; condition of gates, fences and boundary; legibility and presence of signage; any items flagged at previous inspections. The checklist should be short enough to complete in ten to fifteen minutes on a small site — routine inspections are meant to be frequent, not exhaustive.",
+  },
+  {
+    q: "Who is responsible for routine inspections at a school?",
+    a: "The school is the duty holder. In practice the task is usually delegated to the site or premises manager, the caretaker, or a grounds contractor. The delegation does not remove the school&rsquo;s responsibility: if a routine inspection is missed and an injury occurs, the school remains the operator in the eyes of the Health and Safety Executive and the courts. Academies and multi-academy trusts often standardise the inspection process across sites to ensure consistency.",
+  },
+  {
+    q: "What should an inspector do if they find a serious defect during a routine check?",
+    a: "Close the affected equipment immediately and make it unusable by children. This may mean taping off access, removing a swing seat, locking a gate, or in extreme cases cordoning off the whole site. The defect must then be reported upwards and a record kept of the closure. The equipment should not be reopened until it has been repaired and re-inspected. Operators must make sure routine inspectors have explicit authority and the physical means (tape, signage, tools) to close equipment without needing to seek permission.",
+  },
+  {
+    q: "How detailed do routine inspection records need to be?",
+    a: "Less detailed than operational or annual records, but still substantive. A minimum-viable record captures the date, the inspector&rsquo;s name, the site, confirmation the inspection was carried out, any defects found, and any action taken. Many operators use a simple pass/fail checklist with a notes field. The key is consistency — a legible, timestamped record of every inspection over at least the previous three years should be retrievable, whether it sits in a paper book, a spreadsheet, or a dedicated inspection app.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.a,
+    },
+  })),
+};
+---
+<BaseLayout title={title} description={description}>
+  <ContentBreadcrumbs
+    crumbs={[
+      { label: "Home", href: "/" },
+      { label: "BS EN 1176", href: "/bs-en-1176" },
+      { label: "Routine Visual Inspection" },
+    ]}
+  />
+
+  <ContentHero
+    eyebrow="BS EN 1176 inspection regimes"
+    title="BS EN 1176 Routine Visual Inspection"
+    description="The most frequent and most practical tier of the BS EN 1176 inspection model — the daily-to-weekly walk-round that catches obvious changes before they harm a user."
+    lastUpdated={lastUpdatedDisplay}
+    readingTime="6 min read"
+  />
+
+  <article class="mx-auto max-w-3xl px-6 py-12 sm:py-16">
+    <nav aria-label="On this page" class="not-prose mb-12 rounded-lg border border-slate-200 bg-slate-50 p-6">
+      <p class="text-sm font-semibold uppercase tracking-wide text-slate-500">On this page</p>
+      <ol class="mt-3 space-y-2 text-sm text-slate-700">
+        <li><a href="#what-it-is" class="hover:text-brand-700 hover:underline">1. What a routine visual inspection is</a></li>
+        <li><a href="#frequency" class="hover:text-brand-700 hover:underline">2. Frequency</a></li>
+        <li><a href="#who-performs" class="hover:text-brand-700 hover:underline">3. Who carries it out</a></li>
+        <li><a href="#checklist" class="hover:text-brand-700 hover:underline">4. A practical checklist</a></li>
+        <li><a href="#walkround" class="hover:text-brand-700 hover:underline">5. How to actually walk the site</a></li>
+        <li><a href="#escalation" class="hover:text-brand-700 hover:underline">6. When to escalate vs. fix on the spot</a></li>
+        <li><a href="#recording" class="hover:text-brand-700 hover:underline">7. Recording findings</a></li>
+        <li><a href="#faq" class="hover:text-brand-700 hover:underline">Frequently asked questions</a></li>
+      </ol>
+    </nav>
+
+    <div class="prose prose-slate max-w-none prose-headings:scroll-mt-24 prose-headings:font-semibold prose-headings:text-slate-900 prose-a:text-brand-700 prose-a:no-underline hover:prose-a:underline prose-strong:text-slate-900">
+      <p class="lead">
+        The routine visual inspection is the workhorse of the BS EN 1176
+        inspection regime. It is the one that happens most often, by the
+        people closest to the site, and the one most likely to catch a
+        hazard before a child finds it. It is also the one most commonly
+        treated as a rubber-stamp exercise — which is why this page exists.
+        Part of our wider <a href="/bs-en-1176">BS EN 1176 explainer</a>.
+      </p>
+
+      <h2 id="what-it-is">1. What a routine visual inspection is</h2>
+      <p>
+        A routine visual inspection is a short, frequent check of the site
+        for obvious changes since the previous inspection. It is not a
+        technical assessment. It does not involve tools, probes, or
+        measuring devices. It is a trained human walking the site and asking
+        &ldquo;is there anything here that would hurt a child if they found
+        it first?&rdquo;.
+      </p>
+      <p>
+        The value of a routine inspection is its frequency. Catching a
+        broken glass bottle the morning after a weekend is far more valuable
+        than the most detailed annual inspection, because it prevents an
+        injury that would otherwise have already happened. The BS EN 1176
+        inspection model is designed around this principle: depth is
+        outsourced to the annual inspection, where it belongs. Frequency
+        lives here.
+      </p>
+
+      <h2 id="frequency">2. Frequency</h2>
+      <p>
+        BS EN 1176-7 recommends inspection at an interval appropriate to the
+        site&rsquo;s usage and risk profile. In practice this means daily
+        to weekly:
+      </p>
+      <ul>
+        <li>
+          <strong>Daily inspections</strong> — heavily used public parks,
+          sites in areas of high vandalism or anti-social behaviour, sites
+          with a recent history of incidents.
+        </li>
+        <li>
+          <strong>Every-other-day or twice-weekly</strong> — busy public
+          parks in lower-risk areas; commercial hospitality play areas in
+          use daily.
+        </li>
+        <li>
+          <strong>Weekly</strong> — school playgrounds during term;
+          rural or low-usage public sites; residential estate play areas
+          with modest usage.
+        </li>
+        <li>
+          <strong>Pre-opening only</strong> — seasonal sites and holiday
+          camps on days when the site is in use; not in place of the other
+          regimes when the site is closed long-term.
+        </li>
+      </ul>
+      <p>
+        The exact cadence is the operator&rsquo;s decision, but it must be
+        justified by a documented risk assessment. Running weekly
+        inspections on a heavily vandalised urban site is not defensible.
+      </p>
+
+      <h2 id="who-performs">3. Who carries it out</h2>
+      <p>
+        Routine inspections are carried out by the operator&rsquo;s own
+        staff, typically:
+      </p>
+      <ul>
+        <li><strong>Local authority parks teams</strong> — grounds maintenance operatives on their morning rounds.</li>
+        <li><strong>School caretakers and site managers</strong> — as part of the daily or weekly site check.</li>
+        <li><strong>Nursery and EYFS staff</strong> — before opening, as part of the setting&rsquo;s risk assessment routine.</li>
+        <li><strong>Hospitality and leisure site teams</strong> — a duty manager, grounds person, or dedicated site officer.</li>
+      </ul>
+      <p>
+        None of these roles require RPII certification. All of them require
+        training appropriate to the task. The RPII Routine Visual Inspection
+        course is the most widely used in the UK; many operators supplement
+        this with site-specific induction covering their own equipment.
+      </p>
+
+      <h2 id="checklist">4. A practical checklist</h2>
+      <p>
+        A routine visual inspection covers a defined list of check items.
+        The list varies by site but the core items are consistent:
+      </p>
+      <ul>
+        <li><strong>Litter and debris</strong> — particularly broken glass, needles, sharp objects, dog mess in the impact zone.</li>
+        <li><strong>Evidence of vandalism</strong> — graffiti, burnt areas, damage to equipment, damage to fencing or gates.</li>
+        <li><strong>Obvious equipment damage</strong> — broken components, visible cracks, splintered timber, frayed ropes, missing bolt caps or fixings.</li>
+        <li><strong>Surfacing condition</strong> — displaced loose-fill, exposed foundations, standing water, obvious contamination.</li>
+        <li><strong>Site boundary</strong> — gate closure and function, fence integrity, any new gaps or unauthorised access points.</li>
+        <li><strong>Signage</strong> — present, legible, not covered by vegetation.</li>
+        <li><strong>Hazards outside the playground</strong> — fallen trees or branches, accumulated leaves obscuring paths, new hazards in proximity (building works, water accumulation).</li>
+        <li><strong>Previous-inspection items</strong> — any defect flagged last time that remains outstanding.</li>
+      </ul>
+
+      <h2 id="walkround">5. How to actually walk the site</h2>
+      <p>
+        A routine inspection is not a static checklist exercise — it is a
+        physical walk of the whole site, with the person present looking at
+        every item of equipment from enough angles to see it properly. A
+        good routine inspector will:
+      </p>
+      <ul>
+        <li>Walk the perimeter first, checking boundary integrity and noting anything outside the fence that might become a hazard inside;</li>
+        <li>Walk between each item of equipment (not around the outside), checking the surfacing as they go;</li>
+        <li>Approach every item from at least two sides, looking at both the user-facing surface and any structural underside;</li>
+        <li>Physically test gates, closures, and anything on a spring or hinge;</li>
+        <li>Look up as well as down — ropes, canopies, climbing frame tops, any suspended component;</li>
+        <li>Allow enough time — a rushed inspection misses defects.</li>
+      </ul>
+      <p>
+        A competent routine inspection of a small local-authority
+        playground takes 10 to 20 minutes. A large multi-zone site may take
+        45 minutes to an hour. Anyone claiming to have routinely inspected a
+        site in two minutes has not inspected it.
+      </p>
+
+      <ContentCTA
+        headline="Routine inspections, straight from a phone."
+        body="Tick off checklists as you walk the site, attach photos of any issue, and submit the report in seconds. Findings carry through to the next operational and annual inspection automatically."
+      />
+
+      <h2 id="escalation">6. When to escalate vs. fix on the spot</h2>
+      <p>
+        Routine inspections produce two kinds of finding: things to fix
+        now, and things to report up. Getting this division right is the
+        main skill of the routine inspector.
+      </p>
+      <p>
+        <strong>Fix on the spot</strong> covers anything the inspector is
+        trained and equipped to resolve safely, where resolving it does not
+        create risk: pick up the litter, sweep the glass, re-rake
+        displaced surfacing into the impact zone, close and secure a gate.
+      </p>
+      <p>
+        <strong>Escalate</strong> covers anything beyond the inspector&rsquo;s
+        training or beyond a quick fix: a loose bolt on climbing equipment,
+        visible structural damage, suspected entrapment, contamination
+        requiring specialist disposal, anything that might need a tool, a
+        spare part, or a competent second opinion.
+      </p>
+      <p>
+        <strong>Close the equipment</strong> is the third option and must
+        always be available. If the routine inspector judges that the
+        defect creates risk of injury before it can be repaired, they must
+        close the equipment — tape it off, remove the swing seat, lock the
+        gate — and not reopen it until it has been fixed and re-inspected.
+        This authority must be given to the inspector in advance. Asking
+        permission to close equipment after spotting a hazard is a
+        liability.
+      </p>
+
+      <h2 id="recording">7. Recording findings</h2>
+      <p>
+        Every routine inspection must be recorded, even when nothing is
+        found. A clean record of &ldquo;inspected, no issues&rdquo; is
+        still evidence of compliance. Minimum content for a routine
+        inspection record:
+      </p>
+      <ul>
+        <li>Date and time of inspection;</li>
+        <li>Inspector name;</li>
+        <li>Site identifier;</li>
+        <li>Each check item as pass, fail, or not applicable;</li>
+        <li>Any findings and the action taken;</li>
+        <li>Any items passed to maintenance or flagged for the next operational inspection.</li>
+      </ul>
+      <p>
+        Paper-based systems still dominate but are steadily being displaced
+        by digital alternatives. The practical advantages of digital
+        records — automatic timestamps, GPS-tagged photographs, immediate
+        availability to head office, built-in audit trail, no lost
+        books — outweigh the marginal convenience of pen and paper on
+        anything but the smallest single-site operation.
+      </p>
+
+      <h2 id="faq">Frequently asked questions</h2>
+      <div class="not-prose mt-6 space-y-4">
+        {faqs.map((item) => (
+          <details class="group rounded-lg border border-slate-200 bg-white p-5 transition hover:border-slate-300">
+            <summary class="flex cursor-pointer items-start justify-between gap-4 text-base font-semibold text-slate-900 [&::-webkit-details-marker]:hidden">
+              <span>{item.q}</span>
+              <svg class="mt-1 h-5 w-5 flex-shrink-0 text-slate-400 transition group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <p class="mt-3 text-base leading-relaxed text-slate-600">{item.a}</p>
+          </details>
+        ))}
+      </div>
+
+      <ContentCTA />
+
+      <RelatedPages
+        pages={[
+          {
+            title: "BS EN 1176 Explained",
+            description: "The complete guide to the standard — what it covers, who must comply, and the three inspection regimes.",
+            href: "/bs-en-1176",
+          },
+          {
+            title: "Operational Inspection",
+            description: "The middle tier — monthly to quarterly checks covering equipment stability, wear, and maintenance progress.",
+            href: "/bs-en-1176/operational-inspections",
+          },
+          {
+            title: "Annual Main Inspection",
+            description: "The top tier — the independent 12-monthly assessment by an RPII-certified inspector.",
+            href: "/bs-en-1176/annual-inspections",
+          },
+        ]}
+      />
+    </div>
+  </article>
+
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+</BaseLayout>

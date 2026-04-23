@@ -1,0 +1,47 @@
+---
+/**
+ * ContentCTA — soft inline CTA for long-form content pages.
+ *
+ * Dropped into the middle or end of pillar/cluster page content.
+ * Deliberately less aggressive than the homepage hero CTA:
+ * the visitor is here to learn, not to buy, so the CTA is a gentle
+ * "by the way, this is what we do" rather than a hard sell.
+ *
+ * Wrapped in `not-prose` so the Typography plugin doesn't override
+ * button styles.
+ *
+ * Props:
+ *   - headline: one-line hook (defaults to generic)
+ *   - body: supporting sentence (defaults to trial terms)
+ */
+
+import { CTA, TRIAL } from "../consts";
+
+interface Props {
+  headline?: string;
+  body?: string;
+}
+
+const {
+  headline = "Generate BS EN 1176 inspection reports by voice.",
+  body = `InspectVoice is professional playground inspection software built for UK independent inspectors. ${TRIAL.durationDays}-day free trial — no credit card.`,
+} = Astro.props;
+---
+<aside class="not-prose my-12 rounded-xl border border-brand-100 bg-brand-50/60 p-6 sm:p-8">
+  <p class="text-lg font-semibold text-slate-900 sm:text-xl">{headline}</p>
+  <p class="mt-2 text-base leading-relaxed text-slate-600">{body}</p>
+  <div class="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center">
+    <a
+      href={CTA.signUp}
+      class="inline-flex items-center justify-center rounded-md bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
+    >
+      Start free trial
+    </a>
+    <a
+      href={CTA.bookDemo}
+      class="inline-flex items-center justify-center rounded-md border border-slate-300 bg-white px-5 py-2.5 text-sm font-semibold text-slate-900 transition hover:border-slate-400 hover:bg-slate-50"
+    >
+      Book a demo
+    </a>
+  </div>
+</aside>

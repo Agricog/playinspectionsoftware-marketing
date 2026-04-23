@@ -1,11 +1,18 @@
 ---
 /**
- * Site header — minimal top nav.
+ * Site header — minimal top nav with Resources dropdown.
  *
- * Logo (left) + content links + primary CTA (right). Sticky on scroll.
+ * Logo (left) + Resources dropdown + primary CTA (right). Sticky on scroll.
  * Deliberately uncluttered — this is a marketing site, not an app shell.
- * Content links hide on mobile (they remain discoverable via the footer);
- * the CTA is always visible.
+ *
+ * The Resources dropdown hides on mobile (discovery through the footer on
+ * phones); the CTA is always visible.
+ *
+ * Dropdown behaviour is click-to-open via a small inline script:
+ *  - Click the trigger to open; click elsewhere or press Escape to close
+ *  - ARIA attributes (aria-haspopup, aria-expanded) kept in sync
+ *  - Chevron icon rotates 180° when open
+ *  - Multi-dropdown-safe: opening one closes any other open dropdown
  */
 import { SITE, CTA } from "../consts";
 ---
@@ -25,19 +32,59 @@ import { SITE, CTA } from "../consts";
       />
       <span class="hidden sm:inline">{SITE.name}</span>
     </a>
-    <nav class="flex items-center gap-5 sm:gap-6" aria-label="Primary">
-      <a
-        href="/bs-en-1176"
-        class="hidden text-sm font-medium text-slate-700 transition hover:text-brand-700 sm:inline"
-      >
-        BS EN 1176
-      </a>
-      <a
-        href="/rpii"
-        class="hidden text-sm font-medium text-slate-700 transition hover:text-brand-700 sm:inline"
-      >
-        RPII
-      </a>
+    <nav class="flex items-center gap-3 sm:gap-5" aria-label="Primary">
+      <div class="relative hidden sm:block" data-dropdown>
+        <button
+          type="button"
+          class="inline-flex items-center gap-1 rounded-md px-2 py-1.5 text-sm font-medium text-slate-700 transition hover:text-brand-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
+          aria-haspopup="true"
+          aria-expanded="false"
+          data-dropdown-trigger
+        >
+          Resources
+          <svg
+            class="h-4 w-4 transition-transform"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+            data-dropdown-chevron
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div
+          class="absolute right-0 mt-3 hidden w-80 rounded-lg border border-slate-200 bg-white py-2 shadow-lg"
+          role="menu"
+          data-dropdown-menu
+        >
+          <a
+            href="/bs-en-1176"
+            role="menuitem"
+            class="block px-4 py-3 transition hover:bg-slate-50"
+          >
+            <span class="block text-sm font-semibold text-slate-900">BS EN 1176</span>
+            <span class="mt-0.5 block text-xs text-slate-500">The UK playground inspection standard</span>
+          </a>
+          <a
+            href="/rpii"
+            role="menuitem"
+            class="block px-4 py-3 transition hover:bg-slate-50"
+          >
+            <span class="block text-sm font-semibold text-slate-900">RPII</span>
+            <span class="mt-0.5 block text-xs text-slate-500">UK inspector certification</span>
+          </a>
+          <a
+            href="/playground-inspection-software"
+            role="menuitem"
+            class="block px-4 py-3 transition hover:bg-slate-50"
+          >
+            <span class="block text-sm font-semibold text-slate-900">Playground Inspection Software</span>
+            <span class="mt-0.5 block text-xs text-slate-500">A buyer&rsquo;s guide</span>
+          </a>
+        </div>
+      </div>
       <a
         href={CTA.signUp}
         class="inline-flex items-center justify-center rounded-md bg-brand-700 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-700"
@@ -47,3 +94,62 @@ import { SITE, CTA } from "../consts";
     </nav>
   </div>
 </header>
+
+<script is:inline>
+  (function () {
+    var dropdowns = document.querySelectorAll("[data-dropdown]");
+    if (!dropdowns.length) return;
+
+    function closeDropdown(dropdown) {
+      var menu = dropdown.querySelector("[data-dropdown-menu]");
+      var trigger = dropdown.querySelector("[data-dropdown-trigger]");
+      var chevron = dropdown.querySelector("[data-dropdown-chevron]");
+      if (!menu || !trigger) return;
+      menu.classList.add("hidden");
+      trigger.setAttribute("aria-expanded", "false");
+      if (chevron) chevron.classList.remove("rotate-180");
+    }
+
+    function openDropdown(dropdown) {
+      var menu = dropdown.querySelector("[data-dropdown-menu]");
+      var trigger = dropdown.querySelector("[data-dropdown-trigger]");
+      var chevron = dropdown.querySelector("[data-dropdown-chevron]");
+      if (!menu || !trigger) return;
+      menu.classList.remove("hidden");
+      trigger.setAttribute("aria-expanded", "true");
+      if (chevron) chevron.classList.add("rotate-180");
+    }
+
+    dropdowns.forEach(function (dropdown) {
+      var trigger = dropdown.querySelector("[data-dropdown-trigger]");
+      if (!trigger) return;
+      trigger.addEventListener("click", function (event) {
+        event.stopPropagation();
+        var menu = dropdown.querySelector("[data-dropdown-menu]");
+        if (!menu) return;
+        if (menu.classList.contains("hidden")) {
+          dropdowns.forEach(function (other) {
+            if (other !== dropdown) closeDropdown(other);
+          });
+          openDropdown(dropdown);
+        } else {
+          closeDropdown(dropdown);
+        }
+      });
+    });
+
+    document.addEventListener("click", function (event) {
+      dropdowns.forEach(function (dropdown) {
+        if (!dropdown.contains(event.target)) {
+          closeDropdown(dropdown);
+        }
+      });
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") {
+        dropdowns.forEach(closeDropdown);
+      }
+    });
+  })();
+</script>

@@ -1,0 +1,415 @@
+---
+/**
+ * /asset-types — pillar page.
+ *
+ * Fourth topical pillar. Distinct from /bs-en-1176 (which covers the
+ * standard) — this pillar covers the breadth of UK play and recreation
+ * assets actually inspected in practice, and the multiple European
+ * standards that apply to different asset types.
+ *
+ * Targets keywords: "playground inspection asset types",
+ * "outdoor fitness equipment standard", "MUGA inspection",
+ * "skate park inspection UK", "BS EN 16630", "BS EN 14974".
+ *
+ * Strategic value: most competitor sites only cover BS EN 1176
+ * (playgrounds). Addressing the full scope of UK inspection work
+ * — MUGAs, skate parks, outdoor gyms, fitness trails — positions the
+ * site as a comprehensive resource, not a playground-only one.
+ */
+
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ContentHero from "../../components/ContentHero.astro";
+import ContentBreadcrumbs from "../../components/ContentBreadcrumbs.astro";
+import ContentCTA from "../../components/ContentCTA.astro";
+import RelatedPages from "../../components/RelatedPages.astro";
+import { SITE, ORGANISATION } from "../../consts";
+
+const title = "UK Play and Recreation Asset Types: A Complete Inspection Guide";
+const description =
+  "UK playground inspectors assess more than traditional playgrounds. A guide to the main asset types — playgrounds, MUGAs, skate parks, outdoor gyms, fitness trails — and the European standards that govern each.";
+const lastUpdatedDisplay = "23 April 2026";
+const lastUpdatedISO = "2026-04-23";
+const datePublishedISO = "2026-04-23";
+const canonical = `${SITE.url.replace(/\/$/, "")}/asset-types`;
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: title,
+  description,
+  datePublished: datePublishedISO,
+  dateModified: lastUpdatedISO,
+  author: { "@type": "Organization", name: ORGANISATION.legalName, url: SITE.url },
+  publisher: { "@type": "Organization", name: SITE.name, url: SITE.url },
+  mainEntityOfPage: { "@type": "WebPage", "@id": canonical },
+};
+
+const faqs = [
+  {
+    q: "Does BS EN 1176 cover all playground and outdoor recreation equipment?",
+    a: "No. BS EN 1176 covers fixed play equipment intended for children&rsquo;s collective use — traditional playgrounds. Other asset types have their own European standards. Skate parks and roller sports facilities are covered by BS EN 14974. Outdoor fitness equipment (adult exercise stations) falls under BS EN 16630. Impact-attenuating surfacing is covered by BS EN 1177. A competent inspection of a mixed-use site requires working knowledge of all the applicable standards, not just BS EN 1176.",
+  },
+  {
+    q: "Can one RPII-certified inspector assess every asset type?",
+    a: "In principle yes, in practice with care. RPII certification establishes competence against BS EN 1176; additional training is advisable for specialised asset types. An inspector routinely assessing skate parks should be familiar with BS EN 14974; one assessing outdoor gyms should know BS EN 16630. Operators commissioning inspection of mixed-asset sites should confirm the inspector has the relevant standard-specific knowledge, not just generic playground certification.",
+  },
+  {
+    q: "Does every asset type need impact-attenuating surfacing?",
+    a: "No. Impact-attenuating surfacing under BS EN 1177 is required where fall height exceeds 600 mm on equipment covered by BS EN 1176. MUGAs and skate parks are designed around hard surfaces — impact attenuation does not apply; the surface is fundamental to the equipment&rsquo;s function. Outdoor gyms and fitness trails fall somewhere between, depending on specific equipment and fall heights involved; BS EN 16630 sets the surfacing requirements for fixed outdoor fitness equipment.",
+  },
+  {
+    q: "How do inspection frequencies differ across asset types?",
+    a: "The three-tier model (routine / operational / annual) applies broadly across all fixed outdoor equipment, but the specific triggers and focus points differ. Skate parks see more rapid surface wear and graffiti/damage than playgrounds; MUGAs need more attention to fencing and goal structure than to swings; outdoor gyms see more cable and bearing wear than traditional play equipment. The three inspection tiers from BS EN 1176-7 are a sensible model across all asset types, but operational checks should be calibrated to the wear patterns of the specific assets.",
+  },
+  {
+    q: "Are adventure playgrounds and rope courses covered by BS EN 1176?",
+    a: "In most cases yes, under BS EN 1176 Part 11 (spatial networks — large three-dimensional rope climbing structures). Adventure play installations with standard playground components fall under BS EN 1176. Very large commercial rope courses (tree-top adventure courses) typically fall under different frameworks including BS 7400 and EN 15567 for ropes courses specifically. The distinction depends on the scale and commercial context of the installation.",
+  },
+  {
+    q: "What about sensory play areas and inclusive play equipment?",
+    a: "Sensory and inclusive play equipment installed in public or semi-public settings fall under BS EN 1176 where the equipment type is covered by the standard. For equipment specifically designed for disabled or additional-needs users, some manufacturer guidance and design standards apply in addition to BS EN 1176. The inspection principles — hazard categories, risk rating, surfacing assessment — remain the same; the specific equipment knowledge the inspector needs expands.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: { "@type": "Answer", text: item.a },
+  })),
+};
+---
+<BaseLayout title={title} description={description}>
+  <ContentBreadcrumbs
+    crumbs={[
+      { label: "Home", href: "/" },
+      { label: "Asset Types" },
+    ]}
+  />
+
+  <ContentHero
+    eyebrow="Inspection coverage"
+    title="UK Play and Recreation Asset Types"
+    description="UK playground inspectors do not only inspect traditional playgrounds. Modern inspection practice covers multiple asset types — each with its own European standard, its own hazard profile, and its own inspection rhythm."
+    lastUpdated={lastUpdatedDisplay}
+    readingTime="9 min read"
+  />
+
+  <article class="mx-auto max-w-3xl px-6 py-12 sm:py-16">
+    <nav aria-label="On this page" class="not-prose mb-12 rounded-lg border border-slate-200 bg-slate-50 p-6">
+      <p class="text-sm font-semibold uppercase tracking-wide text-slate-500">On this page</p>
+      <ol class="mt-3 space-y-2 text-sm text-slate-700">
+        <li><a href="#what-we-mean" class="hover:text-brand-700 hover:underline">1. What we mean by asset types</a></li>
+        <li><a href="#standards-map" class="hover:text-brand-700 hover:underline">2. The standards map</a></li>
+        <li><a href="#playgrounds" class="hover:text-brand-700 hover:underline">3. Traditional playgrounds</a></li>
+        <li><a href="#mugas" class="hover:text-brand-700 hover:underline">4. Multi-use games areas (MUGAs)</a></li>
+        <li><a href="#skate-parks" class="hover:text-brand-700 hover:underline">5. Skate parks</a></li>
+        <li><a href="#outdoor-gyms" class="hover:text-brand-700 hover:underline">6. Outdoor gyms</a></li>
+        <li><a href="#fitness-trails" class="hover:text-brand-700 hover:underline">7. Fitness trails</a></li>
+        <li><a href="#other-assets" class="hover:text-brand-700 hover:underline">8. Other asset types</a></li>
+        <li><a href="#procurement" class="hover:text-brand-700 hover:underline">9. Procurement implications</a></li>
+        <li><a href="#faq" class="hover:text-brand-700 hover:underline">Frequently asked questions</a></li>
+      </ol>
+    </nav>
+
+    <div class="prose prose-slate max-w-none prose-headings:scroll-mt-24 prose-headings:font-semibold prose-headings:text-slate-900 prose-a:text-brand-700 prose-a:no-underline hover:prose-a:underline prose-strong:text-slate-900">
+      <p class="lead">
+        A typical UK local authority parks portfolio contains more than
+        just traditional playgrounds. It contains MUGAs, skate parks,
+        outdoor gyms, fitness trails, and adventure play installations
+        of various kinds. Each asset type has its own European standard,
+        its own characteristic defects, and its own inspection rhythm.
+        A competent inspection regime works across all of them; this
+        page is the map.
+      </p>
+
+      <h2 id="what-we-mean">1. What we mean by asset types</h2>
+      <p>
+        &ldquo;Asset types&rdquo; in a UK inspection context means the
+        categories of fixed outdoor recreation equipment that an
+        operator is responsible for maintaining safely. The term covers:
+      </p>
+      <ul>
+        <li>Traditional playgrounds — swings, slides, climbing frames, roundabouts, spring rockers;</li>
+        <li>Multi-use games areas (MUGAs) — fenced hard-surfaced courts for ball games;</li>
+        <li>Skate parks — concrete or steel installations for skateboards, scooters, and BMX;</li>
+        <li>Outdoor gyms — fixed adult fitness stations, typically in public parks;</li>
+        <li>Fitness trails — linear installations of simpler fitness equipment, often in rural or semi-rural settings;</li>
+        <li>Adventure play — rope-based, netted, and large-scale climbing installations;</li>
+        <li>Sensory and inclusive play — specialised equipment for disabled or additional-needs users.</li>
+      </ul>
+      <p>
+        A single public park in the UK will often contain three or more
+        of these asset types alongside one another. A council parks
+        portfolio across several districts will almost always contain
+        all of them.
+      </p>
+
+      <h2 id="standards-map">2. The standards map</h2>
+      <p>
+        The single most important thing to understand about asset types
+        is that BS EN 1176 does not cover all of them. Different assets
+        fall under different European standards, and a competent
+        inspector has working knowledge of each relevant standard — not
+        just BS EN 1176.
+      </p>
+      <ul>
+        <li>
+          <strong>BS EN 1176</strong> (all parts) — playground equipment
+          for children&rsquo;s collective use. The primary UK playground
+          safety standard. Covered in detail in our
+          <a href="/bs-en-1176">BS EN 1176 explainer</a>.
+        </li>
+        <li>
+          <strong>BS EN 1177</strong> — impact-attenuating playground
+          surfacing. Companion to BS EN 1176; specifies how surfacing
+          performance is tested.
+        </li>
+        <li>
+          <strong>BS EN 14974</strong> — facilities for users of roller
+          sports equipment (skate parks, BMX tracks). Different design
+          philosophy from BS EN 1176 — users expect managed risk.
+        </li>
+        <li>
+          <strong>BS EN 16630</strong> — permanently installed outdoor
+          fitness equipment. Covers outdoor gyms and fitness trails
+          where the equipment fits the definition.
+        </li>
+        <li>
+          <strong>EN 15567</strong> and BS 7400 — ropes courses,
+          typically large commercial adventure installations.
+        </li>
+      </ul>
+      <p>
+        A fully competent inspection of a mixed-use site involves
+        assessing each asset against the correct standard, applying the
+        inspection-tier model (routine / operational / annual) from
+        BS EN 1176-7 as the general pattern, and documenting findings
+        in a way that makes the applicable standard clear. Inspection
+        reports that treat a skate park as though it were BS EN 1176
+        equipment are not competent inspection reports.
+      </p>
+
+      <h2 id="playgrounds">3. Traditional playgrounds</h2>
+      <p>
+        The core asset category and the one BS EN 1176 was written
+        around. Covers everything from a single item of toddler play
+        equipment to a large multi-zone adventure playground. The
+        majority of RPII annual inspection work in the UK is in this
+        category, and inspection methodology is well-established.
+      </p>
+      <p>
+        Full coverage of traditional playground inspection — equipment
+        types, typical defect patterns, surfacing considerations — is
+        on our <a href="/asset-types/playgrounds">traditional
+        playgrounds page</a>.
+      </p>
+
+      <h2 id="mugas">4. Multi-use games areas (MUGAs)</h2>
+      <p>
+        Fenced, hard-surfaced areas designed for ball sports —
+        basketball, five-a-side football, tennis, netball, multi-sport
+        variants. Increasingly common additions to UK park portfolios
+        over the past two decades.
+      </p>
+      <p>
+        MUGAs sit awkwardly in the standards landscape — they are not
+        covered directly by BS EN 1176 (which is for children&rsquo;s
+        play equipment) or BS EN 14974 (which is for skate-specific
+        facilities). Inspection typically draws on playground principles
+        (structural integrity, surface condition, hazard categories)
+        adapted to the specifics of a fenced hard-court installation.
+        See <a href="/asset-types/multi-use-games-areas">our MUGAs
+        page</a> for detailed inspection considerations.
+      </p>
+
+      <h2 id="skate-parks">5. Skate parks</h2>
+      <p>
+        Concrete, steel, or composite installations for skateboards,
+        scooters, inline skates, and BMX. BS EN 14974 is the governing
+        standard in the UK, and its design philosophy differs
+        fundamentally from BS EN 1176: users are expected to engage
+        with managed risk as part of the activity itself. The
+        inspection remit is about ensuring that risk is appropriate,
+        not eliminating it.
+      </p>
+      <p>
+        Detailed coverage of skate park inspection is on our
+        <a href="/asset-types/skate-parks">skate parks page</a>.
+      </p>
+
+      <h2 id="outdoor-gyms">6. Outdoor gyms</h2>
+      <p>
+        Fixed adult exercise equipment installed in public spaces,
+        typically in parks and along active travel routes. BS EN 16630
+        is the applicable UK standard. The user profile (adults,
+        often older adults using equipment for rehabilitation or
+        maintenance fitness) drives different design and inspection
+        considerations than children&rsquo;s equipment.
+      </p>
+      <p>
+        See <a href="/asset-types/outdoor-gyms">our outdoor gyms
+        page</a> for detail on BS EN 16630 and typical inspection
+        considerations.
+      </p>
+
+      <ContentCTA
+        headline="One inspection platform for every asset type."
+        body="InspectVoice supports inspections across BS EN 1176, BS EN 14974, and BS EN 16630 asset types in a single site register. Per-asset-type templates, standard-aware defect categorisation, one audit trail."
+      />
+
+      <h2 id="fitness-trails">7. Fitness trails</h2>
+      <p>
+        Linear installations of simpler fitness equipment along walking
+        or running routes — often described as &ldquo;trim trails&rdquo;
+        in UK practice. Can fall under BS EN 16630, BS EN 1176, or a
+        mix depending on specific design and target user age.
+      </p>
+      <p>
+        Detailed coverage is on our <a href="/asset-types/fitness-trails">fitness
+        trails page</a>.
+      </p>
+
+      <h2 id="other-assets">8. Other asset types</h2>
+      <p>
+        Beyond the five covered in detail on this site, UK inspectors
+        also assess:
+      </p>
+      <ul>
+        <li>
+          <strong>Teenage / youth zones</strong> — larger-scale
+          equipment for teenagers, typically including parkour
+          structures and larger climbing frames. Generally falls under
+          BS EN 1176.
+        </li>
+        <li>
+          <strong>Adventure rope courses</strong> — tree-top and
+          ground-level commercial rope course installations. Governed
+          by EN 15567 rather than BS EN 1176; substantially different
+          inspection methodology.
+        </li>
+        <li>
+          <strong>Sensory and inclusive play</strong> — specialised
+          equipment for users with disabilities or additional needs.
+          Typically falls under BS EN 1176 with additional
+          design-specific considerations.
+        </li>
+        <li>
+          <strong>Water play</strong> — splash pads, water features,
+          interactive water installations. Different inspection
+          regime, often involving health and safety considerations
+          around waterborne contamination in addition to structural
+          inspection.
+        </li>
+        <li>
+          <strong>Boundary and site infrastructure</strong> — fencing,
+          gates, bins, signage, seating. Not strictly play equipment
+          but integral to a complete site inspection.
+        </li>
+      </ul>
+
+      <h2 id="procurement">9. Procurement implications</h2>
+      <p>
+        For operators commissioning inspection work, the asset-type
+        landscape has specific procurement implications:
+      </p>
+      <ul>
+        <li>
+          <strong>Confirm the inspector&rsquo;s scope</strong> — an
+          inspector comfortable with BS EN 1176 playground equipment
+          may not have equivalent knowledge of BS EN 14974 skate parks
+          or BS EN 16630 outdoor fitness equipment. Ask explicitly.
+        </li>
+        <li>
+          <strong>Use the correct inspection framework per asset
+          type</strong> — a single report covering a mixed site should
+          identify which standard applies to which asset and assess
+          each against the correct criteria.
+        </li>
+        <li>
+          <strong>Budget for multiple specialisms where needed</strong>
+          — very complex sites (skate parks alongside playgrounds
+          alongside outdoor gyms) occasionally require inspection by
+          different specialists for different asset types. This is
+          relatively rare but should not be ruled out.
+        </li>
+        <li>
+          <strong>Track asset types separately in your records</strong>
+          — defect patterns, maintenance priorities, and renewal cycles
+          all differ by asset type. A portfolio record that groups all
+          assets under &ldquo;playground equipment&rdquo; obscures
+          important management signals.
+        </li>
+      </ul>
+
+      <h2 id="faq">Frequently asked questions</h2>
+      <div class="not-prose mt-6 space-y-4">
+        {faqs.map((item) => (
+          <details class="group rounded-lg border border-slate-200 bg-white p-5 transition hover:border-slate-300">
+            <summary class="flex cursor-pointer items-start justify-between gap-4 text-base font-semibold text-slate-900 [&::-webkit-details-marker]:hidden">
+              <span>{item.q}</span>
+              <svg class="mt-1 h-5 w-5 flex-shrink-0 text-slate-400 transition group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <p class="mt-3 text-base leading-relaxed text-slate-600">{item.a}</p>
+          </details>
+        ))}
+      </div>
+
+      <ContentCTA />
+
+      <RelatedPages
+        heading="Dive deeper"
+        pages={[
+          {
+            title: "Traditional Playgrounds",
+            description: "The core BS EN 1176 asset category — swings, slides, climbing frames, multi-play units, and surfacing.",
+            href: "/asset-types/playgrounds",
+          },
+          {
+            title: "Multi-Use Games Areas (MUGAs)",
+            description: "Fenced hard-surfaced sports courts — inspection standards, typical defects, and boundary considerations.",
+            href: "/asset-types/multi-use-games-areas",
+          },
+          {
+            title: "Skate Parks",
+            description: "BS EN 14974 facilities for skateboards, scooters and BMX — a different design philosophy to BS EN 1176.",
+            href: "/asset-types/skate-parks",
+          },
+          {
+            title: "Outdoor Gyms",
+            description: "BS EN 16630 fixed outdoor fitness equipment — adult user profile, cable and bearing wear, and maintenance considerations.",
+            href: "/asset-types/outdoor-gyms",
+          },
+          {
+            title: "Fitness Trails",
+            description: "Linear fitness installations and trim trails — the hybrid asset type that sits between playground and outdoor gym.",
+            href: "/asset-types/fitness-trails",
+          },
+        ]}
+      />
+
+      <RelatedPages
+        heading="Related reading"
+        pages={[
+          {
+            title: "BS EN 1176 Explained",
+            description: "The UK standard for playground equipment — full coverage of the three inspection regimes and hazard categories.",
+            href: "/bs-en-1176",
+          },
+          {
+            title: "RPII Inspector Grades",
+            description: "Which RPII grade is needed for which kind of inspection work across different asset types.",
+            href: "/rpii/grades",
+          },
+        ]}
+      />
+    </div>
+  </article>
+
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+</BaseLayout>

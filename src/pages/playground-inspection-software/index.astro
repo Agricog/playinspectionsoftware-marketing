@@ -18,22 +18,19 @@
  * voice-dictation, offline-first, defect-carry-forward,
  * evaluating-options, migration-from-paper }.
  */
-
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ContentHero from "../../components/ContentHero.astro";
 import ContentBreadcrumbs from "../../components/ContentBreadcrumbs.astro";
 import ContentCTA from "../../components/ContentCTA.astro";
 import RelatedPages from "../../components/RelatedPages.astro";
 import { SITE, ORGANISATION } from "../../consts";
-
 const title = "Playground Inspection Software: A 2026 Buyer's Guide";
 const description =
   "What playground inspection software is, what good systems do in 2026, and how UK operators, RPII inspectors, and council parks teams should evaluate their options. A practical buyer's guide from Play Inspection Software.";
 const lastUpdatedDisplay = "23 April 2026";
 const lastUpdatedISO = "2026-04-23";
 const datePublishedISO = "2026-04-23";
-const canonical = `${SITE.url.replace(/\/$/, "")}/playground-inspection-software`;
-
+const canonical = `${SITE.url.replace(/\/$/, "")}/playground-inspection-software/`;
 const articleSchema = {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -45,7 +42,6 @@ const articleSchema = {
   publisher: { "@type": "Organization", name: SITE.name, url: SITE.url },
   mainEntityOfPage: { "@type": "WebPage", "@id": canonical },
 };
-
 const faqs = [
   {
     q: "Do I actually need playground inspection software, or is paper enough?",
@@ -72,7 +68,6 @@ const faqs = [
     a: "Good playground inspection software accepts bulk import of site registers and asset lists from spreadsheets or CSV. Historic reports are typically attached as reference PDFs rather than reconstructed inside the new system — the structural differences between systems make full reconstruction impractical and rarely valuable. Defect continuity (carried-forward findings) usually starts from the first inspection in the new system forward. Any vendor claiming full historic data reconstruction is worth scrutinising; claiming import of site registers and reference attachment of historic reports is realistic.",
   },
 ];
-
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -90,7 +85,6 @@ const faqSchema = {
       { label: "Playground Inspection Software" },
     ]}
   />
-
   <ContentHero
     eyebrow="Buyer's guide"
     title="Playground Inspection Software in 2026"
@@ -98,7 +92,6 @@ const faqSchema = {
     lastUpdated={lastUpdatedDisplay}
     readingTime="8 min read"
   />
-
   <article class="mx-auto max-w-3xl px-6 py-12 sm:py-16">
     <nav aria-label="On this page" class="not-prose mb-12 rounded-lg border border-slate-200 bg-slate-50 p-6">
       <p class="text-sm font-semibold uppercase tracking-wide text-slate-500">On this page</p>
@@ -114,19 +107,17 @@ const faqSchema = {
         <li><a href="#faq" class="hover:text-brand-700 hover:underline">Frequently asked questions</a></li>
       </ol>
     </nav>
-
     <div class="prose prose-slate max-w-none prose-headings:scroll-mt-24 prose-headings:font-semibold prose-headings:text-slate-900 prose-a:text-brand-700 prose-a:no-underline hover:prose-a:underline prose-strong:text-slate-900">
       <p class="lead">
         Playground inspection software is the category of tools used by UK
         RPII-certified inspectors, parks teams, and site operators to
-        carry out and record <a href="/bs-en-1176">BS EN 1176</a>-aligned
+        carry out and record <a href="/bs-en-1176/">BS EN 1176</a>-aligned
         inspections. A decade ago the category barely existed
         commercially; today it is the professional standard for
         inspection work above single-site scale. This page is a practical
         buyer&rsquo;s guide to what the category does and how to choose
         well.
       </p>
-
       <h2 id="what-it-is">1. What playground inspection software is</h2>
       <p>
         Playground inspection software is purpose-built software that
@@ -159,7 +150,6 @@ const faqSchema = {
         basic compliance; only the former produces reports that read as
         professional inspection output.
       </p>
-
       <h2 id="who-uses-it">2. Who uses it and why</h2>
       <p>
         Three primary user groups, each with a different driver:
@@ -170,7 +160,7 @@ const faqSchema = {
           driver is time. A typical annual inspection produces roughly
           equal amounts of on-site work and post-inspection paperwork;
           software that eliminates the paperwork doubles practical
-          capacity. See <a href="/for/independent-inspectors">our page
+          capacity. See <a href="/for/independent-inspectors/">our page
           for independent inspectors</a>.
         </li>
         <li>
@@ -178,7 +168,7 @@ const faqSchema = {
           driver is consistency. Five inspectors working from Word
           templates produce five visibly different reports; a single
           company-enforced template produces one coherent client-facing
-          output. See <a href="/for/inspection-companies">our page for
+          output. See <a href="/for/inspection-companies/">our page for
           inspection companies</a>.
         </li>
         <li>
@@ -186,7 +176,7 @@ const faqSchema = {
           driver is portfolio oversight. Tracking compliance across
           dozens or hundreds of sites manually is where things fall
           through the cracks; a unified platform makes the whole estate
-          visible. See <a href="/for/local-authorities">our page for
+          visible. See <a href="/for/local-authorities/">our page for
           local authorities</a>.
         </li>
       </ul>
@@ -197,7 +187,6 @@ const faqSchema = {
         contracted annual inspector are proportionate for truly
         single-site low-frequency inspection.
       </p>
-
       <h2 id="core-capabilities">3. Core capabilities a good system should have</h2>
       <p>
         Regardless of the specific vendor, any serious playground
@@ -242,14 +231,12 @@ const faqSchema = {
           inspector owns their data and can export it without friction.
         </li>
       </ul>
-
       <h2 id="modern-vs-legacy">4. Modern capabilities vs legacy approaches</h2>
       <p>
         The category has evolved substantially over the past five years.
         Three capabilities have moved from &ldquo;cutting edge&rdquo; to
         &ldquo;professional baseline&rdquo; in that time:
       </p>
-
       <h3>Voice dictation at the equipment</h3>
       <p>
         Legacy approach: the inspector writes notes on a clipboard or
@@ -262,7 +249,6 @@ const faqSchema = {
         captured at the moment of observation are more detailed and
         accurate than notes reconstructed from memory.
       </p>
-
       <h3>Offline-first operation</h3>
       <p>
         Legacy approach: cloud-based web tools that degrade or fail
@@ -274,7 +260,6 @@ const faqSchema = {
         the difference between software that works on-site and software
         that does not.
       </p>
-
       <h3>On-device PDF generation</h3>
       <p>
         Legacy approach: inspection data uploaded to a server, which
@@ -285,12 +270,10 @@ const faqSchema = {
         report in context, with the site still in front of them, and
         correct any issue immediately rather than after the fact.
       </p>
-
       <ContentCTA
         headline="All three modern capabilities, as standard."
         body="InspectVoice delivers voice dictation, offline-first operation, and on-device PDF generation as core functionality — not premium add-ons. Built specifically for UK RPII-certified inspection work."
       />
-
       <h2 id="evaluation-checklist">5. Evaluation checklist</h2>
       <p>
         When evaluating a specific playground inspection software
@@ -311,7 +294,6 @@ const faqSchema = {
         <li>Does it support both in-house and contracted inspector workflows under one account?</li>
         <li>Is support responsive? A test email before signing up is a cheap data point.</li>
       </ul>
-
       <h2 id="deployment">6. Deployment considerations</h2>
       <p>
         Modern playground inspection software is typically delivered as
@@ -333,7 +315,6 @@ const faqSchema = {
         suspicion — they indicate that offline operation is not a first
         principle.
       </p>
-
       <h2 id="data-and-security">7. Data and security considerations</h2>
       <p>
         For any playground inspection software handling UK operator
@@ -372,7 +353,6 @@ const faqSchema = {
           all their data at any time, in a structured format.
         </li>
       </ul>
-
       <h2 id="migration">8. Migration from paper or legacy systems</h2>
       <p>
         Operators and inspectors migrating to purpose-built software
@@ -409,7 +389,6 @@ const faqSchema = {
         historical site and every archived report into the new system
         before the first live inspection.
       </p>
-
       <h2 id="faq">Frequently asked questions</h2>
       <div class="not-prose mt-6 space-y-4">
         {faqs.map((item) => (
@@ -424,9 +403,7 @@ const faqSchema = {
           </details>
         ))}
       </div>
-
       <ContentCTA />
-
       <RelatedPages
         pages={[
           {
@@ -458,7 +435,6 @@ const faqSchema = {
       />
     </div>
   </article>
-
   <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 </BaseLayout>

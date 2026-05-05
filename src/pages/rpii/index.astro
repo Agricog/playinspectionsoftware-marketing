@@ -16,22 +16,19 @@
  * Future cluster pages will live at /rpii/{grades, certification-routes,
  * cpd-and-renewal, finding-an-inspector}.
  */
-
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ContentHero from "../../components/ContentHero.astro";
 import ContentBreadcrumbs from "../../components/ContentBreadcrumbs.astro";
 import ContentCTA from "../../components/ContentCTA.astro";
 import RelatedPages from "../../components/RelatedPages.astro";
 import { SITE, ORGANISATION } from "../../consts";
-
 const title = "RPII Explained: Playground Inspector Certification in the UK";
 const description =
   "The Register of Play Inspectors International (RPII) is the UK benchmark for playground inspector competence. A complete guide to what RPII is, the inspector grades, how to get certified, and what operators should expect from their inspector.";
 const lastUpdatedDisplay = "23 April 2026";
 const lastUpdatedISO = "2026-04-23";
 const datePublishedISO = "2026-04-23";
-const canonical = `${SITE.url.replace(/\/$/, "")}/rpii`;
-
+const canonical = `${SITE.url.replace(/\/$/, "")}/rpii/`;
 const articleSchema = {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -54,7 +51,6 @@ const articleSchema = {
     "@id": canonical,
   },
 };
-
 const faqs = [
   {
     q: "Is RPII certification legally required to inspect UK playgrounds?",
@@ -81,7 +77,6 @@ const faqs = [
     a: "Certified Inspectors of Playground Equipment (CIPE) is a US-rooted qualification with international recognition. Some UK operators accept CIPE as equivalent to RPII, particularly for sites with American play equipment. However, in mainstream UK public procurement RPII remains the expected benchmark, and an RPII qualification is more commonly specified. An inspector with both credentials may have an advantage in mixed-market work.",
   },
 ];
-
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -102,7 +97,6 @@ const faqSchema = {
       { label: "RPII" },
     ]}
   />
-
   <ContentHero
     eyebrow="The Certification"
     title="RPII Explained"
@@ -110,7 +104,6 @@ const faqSchema = {
     lastUpdated={lastUpdatedDisplay}
     readingTime="8 min read"
   />
-
   <article class="mx-auto max-w-3xl px-6 py-12 sm:py-16">
     <nav aria-label="On this page" class="not-prose mb-12 rounded-lg border border-slate-200 bg-slate-50 p-6">
       <p class="text-sm font-semibold uppercase tracking-wide text-slate-500">On this page</p>
@@ -126,17 +119,15 @@ const faqSchema = {
         <li><a href="#faq" class="hover:text-brand-700 hover:underline">Frequently asked questions</a></li>
       </ol>
     </nav>
-
     <div class="prose prose-slate max-w-none prose-headings:scroll-mt-24 prose-headings:font-semibold prose-headings:text-slate-900 prose-a:text-brand-700 prose-a:no-underline hover:prose-a:underline prose-strong:text-slate-900">
       <p class="lead">
-        If <a href="/bs-en-1176">BS EN 1176</a> is the rulebook of UK playground
+        If <a href="/bs-en-1176/">BS EN 1176</a> is the rulebook of UK playground
         safety, the Register of Play Inspectors International is the list of
         people qualified to apply it. RPII is not a regulator, a government
         agency, or a statutory body — but in UK procurement, insurance and
         legal practice, RPII certification is what &ldquo;competent
         inspector&rdquo; means.
       </p>
-
       <h2 id="what-rpii-is">1. What RPII is</h2>
       <p>
         The Register of Play Inspectors International (RPII) is the
@@ -160,7 +151,6 @@ const faqSchema = {
         requirements, and the public complaints process can all be
         accessed.
       </p>
-
       <h2 id="why-it-matters">2. Why RPII matters</h2>
       <p>
         RPII certification is not a legal requirement in any UK statute. It
@@ -194,14 +184,12 @@ const faqSchema = {
         almost mandatory for anyone doing commercial playground inspection
         work in the UK — even though no law says so.
       </p>
-
       <h2 id="grades">3. The inspector grades</h2>
       <p>
         RPII offers separate certifications for each of the three
         inspection tiers defined in BS EN 1176-7, plus a distinct
         qualification for newly installed equipment:
       </p>
-
       <h3>Routine Visual Inspector</h3>
       <p>
         Certifies the holder to carry out the daily-to-weekly visual
@@ -211,7 +199,6 @@ const faqSchema = {
         modest assessment. A practical baseline qualification for anyone
         responsible for a site&rsquo;s day-to-day safety.
       </p>
-
       <h3>Operational Inspector</h3>
       <p>
         Certifies the holder to carry out operational inspections — the
@@ -222,7 +209,6 @@ const faqSchema = {
         for site operators who want to bring operational inspections
         in-house.
       </p>
-
       <h3>Annual Inspector</h3>
       <p>
         Certifies the holder to carry out the full annual main inspection
@@ -233,7 +219,6 @@ const faqSchema = {
         independently (subject to the independence requirements discussed
         below).
       </p>
-
       <h3>Post-Installation Inspector</h3>
       <p>
         Certifies the holder to inspect newly installed or substantially
@@ -244,12 +229,10 @@ const faqSchema = {
         the Annual Inspector pool, and demand is concentrated around new
         installations and major site refurbishments.
       </p>
-
       <ContentCTA
         headline="InspectVoice is built for RPII-certified inspectors."
         body="Voice-dictated defect capture, on-device PDF report generation, findings carried forward across inspections, and full audit trail — designed around the workflow of independent UK RPII inspectors in the field."
       />
-
       <h2 id="becoming-certified">4. Becoming RPII-certified</h2>
       <p>
         The certification route depends on the grade. In summary:
@@ -288,7 +271,6 @@ const faqSchema = {
         technical content of playground inspection. A smaller proportion
         come from pure parks and leisure backgrounds.
       </p>
-
       <h2 id="cpd-and-renewal">5. CPD and renewal</h2>
       <p>
         RPII certification is not a one-off qualification. Registered
@@ -306,7 +288,6 @@ const faqSchema = {
         re-assessment to reinstate. Active inspectors maintain continuous
         registration as standard practice.
       </p>
-
       <h2 id="independence">6. Independence and conflicts of interest</h2>
       <p>
         The value of an RPII-certified annual inspection is rooted in
@@ -325,7 +306,6 @@ const faqSchema = {
         far less than the loss of defensibility if the two roles are
         blurred.
       </p>
-
       <h2 id="finding-inspector">7. Finding an RPII-certified inspector</h2>
       <p>
         Operators commissioning inspection work should:
@@ -343,7 +323,6 @@ const faqSchema = {
         local specialist; for larger operators with a national footprint,
         framework contracts with national inspection companies are common.
       </p>
-
       <h2 id="misconceptions">8. Common misconceptions</h2>
       <p>
         The recurring misunderstandings about RPII in operator-side
@@ -381,7 +360,6 @@ const faqSchema = {
           the report&rsquo;s findings, remains with the operator.
         </li>
       </ul>
-
       <h2 id="faq">Frequently asked questions</h2>
       <div class="not-prose mt-6 space-y-4">
         {faqs.map((item) => (
@@ -396,9 +374,7 @@ const faqSchema = {
           </details>
         ))}
       </div>
-
       <ContentCTA />
-
       <RelatedPages
         heading="Dive deeper"
         pages={[
@@ -419,7 +395,6 @@ const faqSchema = {
           },
         ]}
       />
-
       <RelatedPages
         heading="Related reading"
         pages={[
@@ -440,7 +415,6 @@ const faqSchema = {
           },
         ]}
       />
-
       <RelatedPages
         heading="Related reading"
         pages={[
@@ -458,7 +432,6 @@ const faqSchema = {
       />
     </div>
   </article>
-
   <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 </BaseLayout>

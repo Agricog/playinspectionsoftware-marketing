@@ -16,22 +16,19 @@
  * operational-inspections, annual-inspections, critical-fall-height,
  * impact-attenuating-surfacing, risk-ratings}.
  */
-
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ContentHero from "../../components/ContentHero.astro";
 import ContentBreadcrumbs from "../../components/ContentBreadcrumbs.astro";
 import ContentCTA from "../../components/ContentCTA.astro";
 import RelatedPages from "../../components/RelatedPages.astro";
 import { SITE, ORGANISATION } from "../../consts";
-
 const title = "BS EN 1176 Explained: The UK Playground Inspection Standard";
 const description =
   "BS EN 1176 is the standard governing playground equipment safety and inspection in the UK. A complete guide to what it covers, who must comply, the three inspection regimes, and how defects are rated.";
 const lastUpdatedDisplay = "23 April 2026";
 const lastUpdatedISO = "2026-04-23";
 const datePublishedISO = "2026-04-23";
-const canonical = `${SITE.url.replace(/\/$/, "")}/bs-en-1176`;
-
+const canonical = `${SITE.url.replace(/\/$/, "")}/bs-en-1176/`;
 // Article schema — tells Google this is a definitive reference article
 const articleSchema = {
   "@context": "https://schema.org",
@@ -55,7 +52,6 @@ const articleSchema = {
     "@id": canonical,
   },
 };
-
 // FAQPage schema — gets rich result FAQ dropdowns in Google search
 const faqs = [
   {
@@ -83,7 +79,6 @@ const faqs = [
     a: "Yes. BS EN 1176-7 specifies what information an inspection report must contain (findings, risk assessment, recommended actions, inspector details, date), but does not prescribe how the report is captured or written. Voice-dictated systems that produce a complete written report satisfying those content requirements are fully compliant. The professional and legal obligation is the completeness, accuracy, and traceability of the report — not the input method.",
   },
 ];
-
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -104,7 +99,6 @@ const faqSchema = {
       { label: "BS EN 1176" },
     ]}
   />
-
   <ContentHero
     eyebrow="The Standard"
     title="BS EN 1176 Explained"
@@ -112,7 +106,6 @@ const faqSchema = {
     lastUpdated={lastUpdatedDisplay}
     readingTime="9 min read"
   />
-
   <article class="mx-auto max-w-3xl px-6 py-12 sm:py-16">
     <!-- Table of contents -->
     <nav aria-label="On this page" class="not-prose mb-12 rounded-lg border border-slate-200 bg-slate-50 p-6">
@@ -129,7 +122,6 @@ const faqSchema = {
         <li><a href="#faq" class="hover:text-brand-700 hover:underline">Frequently asked questions</a></li>
       </ol>
     </nav>
-
     <div class="prose prose-slate max-w-none prose-headings:scroll-mt-24 prose-headings:font-semibold prose-headings:text-slate-900 prose-a:text-brand-700 prose-a:no-underline hover:prose-a:underline prose-strong:text-slate-900">
       <h2 id="what-is-bs-en-1176">1. What is BS EN 1176?</h2>
       <p>
@@ -154,7 +146,6 @@ const faqSchema = {
         been properly maintained. In practical terms, operating a public playground
         without working to BS EN 1176 is not a viable position.
       </p>
-
       <h2 id="who-must-comply">2. Who must comply</h2>
       <p>
         Any organisation that owns, operates, or manages play equipment used by
@@ -176,7 +167,6 @@ const faqSchema = {
         occupier&rsquo;s children is outside the scope of BS EN 1176 and falls under
         consumer toy safety rules (BS EN 71) instead.
       </p>
-
       <h2 id="parts-of-the-standard">3. The parts of BS EN 1176</h2>
       <p>
         BS EN 1176 is not a single document. It is a series of parts, each covering
@@ -197,14 +187,12 @@ const faqSchema = {
         fall height, BS EN 1177 specifies <em>how</em> that surfacing must perform
         when tested.
       </p>
-
       <h2 id="inspection-regimes">4. The three inspection regimes</h2>
       <p>
         BS EN 1176-7 sets out a tiered inspection model. Each level has a different
         frequency, depth, and competency requirement. Meeting the standard means
         operating all three.
       </p>
-
       <h3>Routine visual inspection</h3>
       <p>
         A frequent walk-round check for obvious hazards — broken glass, vandalism,
@@ -214,7 +202,6 @@ const faqSchema = {
         can carry it out provided they know what to look for. The goal is catching
         anything that has obviously changed since the previous check.
       </p>
-
       <h3>Operational inspection</h3>
       <p>
         A more detailed check carried out every one to three months. Covers equipment
@@ -223,7 +210,6 @@ const faqSchema = {
         typically performed by trained operator staff, but with more depth than the
         routine check. Findings are recorded.
       </p>
-
       <h3>Annual main inspection</h3>
       <p>
         A full, detailed technical inspection carried out at least every 12 months by
@@ -235,12 +221,10 @@ const faqSchema = {
         compliance with the standard. A formal written report with risk-rated defects
         is the output.
       </p>
-
       <ContentCTA
         headline="InspectVoice generates BS EN 1176 inspection reports by voice."
         body="Dictate as you walk the site. Reports are produced on-device, ready to send, in minutes — no post-inspection admin. Built for UK RPII-certified independent inspectors."
       />
-
       <h2 id="hazard-categories">5. Hazard categories assessed</h2>
       <p>
         BS EN 1176 groups playground hazards into a small number of well-defined
@@ -255,7 +239,6 @@ const faqSchema = {
         <li><strong>Material degradation</strong> — timber rot, steel corrosion, plastic UV breakdown, rope fraying, fabric wear.</li>
         <li><strong>Maintenance state</strong> — legibility of signage, accumulated litter or organic matter in surfacing, drainage, paint condition.</li>
       </ul>
-
       <h2 id="fall-height-and-surfacing">6. Critical fall height and surfacing</h2>
       <p>
         The single most misunderstood concept in playground safety is the
@@ -281,7 +264,6 @@ const faqSchema = {
         actually lands after a swing or slide exit). Both must be assessed on every
         main inspection.
       </p>
-
       <h2 id="risk-ratings">7. Risk ratings and reporting</h2>
       <p>
         Inspection findings are not simply listed — they are categorised by severity
@@ -302,7 +284,6 @@ const faqSchema = {
         compliance — both for insurance and in the event of a post-incident
         investigation.
       </p>
-
       <h2 id="legal-context">8. The legal context in the UK</h2>
       <p>
         Although BS EN 1176 is not itself statute, it operates within a statutory
@@ -323,7 +304,6 @@ const faqSchema = {
         followed through. Operating without that trail is the position no operator
         wants to be in.
       </p>
-
       <h2 id="faq">Frequently asked questions</h2>
       <div class="not-prose mt-6 space-y-4">
         {faqs.map((item) => (
@@ -338,9 +318,7 @@ const faqSchema = {
           </details>
         ))}
       </div>
-
       <ContentCTA />
-
       <RelatedPages
         heading="Dive deeper"
         pages={[
@@ -378,7 +356,6 @@ const faqSchema = {
       />
     </div>
   </article>
-
   <!-- JSON-LD schemas -->
   <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />

@@ -16,22 +16,19 @@
  * — MUGAs, skate parks, outdoor gyms, fitness trails — positions the
  * site as a comprehensive resource, not a playground-only one.
  */
-
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ContentHero from "../../components/ContentHero.astro";
 import ContentBreadcrumbs from "../../components/ContentBreadcrumbs.astro";
 import ContentCTA from "../../components/ContentCTA.astro";
 import RelatedPages from "../../components/RelatedPages.astro";
 import { SITE, ORGANISATION } from "../../consts";
-
 const title = "UK Play and Recreation Asset Types: A Complete Inspection Guide";
 const description =
   "UK playground inspectors assess more than traditional playgrounds. A guide to the main asset types — playgrounds, MUGAs, skate parks, outdoor gyms, fitness trails — and the European standards that govern each.";
 const lastUpdatedDisplay = "23 April 2026";
 const lastUpdatedISO = "2026-04-23";
 const datePublishedISO = "2026-04-23";
-const canonical = `${SITE.url.replace(/\/$/, "")}/asset-types`;
-
+const canonical = `${SITE.url.replace(/\/$/, "")}/asset-types/`;
 const articleSchema = {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -43,7 +40,6 @@ const articleSchema = {
   publisher: { "@type": "Organization", name: SITE.name, url: SITE.url },
   mainEntityOfPage: { "@type": "WebPage", "@id": canonical },
 };
-
 const faqs = [
   {
     q: "Does BS EN 1176 cover all playground and outdoor recreation equipment?",
@@ -70,7 +66,6 @@ const faqs = [
     a: "Sensory and inclusive play equipment installed in public or semi-public settings fall under BS EN 1176 where the equipment type is covered by the standard. For equipment specifically designed for disabled or additional-needs users, some manufacturer guidance and design standards apply in addition to BS EN 1176. The inspection principles — hazard categories, risk rating, surfacing assessment — remain the same; the specific equipment knowledge the inspector needs expands.",
   },
 ];
-
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -88,7 +83,6 @@ const faqSchema = {
       { label: "Asset Types" },
     ]}
   />
-
   <ContentHero
     eyebrow="Inspection coverage"
     title="UK Play and Recreation Asset Types"
@@ -96,7 +90,6 @@ const faqSchema = {
     lastUpdated={lastUpdatedDisplay}
     readingTime="9 min read"
   />
-
   <article class="mx-auto max-w-3xl px-6 py-12 sm:py-16">
     <nav aria-label="On this page" class="not-prose mb-12 rounded-lg border border-slate-200 bg-slate-50 p-6">
       <p class="text-sm font-semibold uppercase tracking-wide text-slate-500">On this page</p>
@@ -113,7 +106,6 @@ const faqSchema = {
         <li><a href="#faq" class="hover:text-brand-700 hover:underline">Frequently asked questions</a></li>
       </ol>
     </nav>
-
     <div class="prose prose-slate max-w-none prose-headings:scroll-mt-24 prose-headings:font-semibold prose-headings:text-slate-900 prose-a:text-brand-700 prose-a:no-underline hover:prose-a:underline prose-strong:text-slate-900">
       <p class="lead">
         A typical UK local authority parks portfolio contains more than
@@ -124,7 +116,6 @@ const faqSchema = {
         A competent inspection regime works across all of them; this
         page is the map.
       </p>
-
       <h2 id="what-we-mean">1. What we mean by asset types</h2>
       <p>
         &ldquo;Asset types&rdquo; in a UK inspection context means the
@@ -146,7 +137,6 @@ const faqSchema = {
         portfolio across several districts will almost always contain
         all of them.
       </p>
-
       <h2 id="standards-map">2. The standards map</h2>
       <p>
         The single most important thing to understand about asset types
@@ -160,7 +150,7 @@ const faqSchema = {
           <strong>BS EN 1176</strong> (all parts) — playground equipment
           for children&rsquo;s collective use. The primary UK playground
           safety standard. Covered in detail in our
-          <a href="/bs-en-1176">BS EN 1176 explainer</a>.
+          <a href="/bs-en-1176/">BS EN 1176 explainer</a>.
         </li>
         <li>
           <strong>BS EN 1177</strong> — impact-attenuating playground
@@ -191,7 +181,6 @@ const faqSchema = {
         reports that treat a skate park as though it were BS EN 1176
         equipment are not competent inspection reports.
       </p>
-
       <h2 id="playgrounds">3. Traditional playgrounds</h2>
       <p>
         The core asset category and the one BS EN 1176 was written
@@ -203,10 +192,9 @@ const faqSchema = {
       <p>
         Full coverage of traditional playground inspection — equipment
         types, typical defect patterns, surfacing considerations — is
-        on our <a href="/asset-types/playgrounds">traditional
+        on our <a href="/asset-types/playgrounds/">traditional
         playgrounds page</a>.
       </p>
-
       <h2 id="mugas">4. Multi-use games areas (MUGAs)</h2>
       <p>
         Fenced, hard-surfaced areas designed for ball sports —
@@ -221,10 +209,9 @@ const faqSchema = {
         facilities). Inspection typically draws on playground principles
         (structural integrity, surface condition, hazard categories)
         adapted to the specifics of a fenced hard-court installation.
-        See <a href="/asset-types/multi-use-games-areas">our MUGAs
+        See <a href="/asset-types/multi-use-games-areas/">our MUGAs
         page</a> for detailed inspection considerations.
       </p>
-
       <h2 id="skate-parks">5. Skate parks</h2>
       <p>
         Concrete, steel, or composite installations for skateboards,
@@ -237,9 +224,8 @@ const faqSchema = {
       </p>
       <p>
         Detailed coverage of skate park inspection is on our
-        <a href="/asset-types/skate-parks">skate parks page</a>.
+        <a href="/asset-types/skate-parks/">skate parks page</a>.
       </p>
-
       <h2 id="outdoor-gyms">6. Outdoor gyms</h2>
       <p>
         Fixed adult exercise equipment installed in public spaces,
@@ -250,16 +236,14 @@ const faqSchema = {
         considerations than children&rsquo;s equipment.
       </p>
       <p>
-        See <a href="/asset-types/outdoor-gyms">our outdoor gyms
+        See <a href="/asset-types/outdoor-gyms/">our outdoor gyms
         page</a> for detail on BS EN 16630 and typical inspection
         considerations.
       </p>
-
       <ContentCTA
         headline="One inspection platform for every asset type."
         body="InspectVoice supports inspections across BS EN 1176, BS EN 14974, and BS EN 16630 asset types in a single site register. Per-asset-type templates, standard-aware defect categorisation, one audit trail."
       />
-
       <h2 id="fitness-trails">7. Fitness trails</h2>
       <p>
         Linear installations of simpler fitness equipment along walking
@@ -268,10 +252,9 @@ const faqSchema = {
         mix depending on specific design and target user age.
       </p>
       <p>
-        Detailed coverage is on our <a href="/asset-types/fitness-trails">fitness
+        Detailed coverage is on our <a href="/asset-types/fitness-trails/">fitness
         trails page</a>.
       </p>
-
       <h2 id="other-assets">8. Other asset types</h2>
       <p>
         Beyond the five covered in detail on this site, UK inspectors
@@ -309,7 +292,6 @@ const faqSchema = {
           but integral to a complete site inspection.
         </li>
       </ul>
-
       <h2 id="procurement">9. Procurement implications</h2>
       <p>
         For operators commissioning inspection work, the asset-type
@@ -343,7 +325,6 @@ const faqSchema = {
           important management signals.
         </li>
       </ul>
-
       <h2 id="faq">Frequently asked questions</h2>
       <div class="not-prose mt-6 space-y-4">
         {faqs.map((item) => (
@@ -358,9 +339,7 @@ const faqSchema = {
           </details>
         ))}
       </div>
-
       <ContentCTA />
-
       <RelatedPages
         heading="Dive deeper"
         pages={[
@@ -391,7 +370,6 @@ const faqSchema = {
           },
         ]}
       />
-
       <RelatedPages
         heading="Related reading"
         pages={[
@@ -409,7 +387,7 @@ const faqSchema = {
       />
     </div>
   </article>
-
   <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 </BaseLayout>
+

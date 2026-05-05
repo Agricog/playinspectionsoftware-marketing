@@ -16,23 +16,33 @@
  *     { label: 'Home', href: '/' },
  *     { label: 'BS EN 1176' }
  *   ]} />
+ *
+ * Note: hrefs are normalised to always end with a trailing slash to match
+ * the site's `trailingSlash: 'always'` Astro config. This keeps internal
+ * links and the JSON-LD `item` URLs consistent with the canonical URLs
+ * Cloudflare Pages serves, eliminating redirect-error flags from Google
+ * Search Console.
  */
-
 import { SITE } from "../consts";
-
 interface Crumb {
   label: string;
   href?: string;
 }
-
 interface Props {
   crumbs: Crumb[];
 }
-
 const { crumbs } = Astro.props;
-
 const baseUrl = SITE.url.replace(/\/$/, "");
-
+/**
+ * Add a trailing slash to internal absolute paths if missing.
+ * Leaves external URLs, root `/`, and URLs with query strings or fragments untouched.
+ */
+function normaliseHref(href: string): string {
+  if (!href.startsWith("/")) return href;
+  if (href.endsWith("/")) return href;
+  if (href.includes("?") || href.includes("#")) return href;
+  return href + "/";
+}
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -40,7 +50,7 @@ const breadcrumbSchema = {
     "@type": "ListItem",
     position: index + 1,
     name: crumb.label,
-    ...(crumb.href ? { item: `${baseUrl}${crumb.href}` } : {}),
+    ...(crumb.href ? { item: `${baseUrl}${normaliseHref(crumb.href)}` } : {}),
   })),
 };
 ---
@@ -55,7 +65,7 @@ const breadcrumbSchema = {
         )}
         {crumb.href ? (
           <a
-            href={crumb.href}
+            href={normaliseHref(crumb.href)}
             class="text-slate-600 transition hover:text-brand-700 hover:underline"
           >
             {crumb.label}

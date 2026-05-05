@@ -24,7 +24,7 @@ const description =
 const lastUpdatedDisplay = "23 April 2026";
 const lastUpdatedISO = "2026-04-23";
 const datePublishedISO = "2026-04-23";
-const canonical = `${SITE.url.replace(/\/$/, "")}/rpii/becoming-certified`;
+const canonical = `${SITE.url.replace(/\/$/, "")}/rpii/becoming-certified/`;
 
 const articleSchema = {
   "@context": "https://schema.org",
@@ -36,7 +36,7 @@ const articleSchema = {
   author: { "@type": "Organization", name: ORGANISATION.legalName, url: SITE.url },
   publisher: { "@type": "Organization", name: SITE.name, url: SITE.url },
   mainEntityOfPage: { "@type": "WebPage", "@id": canonical },
-  isPartOf: { "@type": "WebPage", "@id": `${SITE.url.replace(/\/$/, "")}/rpii` },
+  isPartOf: { "@type": "WebPage", "@id": `${SITE.url.replace(/\/$/, "")}/rpii/` },
 };
 
 const faqs = [
@@ -115,7 +115,7 @@ const faqSchema = {
         careers lists, and is almost entirely populated by people who
         found their way to it from somewhere else. This page is a candid
         guide to how that route works. Part of our wider
-        <a href="/rpii">RPII explainer</a>.
+        <a href="/rpii/">RPII explainer</a>.
       </p>
 
       <h2 id="who-suits">1. Who the profession suits</h2>

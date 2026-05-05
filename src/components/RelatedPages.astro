@@ -12,20 +12,32 @@
  * Props:
  *   - heading: section heading (defaults to "Related reading")
  *   - pages: array of { title, description, href }
+ *
+ * Note: hrefs are normalised to always end with a trailing slash to match
+ * the site's `trailingSlash: 'always'` Astro config. Pages can keep passing
+ * `href: "/bs-en-1176"` and it'll render as `/bs-en-1176/`, eliminating
+ * redirect-error flags from Google Search Console.
  */
-
 interface RelatedPage {
   title: string;
   description: string;
   href: string;
 }
-
 interface Props {
   heading?: string;
   pages: RelatedPage[];
 }
-
 const { heading = "Related reading", pages } = Astro.props;
+/**
+ * Add a trailing slash to internal absolute paths if missing.
+ * Leaves external URLs, root `/`, and URLs with query strings or fragments untouched.
+ */
+function normaliseHref(href: string): string {
+  if (!href.startsWith("/")) return href;
+  if (href.endsWith("/")) return href;
+  if (href.includes("?") || href.includes("#")) return href;
+  return href + "/";
+}
 ---
 <section class="not-prose mt-16 border-t border-slate-200 pt-12">
   <h2 class="text-sm font-semibold uppercase tracking-wide text-slate-500">
@@ -35,7 +47,7 @@ const { heading = "Related reading", pages } = Astro.props;
     {pages.map((page) => (
       <li>
         <a
-          href={page.href}
+          href={normaliseHref(page.href)}
           class="group flex h-full flex-col rounded-lg border border-slate-200 bg-white p-5 transition hover:border-brand-300 hover:shadow-sm"
         >
           <p class="text-base font-semibold text-slate-900 group-hover:text-brand-700">

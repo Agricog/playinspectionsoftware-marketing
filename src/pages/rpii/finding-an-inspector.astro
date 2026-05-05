@@ -26,7 +26,7 @@ const description =
 const lastUpdatedDisplay = "23 April 2026";
 const lastUpdatedISO = "2026-04-23";
 const datePublishedISO = "2026-04-23";
-const canonical = `${SITE.url.replace(/\/$/, "")}/rpii/finding-an-inspector`;
+const canonical = `${SITE.url.replace(/\/$/, "")}/rpii/finding-an-inspector/`;
 
 const articleSchema = {
   "@context": "https://schema.org",
@@ -38,7 +38,7 @@ const articleSchema = {
   author: { "@type": "Organization", name: ORGANISATION.legalName, url: SITE.url },
   publisher: { "@type": "Organization", name: SITE.name, url: SITE.url },
   mainEntityOfPage: { "@type": "WebPage", "@id": canonical },
-  isPartOf: { "@type": "WebPage", "@id": `${SITE.url.replace(/\/$/, "")}/rpii` },
+  isPartOf: { "@type": "WebPage", "@id": `${SITE.url.replace(/\/$/, "")}/rpii/` },
 };
 
 const faqs = [
@@ -118,7 +118,7 @@ const faqSchema = {
         RPII-certified inspector at least once a year. This page is a
         practical guide to finding one, confirming they are who they say
         they are, and getting useful work out of them. Part of our wider
-        <a href="/rpii">RPII explainer</a>.
+        <a href="/rpii/">RPII explainer</a>.
       </p>
 
       <h2 id="when-you-need-one">1. When you need an RPII inspector</h2>
@@ -168,7 +168,7 @@ const faqSchema = {
         Annual Inspector can usually deliver operational work. The
         reverse is not true: an Operational Inspector cannot deliver a
         compliant annual main inspection. Our detailed page on the
-        <a href="/rpii/grades">RPII inspector grades</a> covers this in
+        <a href="/rpii/grades/">RPII inspector grades</a> covers this in
         depth.
       </p>
 

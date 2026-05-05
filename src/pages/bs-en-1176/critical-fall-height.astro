@@ -10,14 +10,12 @@
  * specifiers, procurement officers. Content matches: precise, measured,
  * no oversimplification.
  */
-
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ContentHero from "../../components/ContentHero.astro";
 import ContentBreadcrumbs from "../../components/ContentBreadcrumbs.astro";
 import ContentCTA from "../../components/ContentCTA.astro";
 import RelatedPages from "../../components/RelatedPages.astro";
 import { SITE, ORGANISATION } from "../../consts";
-
 const title =
   "Critical Fall Height Explained (BS EN 1176)";
 const description =
@@ -25,8 +23,7 @@ const description =
 const lastUpdatedDisplay = "23 April 2026";
 const lastUpdatedISO = "2026-04-23";
 const datePublishedISO = "2026-04-23";
-const canonical = `${SITE.url.replace(/\/$/, "")}/bs-en-1176/critical-fall-height`;
-
+const canonical = `${SITE.url.replace(/\/$/, "")}/bs-en-1176/critical-fall-height/`;
 const articleSchema = {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -50,10 +47,9 @@ const articleSchema = {
   },
   isPartOf: {
     "@type": "WebPage",
-    "@id": `${SITE.url.replace(/\/$/, "")}/bs-en-1176`,
+    "@id": `${SITE.url.replace(/\/$/, "")}/bs-en-1176/`,
   },
 };
-
 const faqs = [
   {
     q: "At what fall height does impact-attenuating surfacing become required?",
@@ -80,7 +76,6 @@ const faqs = [
     a: "Indirectly. Indoor soft play falls under a different European standard (BS EN 1176-10 covers fully enclosed play equipment, but indoor commercial soft play is primarily governed by BS EN 1176-11 and BS EN 1176-1 where applicable, alongside specific soft play standards). The underlying principle — that fall height dictates the surfacing requirement — still applies, but the specific thresholds and materials differ significantly from outdoor fixed equipment.",
   },
 ];
-
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -102,7 +97,6 @@ const faqSchema = {
       { label: "Critical Fall Height" },
     ]}
   />
-
   <ContentHero
     eyebrow="BS EN 1176 technical concepts"
     title="Critical Fall Height Explained"
@@ -110,7 +104,6 @@ const faqSchema = {
     lastUpdated={lastUpdatedDisplay}
     readingTime="7 min read"
   />
-
   <article class="mx-auto max-w-3xl px-6 py-12 sm:py-16">
     <nav aria-label="On this page" class="not-prose mb-12 rounded-lg border border-slate-200 bg-slate-50 p-6">
       <p class="text-sm font-semibold uppercase tracking-wide text-slate-500">On this page</p>
@@ -125,16 +118,14 @@ const faqSchema = {
         <li><a href="#faq" class="hover:text-brand-700 hover:underline">Frequently asked questions</a></li>
       </ol>
     </nav>
-
     <div class="prose prose-slate max-w-none prose-headings:scroll-mt-24 prose-headings:font-semibold prose-headings:text-slate-900 prose-a:text-brand-700 prose-a:no-underline hover:prose-a:underline prose-strong:text-slate-900">
       <p class="lead">
         Critical fall height — CFH — is the measurement at the heart of
         playground surfacing compliance. Every piece of equipment has one;
         every surfacing choice is rated against one; every inspection report
         records one. It is also the concept most commonly mis-stated in
-        practice. Part of our wider <a href="/bs-en-1176">BS EN 1176 explainer</a>.
+        practice. Part of our wider <a href="/bs-en-1176/">BS EN 1176 explainer</a>.
       </p>
-
       <h2 id="definition">1. What critical fall height is</h2>
       <p>
         Critical fall height is the greatest vertical distance from which a
@@ -158,7 +149,6 @@ const faqSchema = {
         Loose-fill surfacing compacts and migrates over time; the on-site
         reality is what governs the CFH assessment.
       </p>
-
       <h2 id="threshold">2. The 600 mm threshold</h2>
       <p>
         BS EN 1176 sets a key threshold at 600 mm:
@@ -185,7 +175,6 @@ const faqSchema = {
         arbitrary: it sits at the approximate height above which
         head-injury outcomes depend materially on the surface landed on.
       </p>
-
       <h2 id="measurement">3. How it is measured</h2>
       <p>
         CFH is measured on-site using a tape or laser measure, vertically,
@@ -216,7 +205,6 @@ const faqSchema = {
         measuring to freshly raked loose-fill rather than its compacted
         level will also under-report.
       </p>
-
       <h2 id="equipment-types">4. CFH on different equipment types</h2>
       <p>
         BS EN 1176 gives equipment-specific conventions for how CFH is
@@ -232,7 +220,6 @@ const faqSchema = {
         <li><strong>Rocking equipment</strong> — measured from the highest point in its extreme position of movement.</li>
         <li><strong>Multi-unit structures</strong> — CFH is measured independently for each separately accessible area.</li>
       </ul>
-
       <h2 id="misunderstandings">5. Common misunderstandings</h2>
       <p>
         The recurring errors in CFH assessment are:
@@ -254,12 +241,10 @@ const faqSchema = {
           <strong>Confusing fall height with equipment height</strong> — a 3 m climbing tower with a proper guardrail at 1.5 m has a CFH of 1.5 m. The extra 1.5 m above the guardrail is not accessible.
         </li>
       </ul>
-
       <ContentCTA
         headline="CFH captured accurately, every time."
         body="InspectVoice supports per-equipment critical fall height recording with prompts that remind inspectors to measure compacted surfacing level and highest foreseeable fall point. The numbers go straight into the report."
       />
-
       <h2 id="recording">6. Recording CFH in reports</h2>
       <p>
         A BS EN 1176-aligned inspection report records CFH for every item
@@ -277,7 +262,6 @@ const faqSchema = {
         rating the site is compliant; if it does not, the report documents
         the issue and the recommended remedial action.
       </p>
-
       <h2 id="remedial">7. Remedial options when CFH exceeds surfacing rating</h2>
       <p>
         When an inspection finds equipment with an on-site CFH greater than
@@ -307,7 +291,6 @@ const faqSchema = {
         surfacing performance. &ldquo;Not compliant but not dangerous&rdquo;
         is not a recognised category.
       </p>
-
       <h2 id="faq">Frequently asked questions</h2>
       <div class="not-prose mt-6 space-y-4">
         {faqs.map((item) => (
@@ -322,9 +305,7 @@ const faqSchema = {
           </details>
         ))}
       </div>
-
       <ContentCTA />
-
       <RelatedPages
         pages={[
           {
@@ -341,7 +322,6 @@ const faqSchema = {
       />
     </div>
   </article>
-
   <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 </BaseLayout>
